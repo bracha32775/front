@@ -485,6 +485,7 @@ async function setSelectedFunc(name) {
     setSelectedId(tempCourse.payload.idOfCourse);
     setSelectedCourse(tempCourse.payload);
     // הערה: הסרנו את הבדיקה של סטטוס הקורס כדי לאפשר צפייה בכל הקורסים
+    navToShowCourse();
   }
   catch (error) {
     console.error("שגיאה בהצגת קורס:", error);
@@ -501,9 +502,9 @@ function navToShowCourse() {
   if (courses.find(c => c.idOfCourse === selectedId) != null) {
     setFlag(false);
   }
-  else {
-    alert("לא ניתן להציג את הקורס כרגע");
-  }
+  // else {
+  //   alert("לא ניתן להציג את הקורס כרגע");
+  // }
 }
 // ======================================
   // async function setSelectedFunc(name) {
