@@ -1,0 +1,543 @@
+
+/* Modern AppBar Styling */
+.appbar-container {
+    direction: rtl;
+  }
+  
+  .main-appbar {
+    /* צבע רקע בהיר יותר ומובחן יותר */
+    background: linear-gradient(90deg, #283593, #3f51b5) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .main-appbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px; /* קו עליון עבה יותר */
+    background: linear-gradient(90deg, #4caf50, #3f51b5, #ff9800, #e91e63);
+    z-index: 10;
+  }
+  
+  .main-appbar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E"); */
+    opacity: 0.5;
+    z-index: 0;
+  }
+  
+  .appbar-toolbar {
+    padding: 0.7rem 0 !important; /* מרווח גדול יותר */
+    position: relative;
+    z-index: 1;
+    min-height: 70px !important; /* גובה מינימלי גדול יותר */
+  }
+  
+  /* Logo Styling */
+  .app-logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700 !important;
+    color: white;
+    margin-left: auto !important;
+    position: relative;
+    padding: 10px 20px; /* ריפוד גדול יותר */
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.15); /* רקע בהיר יותר */
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* צל עדין */
+  }
+  
+  .app-logo:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+  }
+  
+  .home-icon {
+    margin-left: 10px;
+    font-size: 1.8rem !important; /* אייקון גדול יותר */
+    color: #fff;
+  }
+  
+  .logo-text {
+    font-size: 1.4rem; /* טקסט גדול יותר */
+    letter-spacing: 0.5px;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* צל טקסט לקריאות טובה יותר */
+  }
+  
+  /* Navigation Buttons */
+  .nav-buttons {
+    display: flex;
+    gap: 15px; /* מרווח גדול יותר בין הכפתורים */
+  }
+  
+  .nav-button {
+    color: white !important;
+    padding: 10px 20px !important; /* ריפוד גדול יותר */
+    border-radius: 10px !important;
+    font-weight: 700 !important; /* טקסט מודגש יותר */
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative;
+    overflow: hidden !important;
+    background: rgba(255, 255, 255, 0.12);
+    display: flex !important;
+    align-items: center !important;
+    min-width: 130px !important; /* רוחב מינימלי גדול יותר */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* צל עדין */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* צל טקסט לקריאות טובה יותר */
+  }
+  
+  .nav-button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px; /* קו תחתון עבה יותר */
+    background-color: var(--highlight-color, #fff);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-button:hover {
+    background: rgba(255, 255, 255, 0.2) !important; /* רקע בהיר יותר בהובר */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  .nav-button:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  
+  .nav-button.active {
+    background: rgba(255, 255, 255, 0.25) !important; /* רקע בהיר יותר למצב פעיל */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  .nav-button.active::before {
+    transform: scaleX(1);
+  }
+  
+  .button-icon {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem !important; /* אייקון גדול יותר */
+  }
+  
+  .button-text {
+    font-size: 1.15rem; /* טקסט גדול יותר */
+    font-weight: 600;
+  }
+  
+  /* Mobile Menu Button */
+  .menu-button {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.15) !important; /* רקע בהיר יותר */
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+    padding: 10px !important; /* ריפוד גדול יותר */
+  }
+  
+  .menu-button:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: rotate(90deg);
+  }
+  
+  .menu-button .MuiSvgIcon-root {
+    font-size: 1.8rem; /* אייקון גדול יותר */
+  }
+  
+  /* Drawer Styling */
+  .app-drawer .MuiPaper-root {
+    width: 300px; /* רוחב גדול יותר */
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    direction: rtl;
+  }
+  
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px; /* ריפוד גדול יותר */
+    background: linear-gradient(90deg, #283593, #3f51b5);
+    color: white;
+  }
+  
+  .drawer-title {
+    font-weight: 700 !important;
+    font-size: 1.4rem !important; /* כותרת גדולה יותר */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* צל טקסט */
+  }
+  
+  .drawer-close {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    transition: all 0.3s ease !important;
+    padding: 8px !important;
+  }
+  
+  .drawer-close:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: rotate(90deg);
+  }
+  
+  .drawer-close .MuiSvgIcon-root {
+    font-size: 1.5rem; /* אייקון גדול יותר */
+  }
+  
+  .drawer-list {
+    padding: 20px 12px !important; /* ריפוד גדול יותר */
+  }
+  
+  .drawer-list-item {
+    border-radius: 10px !important;
+    margin-bottom: 10px !important;
+    transition: all 0.3s ease !important;
+    position: relative;
+    overflow: hidden;
+    padding: 12px 16px !important; /* ריפוד גדול יותר */
+  }
+  
+  .drawer-list-item::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 5px; /* קו ימני עבה יותר */
+    background-color: var(--highlight-color, #3f51b5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .drawer-list-item:hover {
+    background-color: rgba(0, 0, 0, 0.06) !important;
+  }
+  
+  .drawer-list-item:hover::before {
+    opacity: 0.5;
+  }
+  
+  .drawer-list-item.active {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .drawer-list-item.active::before {
+    opacity: 1;
+  }
+  
+  .drawer-item-icon {
+    min-width: 45px !important; /* אייקון גדול יותר */
+    margin-left: 16px !important;
+    margin-right: 0 !important;
+    font-size: 1.5rem !important;
+  }
+  
+  .MuiListItemText-primary {
+    font-size: 1.15rem !important; /* טקסט גדול יותר */
+    font-weight: 600 !important;
+  }
+  
+  /* Tooltip Styling */
+  .MuiTooltip-tooltip {
+    background-color: rgba(33, 33, 33, 0.95) !important;
+    border-radius: 8px !important;
+    padding: 10px 16px !important;
+    font-size: 0.95rem !important; /* טקסט גדול יותר */
+    font-weight: 500 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  .MuiTooltip-arrow {
+    color: rgba(33, 33, 33, 0.95) !important;
+  }
+  
+  /* Animation Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Focus States for Accessibility */
+  .nav-button:focus-visible,
+  .menu-button:focus-visible,
+  .drawer-close:focus-visible,
+  .drawer-list-item:focus-visible {
+    outline: 3px solid #fff; /* קו מתאר עבה יותר */
+    outline-offset: 2px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
+    .app-logo {
+      padding: 8px 16px;
+    }
+    
+    .logo-text {
+      font-size: 1.2rem; /* עדיין גדול יותר מהמקורי, אך מותאם למסך קטן */
+    }
+    
+    .home-icon {
+      font-size: 1.5rem !important;
+    }
+    
+    .button-text {
+      font-size: 1.05rem;
+    }
+    
+    .drawer-title {
+      font-size: 1.3rem !important;
+    }
+    
+    .MuiListItemText-primary {
+      font-size: 1.1rem !important;
+    }
+  }
+  
+  /* Print Styles */
+  @media print {
+    .main-appbar {
+      background: #fff !important;
+      color: #000 !important;
+      box-shadow: none !important;
+    }
+    
+    .main-appbar::before,
+    .main-appbar::after {
+      display: none;
+    }
+    
+    .app-logo,
+    .nav-button,
+    .menu-button {
+      color: #000 !important;
+      background: none !important;
+      box-shadow: none !important;
+    }
+    
+    .logo-text,
+    .button-text,
+    .MuiListItemText-primary {
+      font-size: 12pt !important;
+      text-shadow: none !important;
+    }
+  }
+  
+  /* High Contrast Mode Support */
+  @media (forced-colors: active) {
+    .main-appbar::before {
+      background: CanvasText;
+    }
+    
+    .nav-button::before,
+    .drawer-list-item::before {
+      background-color: CanvasText;
+    }
+    
+    .nav-button,
+    .menu-button,
+    .drawer-close,
+    .drawer-list-item {
+      border: 1px solid CanvasText;
+    }
+    
+    .logo-text,
+    .button-text,
+    .MuiListItemText-primary {
+      text-shadow: none !important;
+    }
+  }
+  
+  /* Reduced Motion Preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .main-appbar,
+    .app-logo,
+    .nav-button,
+    .menu-button,
+    .drawer-close,
+    .drawer-list-item {
+      transition: none !important;
+    }
+    
+    .nav-button:hover,
+    .app-logo:hover,
+    .menu-button:hover,
+    .drawer-close:hover {
+      transform: none !important;
+    }
+  }
+  
+  /* RTL Specific Adjustments */
+  .button-icon {
+    margin-right: 0;
+    margin-left: 10px; /* מרווח גדול יותר */
+  }
+  
+  .drawer-item-icon {
+    margin-right: 0 !important;
+    margin-left: 16px !important;
+  }
+  
+  /* Enhance Active State with Pulse Effect */
+  .nav-button.active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15); /* אפקט בהיר יותר */
+    transform: translate(-50%, -50%) scale(0);
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0.8;
+    }
+    70% {
+      opacity: 0;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0;
+    }
+  }
+  
+  /* תוספות חדשות לשיפור הקריאות והבהירות */
+  
+  /* שיפור קריאות הטקסט */
+  .logo-text, 
+  .button-text, 
+  .drawer-title, 
+  .MuiListItemText-primary {
+    font-family: 'Rubik', 'Assistant', sans-serif; /* פונט עברי מודרני וקריא */
+    letter-spacing: 0.3px;
+  }
+  
+  /* הדגשת הכפתור הפעיל */
+  .nav-button.active {
+    border: 2px solid rgba(255, 255, 255, 0.5); /* גבול לבן שקוף */
+  }
+  
+  /* שיפור ניגודיות הצבעים */
+  .nav-button {
+    color: rgba(255, 255, 255, 0.95) !important; /* טקסט לבן כמעט מלא */
+  }
+  
+  .nav-button:hover .button-text,
+  .nav-button.active .button-text {
+    color: #ffffff !important; /* טקסט לבן מלא בהובר ובמצב פעיל */
+  }
+  
+  /* הוספת אפקט זוהר לכפתורים */
+  .nav-button:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    pointer-events: none;
+  }
+  
+  /* שיפור המגירה */
+  .drawer-list-item {
+    margin: 0 8px 10px 8px !important; /* מרווחים משופרים */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* צל עדין */
+  }
+  
+  .drawer-list-item .MuiListItemText-primary {
+    color: #333; /* צבע כהה יותר לטקסט */
+  }
+  
+  /* שיפור הסרגל העליון */
+  .main-appbar {
+    height: 75px; /* גובה קבוע */
+  }
+  
+  /* הגדלת האייקונים בתפריט */
+  .drawer-item-icon .MuiSvgIcon-root {
+    font-size: 1.6rem !important;
+  }
+  
+  /* הוספת אפקט מעבר חלק לכפתורים */
+  .nav-button {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  }
+  
+  /* שיפור הקונטרסט בין הרקע לטקסט */
+  .main-appbar {
+    /* גרדיאנט עם קונטרסט גבוה יותר */
+    background: linear-gradient(90deg, #1a237e, #3949ab) !important;
+  }
+  
+  /* הוספת צל לטקסט לשיפור הקריאות */
+  .button-text, 
+  .logo-text {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* שיפור מראה הכפתורים במצב פעיל */
+  .nav-button.active {
+    transform: translateY(-2px);
+  }
+  
+  /* הוספת אפקט מעבר לאייקונים */
+  .button-icon, 
+  .home-icon, 
+  .drawer-item-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-button:hover .button-icon,
+  .app-logo:hover .home-icon,
+  .drawer-list-item:hover .drawer-item-icon {
+    transform: scale(1.1);
+  }
+  
+  /* שיפור הנגישות עם קונטרסט גבוה */
+  @media (prefers-contrast: more) {
+    .main-appbar {
+      background: #1a237e !important; 
+      /* צבע אחיד וכהה */
+    }
+    
+    .nav-button, 
+    .app-logo {
+      background: rgba(0, 0, 0, 0.2) !important;
+    }
+    
+    .button-text, 
+    .logo-text {
+      text-shadow: none;
+      font-weight: 800 !important;
+    }
+  }
+  
+  

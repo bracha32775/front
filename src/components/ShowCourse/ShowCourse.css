@@ -1,0 +1,13 @@
+.mainDiv {
+    background-color: rgba(134, 226, 43, 0.366);
+}
+
+.show {
+    background-color: #c8e6c9;
+}
+
+.details {
+    background-color: #ffccbc;
+
+    border: 1px solid #009688;
+}
