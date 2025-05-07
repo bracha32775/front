@@ -586,7 +586,7 @@
 //   );
 // };
 //==============================================================================================================================
-import React, { use, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import {
   Box, Typography, Button, Grid,
   Card,
@@ -627,6 +627,7 @@ import { updateCourseThunk } from '../../redux/Thunks/updateCourseThunk';
 import { useDispatch } from 'react-redux';
 import WarningIcon from '@mui/icons-material/Warning';
 import { useSelector } from 'react-redux';
+import { deleteCourseThunk } from '../../redux/Thunks/deleteCourseThunk';
 
 export const ShowCourse = (props) => {
   const nav = useNavigate();
@@ -636,10 +637,16 @@ export const ShowCourse = (props) => {
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [studentsDialogOpen, setStudentsDialogOpen] = useState(false);
-
+  const [selectedStudents, setSelectedStudents] = useState([]);
+  useEffect(() => {
+    if (selectedCourse.students && selectedCourse.students.length > 0) {
+     setSelectedStudents(courses.map((course) => (course.Students.map((s)=>
+       s.nameOfStudent) )))}
+  }, [selectedCourse]); 
   // State for edited course data
   const [editedCourse, setEditedCourse] = useState({ ...selectedCourse });
- const student = useSelector  (state => state.students.students);
+//  const student = useSelector  (state => state.students.students);
+const courses = useSelector(state => state.courses.courses);
   // Get a random image if none is provided
   const getRandomImage = () => {
     const images = [
@@ -702,6 +709,7 @@ export const ShowCourse = (props) => {
     // Here you would typically call an API to delete the course
     // console.log("Deleting course:", selectedCourse.idOfCourse);
     // props.onDeleteCourse(selectedCourse.idOfCourse);
+    dispatch(deleteCourseThunk(selectedCourse.idOfCourse))
     setDeleteDialogOpen(false);
     handleGoBack();
   };
@@ -1876,7 +1884,7 @@ export const ShowCourse = (props) => {
                   </Typography>
                 </Card>
               </Grid>
-              
+
             </Grid>
           </Box>
 
@@ -1884,6 +1892,14 @@ export const ShowCourse = (props) => {
 
           <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
             רשימת תלמידים
+            <div>
+            {selectedStudents.map((student) => (
+              <div key={student.id}>{student.nameOfStudent}</div>
+            ))} hello</div>
+            {/* {courses.map((course) => (course.Students.map((s)=>
+              <div color="red">{s.nameOfStudent}</div>
+            )
+            ))}  */}
           </Typography>
 
           {/* Here you would typically map through the students list */}

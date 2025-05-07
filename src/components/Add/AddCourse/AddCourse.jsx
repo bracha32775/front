@@ -555,9 +555,9 @@ export const AddCourse = ({ onClose }) => {
   
   return (
     <Paper className="course-form-container">
-      <Typography variant="h4" component="h1" gutterBottom align="center" className="form-title">
+      {/* <Typography variant="h4" component="h1" gutterBottom align="center" className="form-title">
         הוספת קורס חדש
-      </Typography>
+      </Typography> */}
       
       <Divider className="form-divider" />
       

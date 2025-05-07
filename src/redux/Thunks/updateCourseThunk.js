@@ -41,7 +41,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const updateCourseThunk = createAsyncThunk(
   "courses/updateCourse",
-  async (course, { rejectWithValue }) => {
+  async (course) => {
     try {
       const response = await fetch(`https://localhost:7092/api/Course/Update/${course.idOfCourse}`, {
         method: 'PUT',
@@ -58,7 +58,8 @@ export const updateCourseThunk = createAsyncThunk(
       const data = await response.json();
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      console.error('Error joining course:', error);
+      
     }
   }
 );
