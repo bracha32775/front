@@ -51,7 +51,5 @@ export const AddSpeaker = () => {
                 <Fab variant="outlined" onClick={() => doIt(speaker)}>
                     < ThumbUpOffAltOutlinedIcon />
                 </Fab></div> </>}
-                <br></br>
     </div>
-
 }
