@@ -49,12 +49,14 @@ import { getStudentArchieveThunk } from "../Thunks/getStudentArchieveThunk";
 import { getCourseArchieveThunk } from "../Thunks/getCourseArchieveThunk";
 import { getAllCoursesThunk } from "../Thunks/getAllCoursesThunk";
 import { updateCourseThunk } from "../Thunks/updateCourseThunk";
+import { getAllStudentsOfCoursThunk } from "../Thunks/getAllStudentsOfCoursThunk";
 
 const INITIAL_STATE={
     courses : [],
     selectC : {},
     flagClose : false,
     allCourses:[],
+    students:[],
 }
 
 export const courseSlice = createSlice({
@@ -81,6 +83,9 @@ export const courseSlice = createSlice({
         });
         builder.addCase(getAllCoursesThunk.fulfilled,(state,action)=>{
             state.allCourses=action.payload;
+        });
+        builder.addCase(getAllStudentsOfCoursThunk.fulfilled,(state,action)=>{
+            state.students=action.payload;
         });
         // הוספת טיפול בעדכון קורס
         builder.addCase(updateCourseThunk.fulfilled,(state,action)=>{

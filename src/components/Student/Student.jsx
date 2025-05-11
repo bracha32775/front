@@ -1,3 +1,4 @@
+// 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getStudentsThunk } from '../../redux/Thunks/getStudentsThunk';
@@ -42,7 +43,6 @@ export const Student = () => {
       padding: theme.spacing(3),
     },
   }));
-
 
 
 
@@ -110,6 +110,7 @@ export const Student = () => {
     </React.Fragment>
   </div>
 }
+
 
 
 

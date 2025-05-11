@@ -1,6 +1,6 @@
 
 import { Route, Routes } from "react-router-dom"
-import { Student } from "../Student/Student"
+ import { Student } from "../Student/Student"
 import { Course } from "../Course/Course"
 import { Speaker } from "../Speaker/Speaker"
 import MyAppBar from "../MyAppBar/MyAppBar"

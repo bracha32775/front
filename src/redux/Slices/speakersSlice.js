@@ -5,8 +5,10 @@ import { deleteSpeakerThunk } from "../Thunks/deleteSpeakerThunk"
 import { getBySpeakerNameThunk } from "../Thunks/getBySpeakerNameThunk";
 import { getSpeakerArchieveThunk } from "../Thunks/getSpeakerArchieveThunk";
 import { getSpeakerByIdThunk } from "../Thunks/getSpeakerByIdThunk";
+import { getAllSpeakersThunk } from "../Thunks/getAllSpeakersThunk";
 const INITIAL_STATE = {
     speakers: [],
+    allSpeakers: [],
     selectSpeaker: {},
     flagClose: false,
     selectedS:{}
@@ -37,6 +39,9 @@ export const speakersSlice = createSlice({
         });
         builder.addCase(getSpeakerByIdThunk.fulfilled, (state, action) => {
             state.selectedS = action.payload;
+        });
+        builder.addCase(getAllSpeakersThunk.fulfilled, (state, action) => {
+            state.allSpeakers = action.payload;
         });
     }
 })
