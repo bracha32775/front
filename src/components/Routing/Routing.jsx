@@ -9,7 +9,7 @@ import { Home } from "../Home/Home"
 import { Supplier } from "../copyTable"
 import EnhancedTable from "../Student/studentTable"
 import CardCourse from "../ShowCourse/cardCourse"
-import { Archieve } from "../Archieve/Archieve"
+import { Archeive } from "../Archieve/Archieve"
 import {B} from "../b" 
 import { HomePage } from "../HomePage/HomePage"
 import {ShowCourse} from "../ShowCourse/ShowCourse"
@@ -27,7 +27,7 @@ export const Routing = () => {
         <Route path="/joinCourse/*" element={<JoinCourse></JoinCourse>}></Route>
         <Route path="/Supplier/*" element={<Supplier></Supplier>}></Route>
         <Route path="/Student/*" element={<Student></Student>}></Route>
-        <Route path="/Archieve/*" element={<Archieve></Archieve>}></Route>
+        <Route path="/Archieve/*" element={<Archeive></Archeive>}></Route>
         <Route path="/B/*" element={<B></B>}></Route>
         <Route path='/HomePage' element={<HomePage></HomePage>}></Route>
         {/* <Route path="/HomePage" element={<HomePage></HomePage>}></Route> */}
