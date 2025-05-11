@@ -8,8 +8,8 @@ import axios from 'axios';
  */
 export const joinCourseThunk = createAsyncThunk(
   'studentCourses/joinCourse',
-  async (sId,id) => {
-    try {
+  async ({sId,id}) => {
+    // try {
       // שליחת בקשת POST לשרת עם נתוני ההרשמה
       const response = await axios.post(
         `https://localhost:7092/api/Student/JoinCourse/${sId}/${id}`,
@@ -22,16 +22,16 @@ export const joinCourseThunk = createAsyncThunk(
 
       // החזרת הנתונים מהשרת
       return response.data;
-    } catch (error) {
-      // לוגינג של השגיאה
-      console.error('Error joining course:', error);
+    // } catch (error) {
+    //   // לוגינג של השגיאה
+    //   console.error('Error joining course:', error);
       
-      // החזרת הודעת שגיאה מהשרת (אם קיימת) או הודעה כללית
-      return (
-        error.response?.data?.message || 
-        'אירעה שגיאה בתהליך ההרשמה לקורס. אנא נסה שוב מאוחר יותר.'
-      );
-    }
+    //   // החזרת הודעת שגיאה מהשרת (אם קיימת) או הודעה כללית
+    //   return (
+    //     error.response?.data?.message || 
+    //     'אירעה שגיאה בתהליך ההרשמה לקורס. אנא נסה שוב מאוחר יותר.'
+    //   );
+    // }
   }
 );
 

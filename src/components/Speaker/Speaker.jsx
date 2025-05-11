@@ -33,7 +33,7 @@ export const Speaker = () => {
     },
   }));
   const dispatch = useDispatch()
-  const speakers = useSelector(state => state.speakers.speakers);
+  const speakers = useSelector(state => state.speakers.allSpeakers);
   const speaker = useSelector(state => state.speakers.selectSpeaker);
   const flagClose = useSelector(state => state.speakers.flagClose);
   const [flagClose2, setFlagClose2] = React.useState(flagClose)

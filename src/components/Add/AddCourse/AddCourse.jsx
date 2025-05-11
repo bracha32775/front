@@ -467,6 +467,8 @@ import { styled } from '@mui/material/styles';
 
 // CSS
 import './AddCourse.css';
+import { getAllSpeakersThunk } from "../../../redux/Thunks/getAllSpeakersThunk";
+
 
 // Styled components
 const VisuallyHiddenInput = styled('input')({
@@ -483,7 +485,7 @@ const VisuallyHiddenInput = styled('input')({
 
 export const AddCourse = ({ onClose }) => {
   const dispatch = useDispatch();
-  const speakers = useSelector(state => state.speakers.speakers);
+  const speakers = useSelector(state => state.speakers.allSpeakers);
   
   const [course, setCourse] = useState({
     nameOfCourse: "",
@@ -498,11 +500,11 @@ export const AddCourse = ({ onClose }) => {
   });
   
   const [selectedFile, setSelectedFile] = useState(null);
-  const [fileName, setFileName] = useState("לא נבחר קובץ");
+  const [fileName, setFileName] = useState('');
   const [previewUrl, setPreviewUrl] = useState(null);
   
   useEffect(() => {
-    dispatch(getSpeakersThunk());
+    dispatch(getAllSpeakersThunk());
   }, [dispatch]);
   
   const handleFileChange = (event) => {
@@ -555,9 +557,9 @@ export const AddCourse = ({ onClose }) => {
   
   return (
     <Paper className="course-form-container">
-      <Typography variant="h4" component="h1" gutterBottom align="center" className="form-title">
+      {/* <Typography variant="h4" component="h1" gutterBottom align="center" className="form-title">
         הוספת קורס חדש
-      </Typography>
+      </Typography> */}
       
       <Divider className="form-divider" />
       
@@ -598,7 +600,7 @@ export const AddCourse = ({ onClose }) => {
               </Button>
               
               <Typography variant="caption" display="block" className="file-name">
-                {fileName}
+               
               </Typography>
             </CardContent>
           </Card>

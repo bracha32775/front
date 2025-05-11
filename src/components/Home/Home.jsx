@@ -349,6 +349,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Fade from '@mui/material/Fade';
+import { getCoursesThunk } from '../../redux/Thunks/getCoursesThunk';
 
 // Styled Components
 const CourseCard = styled('div')(({ theme }) => ({
@@ -485,6 +486,7 @@ async function setSelectedFunc(name) {
     setSelectedId(tempCourse.payload.idOfCourse);
     setSelectedCourse(tempCourse.payload);
     // הערה: הסרנו את הבדיקה של סטטוס הקורס כדי לאפשר צפייה בכל הקורסים
+    navToShowCourse();
   }
   catch (error) {
     console.error("שגיאה בהצגת קורס:", error);
@@ -501,9 +503,9 @@ function navToShowCourse() {
   if (courses.find(c => c.idOfCourse === selectedId) != null) {
     setFlag(false);
   }
-  else {
-    alert("לא ניתן להציג את הקורס כרגע");
-  }
+  // else {
+  //   alert("לא ניתן להציג את הקורס כרגע");
+  // }
 }
 // ======================================
   // async function setSelectedFunc(name) {
@@ -531,9 +533,10 @@ function navToShowCourse() {
   // }
 
   React.useEffect(() => {
+    dispatch(getCoursesThunk());  
     if (selectedId != undefined)
       navToShowCourse();
-  }, [selectedId]);
+  }, [selectedId, selectedCourse]);
 
   // Mock data for demonstration - replace with actual data from your courses
   const getCourseCategory = (course) => {
@@ -608,7 +611,7 @@ function navToShowCourse() {
                   }}
                 />
               </SearchBox>
-              
+              <br></br>
               {filteredCourses.length > 0 ? (
                 <Grid container spacing={3}>
                   {filteredCourses.map((course, index) => (

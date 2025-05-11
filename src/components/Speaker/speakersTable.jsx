@@ -314,7 +314,6 @@ export default function SpeakersTable() {
                               return (
                                   <TableRow
                                       hover
-                                      //
                                       // onClick={(event) => handleClick(event, row.id)}
                                       role="checkbox"
                                       aria-checked={isItemSelected}
@@ -324,13 +323,6 @@ export default function SpeakersTable() {
                                       sx={{ cursor: 'pointer' }}
                                   >
                                       <TableCell padding="checkbox">
-                                          {/* <Checkbox
-                  color="primary"
-                  checked={isItemSelected}
-                  inputProps={{
-                    'aria-labelledby': labelId,
-                  }}
-                /> */}
                                       </TableCell>
                                       <TableCell align="center">{row.emailOfSpeaker}</TableCell>
                                       <TableCell align="center">{row.specializationOfSpeaker}</TableCell>   
