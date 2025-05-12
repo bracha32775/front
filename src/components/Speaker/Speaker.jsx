@@ -5326,6 +5326,7 @@ import { setFlagSpeakerSlice } from '../../redux/Slices/speakersSlice';
 import { AddSpeaker } from '../Add/AddSpeaker/AddSpeaker';
 import SpeakersTable from './speakersTable';
 import './Speaker.css';
+import { Routing } from '../Routing/Routing';
 
 // Styled Components
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -5632,7 +5633,11 @@ export const Speaker = () => {
   };
 
   return (
-    <Box sx={{ p: 3, maxWidth: 1200, margin: '0 auto' }}>
+   
+   <div>
+
+       <Routing></Routing>
+       <br></br>
       <StyledPaper elevation={3}>
         <PageHeader>
           <Typography variant="h4" component="h1" fontWeight="bold" color="primary">
@@ -6525,7 +6530,7 @@ export const Speaker = () => {
             {snackbar.message}
           </Alert>
         </Snackbar>
-      </Box>
+        </div>
     );
   };
   
