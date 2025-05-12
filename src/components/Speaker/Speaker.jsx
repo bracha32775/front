@@ -334,6 +334,7 @@ import { setFlagSpeakerSlice } from '../../redux/Slices/speakersSlice';
 import { AddSpeaker } from '../Add/AddSpeaker/AddSpeaker';
 import SpeakersTable from './speakersTable';
 import './Speaker.css';
+import { Routing } from '../Routing/Routing';
 
 // Styled Components
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -640,7 +641,11 @@ export const Speaker = () => {
   };
 
   return (
-    <Box sx={{ p: 3, maxWidth: 1200, margin: '0 auto' }}>
+   
+   <div>
+
+       <Routing></Routing>
+       <br></br>
       <StyledPaper elevation={3}>
         <PageHeader>
           <Typography variant="h4" component="h1" fontWeight="bold" color="primary">
@@ -877,6 +882,233 @@ export const Speaker = () => {
             </Box>
           )}
           
+{tabValue === 2 && (
+  <FilterContainer>
+    <Typography variant="h6" gutterBottom sx={{ width: '100%' }}>
+      סינון מתקדם
+    </Typography>
+    
+    <Grid container spacing={3}>
+      <Grid item xs={12} md={6}>
+        <FormControl fullWidth variant="outlined">
+          <InputLabel>חיפוש לפי שדה</InputLabel>
+          <Select
+            label="חיפוש לפי שדה"
+            value={sortConfig.key}
+            onChange={(e) => setSortConfig({ ...sortConfig, key: e.target.value })}
+          >
+            <MenuItem value="nameOfSpeaker">שם</MenuItem>
+            <MenuItem value="phoneOfSpeaker">טלפון</MenuItem>
+            <MenuItem value="emailOfSpeaker">אימייל</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
+      
+      <Grid item xs={12} md={6}>
+        <FormControl fullWidth variant="outlined">
+          <InputLabel>סדר מיון</InputLabel>
+          <Select
+            label="סדר מיון"
+            value={sortConfig.direction}
+            onChange={(e) => setSortConfig({ ...sortConfig, direction: e.target.value })}
+          >
+            <MenuItem value="ascending">עולה (א-ת)</MenuItem>
+            <MenuItem value="descending">יורד (ת-א)</MenuItem>
+          </Select>
+        </FormControl>
+      </Grid>
+      
+      <Grid item xs={12}>
+        <TextField
+          fullWidth
+          label="חיפוש חופשי"
+          variant="outlined"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Grid>
+      
+      <Grid item xs={12}>
+        <Typography variant="subtitle2" gutterBottom>
+          סינון לפי קטגוריה:
+        </Typography>
+        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+          <StyledChip
+            label="הכל"
+            clickable
+            active={filterCategory === 'all'}
+            onClick={() => setFilterCategory('all')}
+          />
+          <StyledChip
+            label="עם קורסים"
+            clickable
+            active={filterCategory === 'withCourses'}
+            onClick={() => setFilterCategory('withCourses')}
+          />
+          <StyledChip
+            label="ללא קורסים"
+            clickable
+            active={filterCategory === 'noCourses'}
+            onClick={() => setFilterCategory('noCourses')}
+          />
+        </Box>
+      </Grid>
+    </Grid>
+    
+    {/* הוספת הצגת תוצאות הסינון */}
+    <Box sx={{ mt: 4 }}>
+      <Typography variant="h6" gutterBottom>
+        תוצאות הסינון
+      </Typography>
+      
+      {loading ? (
+        <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
+          <CircularProgress />
+        </Box>
+      ) : filteredSpeakers.length > 0 ? (
+        <Grid container spacing={3}>
+          {filteredSpeakers.map((speaker) => (
+            <Grid item xs={12} sm={6} md={4} key={speaker.idOfSpeaker}>
+              <Card
+                sx={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 12px 20px rgba(0, 0, 0, 0.1)'
+                  }
+                }}
+              >
+                <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    {speaker.courses && speaker.courses.length > 0 ? (
+                      <StyledBadge
+                        overlap="circular"
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                        variant="dot"
+                      >
+                        <SpeakerAvatar
+                          sx={{ bgcolor: getAvatarColor(speaker.nameOfSpeaker) }}
+                        >
+                          {getInitials(speaker.nameOfSpeaker)}
+                        </SpeakerAvatar>
+                      </StyledBadge>
+                    ) : (
+                      <SpeakerAvatar
+                        sx={{ bgcolor: getAvatarColor(speaker.nameOfSpeaker) }}
+                      >
+                        {getInitials(speaker.nameOfSpeaker)}
+                      </SpeakerAvatar>
+                    )}
+                    
+                    <Box>
+                      <Typography variant="h6" component="h2" fontWeight="bold">
+                        {speaker.nameOfSpeaker}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {speaker.courses && speaker.courses.length > 0
+                          ? `${speaker.courses.length} קורסים פעילים`
+                          : 'אין קורסים פעילים'}
+                      </Typography>
+                    </Box>
+                  </Box>
+                  
+                  <Divider />
+                  
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                    {speaker.phoneOfSpeaker && (
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <PhoneIcon fontSize="small" color="action" />
+                        <Typography variant="body2">
+                          {speaker.phoneOfSpeaker}
+                        </Typography>
+                      </Box>
+                    )}
+                    
+                    {speaker.emailOfSpeaker && (
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <EmailIcon fontSize="small" color="action" />
+                        <Typography variant="body2" sx={{ wordBreak: 'break-word' }}>
+                          {speaker.emailOfSpeaker}
+                        </Typography>
+                      </Box>
+                    )}
+                    
+                    {speaker.addressOfSpeaker && (
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <LocationIcon fontSize="small" color="action" />
+                        <Typography variant="body2">
+                          {speaker.addressOfSpeaker}
+                        </Typography>
+                      </Box>
+                    )}
+                  </Box>
+                  
+                  <Box sx={{ mt: 'auto', display: 'flex', justifyContent: 'flex-end' }}>
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      onClick={() => handleViewDetails(speaker)}
+                    >
+                      פרטים נוספים
+                    </Button>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <Paper
+          sx={{
+            p: 4,
+            textAlign: 'center',
+            backgroundColor: alpha(theme.palette.background.paper, 0.7)
+          }}
+        >
+          <Typography variant="h6" color="text.secondary" gutterBottom>
+            לא נמצאו מרצים
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            נסה לשנות את הגדרות החיפוש או הסינון
+          </Typography>
+        </Paper>
+      )}
+    </Box>
+  </FilterContainer>
+)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           {tabValue === 1 && (
             <Box>
               <Typography variant="h6" gutterBottom>
@@ -950,7 +1182,7 @@ export const Speaker = () => {
             </Box>
           )}
           
-          {tabValue === 2 && (
+          {/* {tabValue === 2 && (
             <FilterContainer>
               <Typography variant="h6" gutterBottom sx={{ width: '100%' }}>
                 סינון מתקדם
@@ -1030,7 +1262,8 @@ export const Speaker = () => {
                 </Grid>
               </Grid>
             </FilterContainer>
-          )}
+          ) */}
+          {/* } */}
         </Box>
         
         {/* Original Table (can be kept or removed) */}
@@ -1305,7 +1538,7 @@ export const Speaker = () => {
             {snackbar.message}
           </Alert>
         </Snackbar>
-      </Box>
+        </div>
     );
   };
   
