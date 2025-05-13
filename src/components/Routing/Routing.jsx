@@ -13,10 +13,12 @@ import {B} from "../b"
 import { HomePage } from "../HomePage/HomePage"
 import {ShowCourse} from "../ShowCourse/ShowCourse"
 import JoinCourse from "../JoinCourse/JoinCourse"
+import CourseRegistration from "../JoinCourse/CourseRegistration"
 
 
 export const Routing = () => {
     return <Routes>
+        <Route path="/course-registration/:courseId" element={<CourseRegistration></CourseRegistration>} />
         <Route path="/" element={<MyAppBar></MyAppBar>}></Route>
         <Route path="/Home/*" element={<Home></Home>}></Route>
         {/* <Route path="/Student/*" element={<Student></Student>}></Route> */}

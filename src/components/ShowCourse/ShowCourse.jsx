@@ -86,7 +86,8 @@ const myStudents = useSelector(state => state.courses.students);
   const moveToJoinCourse = () => {
     console.log("selectedCourse.idOfCourse"+selectedCourse.idOfCourse+"wowowow");
     // העברת מזהה הקורס כפרמטר לדף הרישום
-    nav(`/joinCourse/${selectedCourse.idOfCourse}`);
+    // nav(`/joinCourse/${selectedCourse.idOfCourse}`);
+    nav(`/course-registration/${selectedCourse.idOfCourse}`);
   };
 const handleFileChange = (event) => {
   const file = event.target.files[0];
