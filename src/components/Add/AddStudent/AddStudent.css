@@ -1,10 +1,184 @@
-/* //.border{
-   width:95%;
-    border: 2px double black;
-    padding-left: 50px;
-     margin-left: 40%; 
-    padding-bottom: 10px;
-} */
-.button{
-  margin-left: 80px;
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+/* Card styling */
+.MuiCard-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  transition: all 0.3s ease;
+}
+
+.MuiCard-root:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.MuiCardContent-root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px !important;
+}
+
+/* Card header styling */
+.MuiCardHeader-root {
+  padding: 12px 16px !important;
+}
+
+.MuiCardHeader-title {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
+/* Input field styling */
+.MuiFormControl-root {
+  margin-bottom: 0 !important;
+}
+
+.MuiInputBase-root {
+  margin-top: 0 !important;
+  transition: all 0.3s ease;
+}
+
+/* Error styling for validation */
+.MuiFormHelperText-root.Mui-error {
+  color: #f44336 !important;
+  font-size: 0.7rem !important;
+  margin-top: 2px !important;
+  transition: all 0.3s ease;
+}
+
+.MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #f44336 !important;
+  transition: all 0.3s ease;
+}
+
+.MuiInputLabel-root.Mui-error {
+  color: #f44336 !important;
+  transition: all 0.3s ease;
+}
+
+/* Ensure grid items have equal height */
+.MuiGrid-container .MuiGrid-item {
+  display: flex;
+}
+
+/* Ensure cards fill the grid item height */
+.MuiGrid-container .MuiGrid-item > * {
+  width: 100%;
+}
+
+/* Compact form elements */
+.MuiFormHelperText-root {
+  margin-top: 2px !important;
+  margin-bottom: 0 !important;
+  min-height: 16px;
+  font-size: 0.7rem !important;
+  transition: all 0.3s ease;
+}
+
+/* Typography styling */
+.MuiTypography-body2 {
+  font-size: 0.85rem !important;
+  line-height: 1.4 !important;
+}
+
+.MuiTypography-subtitle2 {
+  font-size: 0.9rem !important;
+  line-height: 1.4 !important;
+  margin-bottom: 4px !important;
+  font-weight: 600 !important;
+}
+
+/* Input styling */
+.MuiInputBase-input {
+  padding: 10px 14px !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-width: 1px !important;
+  transition: all 0.3s ease;
+}
+
+/* Button styling */
+.MuiButton-root {
+  padding: 8px 22px !important;
+  min-height: 40px !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+  font-size: 0.95rem !important;
+}
+
+.MuiButton-root:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
+}
+
+/* RTL support for icons in text fields */
+.MuiInputAdornment-root {
+  margin-left: 8px;
+  margin-right: 0;
+}
+
+/* Divider styling */
+.MuiDivider-root {
+  margin: 12px 0 !important;
+}
+
+/* Ensure equal height for both cards */
+@media (min-width: 960px) {
+  .MuiGrid-container .MuiGrid-item .MuiCard-root {
+    height: 100% !important;
+    min-height: 280px;
+  }
+}
+
+/* Focus styles */
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #2196f3 !important;
+  border-width: 2px !important;
+}
+
+/* Hover effect for inputs */
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.42) !important;
+}
+
+.MuiOutlinedInput-root.Mui-error:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #f44336 !important;
+}
+
+/* Smooth transitions */
+.MuiPaper-root, .MuiCard-root, .MuiCardContent-root, .MuiCardHeader-root,
+.MuiTextField-root, .MuiInputBase-root, .MuiButton-root {
+  transition: all 0.3s ease !important;
+}
+
+/* Snackbar styling */
+.MuiAlert-root {
+  border-radius: 8px !important;
+}
+
+.MuiAlert-standardSuccess {
+  background-color: #e8f5e9 !important;
+  color: #2e7d32 !important;
+}
+
+.MuiAlert-standardError {
+  background-color: #ffebee !important;
+  color: #c62828 !important;
+}
+
+/* Icon styling */
+.MuiSvgIcon-root {
+  transition: all 0.3s ease;
+}
+
+/* Paper styling */
+.MuiPaper-root {
+  border-radius: 12px !important;
 }
