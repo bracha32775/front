@@ -60,12 +60,15 @@ export const ShowCourse = (props) => {
    const [previewUrl, setPreviewUrl] = useState({...selectedCourse.image});
   const [editedCourse, setEditedCourse] = useState({ ...selectedCourse });
   
+  // useEffect(() => {
+  //   // if (selectedCourse.students && selectedCourse.students.length > 0) {
+  //   //  setSelectedStudents(courses.map((course) => (course.Students.map((s)=>
+  //   //    s.nameOfStudent) )))}
+  // }, [selectedCourse]); 
   useEffect(() => {
-    // if (selectedCourse.students && selectedCourse.students.length > 0) {
-    //  setSelectedStudents(courses.map((course) => (course.Students.map((s)=>
-    //    s.nameOfStudent) )))}
-  }, [selectedCourse]); 
-
+    console.log("selectedCourse:", selectedCourse);
+    console.log("amountOfMeetingsInCourse:", selectedCourse.amountOfMeetingsInCourse);
+  }, [selectedCourse]);
   // useEffect(() => {
   //   dispatch(getAllStudentsOfCoursThunk(selectedCourse.id))
   // }, []); 
@@ -566,7 +569,7 @@ const uploadFile = async (file) => {
                   fontWeight: 500,
                   color: 'text.primary',
                 }}>
-                  {selectedCourse.amountOfMettingInCourse || props.amountOfMettingInCourse || "0"}
+                  {selectedCourse.amountOfMeetingsInCourse || props.amountOfMeetingsInCourse || "0"}
                 </Typography>
               </Box>
 
