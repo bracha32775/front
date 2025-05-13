@@ -1,4 +1,4 @@
-.cotarot{
+/* .cotarot{
     background-color:#ff1745b4;
   
     height: 15px;
@@ -11,4 +11,144 @@
 }
 .pTeachers{
     font-size: xx-large; 
-}
+} */
+/* Custom styling for Speaker component */
+
+/* RTL support */
+body {
+    direction: rtl;
+  }
+  
+  /* Card hover effects */
+  .MuiCard-root {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .MuiCard-root:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Avatar pulse animation */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(63, 81, 181, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(63, 81, 181, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(63, 81, 181, 0);
+    }
+  }
+  
+  .pulse-avatar {
+    animation: pulse 2s infinite;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #3f51b5;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #303f9f;
+  }
+  
+  /* Dialog animations */
+  .MuiDialog-paper {
+    animation: dialogFadeIn 0.3s ease-out;
+  }
+  
+  @keyframes dialogFadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Button hover effects */
+  .MuiButton-root {
+    transition: all 0.3s ease !important;
+  }
+  
+  .MuiButton-contained:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .MuiGrid-container {
+      margin-top: 1rem;
+    }
+    
+    .MuiTypography-h4 {
+      font-size: 1.5rem;
+    }
+    
+    .MuiDialogContent-root {
+      padding: 16px !important;
+    }
+  }
+  
+  /* Empty state styling */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: #6c757d;
+    text-align: center;
+  }
+  
+  /* Chip animations */
+  .MuiChip-root {
+    transition: all 0.2s ease;
+  }
+  
+  .MuiChip-root:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Tab transitions */
+  .MuiTab-root {
+    transition: all 0.3s ease;
+  }
+  
+  .MuiTab-root:hover {
+    background-color: rgba(63, 81, 181, 0.08);
+  }
+  
+  /* Card content fade in */
+  .card-content-fade {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

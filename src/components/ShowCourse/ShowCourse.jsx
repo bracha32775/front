@@ -84,8 +84,10 @@ const myStudents = useSelector(state => state.courses.students);
     return images[Math.floor(Math.random() * images.length)];
   };
   const moveToJoinCourse = () => {
+    console.log("selectedCourse.idOfCourse"+selectedCourse.idOfCourse+"wowowow");
     // העברת מזהה הקורס כפרמטר לדף הרישום
-    nav(`/joinCourse/${selectedCourse.idOfCourse}`);
+    // nav(`/joinCourse/${selectedCourse.idOfCourse}`);
+    nav(`/course-registration/${selectedCourse.idOfCourse}`);
   };
 const handleFileChange = (event) => {
   const file = event.target.files[0];
@@ -156,8 +158,8 @@ const uploadFile = async (file) => {
     setEditDialogOpen(false);
   };
 
-  const handleEditSave = () => {
-    dispatch(updateCourseThunk(editedCourse));
+  const handleEditSave = async () => {
+     dispatch(updateCourseThunk(editedCourse));
     console.log("Saving edited course:", editedCourse);
     // props.onUpdateCourse(editedCourse);
     setEditDialogOpen(false);
@@ -191,13 +193,17 @@ const uploadFile = async (file) => {
 
   // Handle students dialog
   const handleStudentsOpen = () => {
-    console.log("handleStudentsOpen"+selectedCourse.id);
-    dispatch(getAllStudentsOfCoursThunk(selectedCourse.id))
+    console.log("handleStudentsOpen"+selectedCourse.idOfCourse);
     setStudentsDialogOpen(true);
+    showStudents();
   };
 
   const handleStudentsClose = () => {
     setStudentsDialogOpen(false);
+  };
+
+  const showStudents = () => {
+    dispatch(getAllStudentsOfCoursThunk(selectedCourse.idOfCourse))
   };
 
   // Toggle course status
@@ -215,7 +221,6 @@ const uploadFile = async (file) => {
     //////////////////////////////////////
     const VisuallyHiddenInput = styled('input')({
       clip: 'rect(0 0 0 0)',
-      clipPath: 'inset(50%)',
       height: 1,
       overflow: 'hidden',
       position: 'absolute',
@@ -1255,14 +1260,16 @@ const uploadFile = async (file) => {
             {selectedStudents.map((student) => (
               <div key={student.id}>{student.nameOfStudent}</div>
             ))} hello</div> */}
-            <div style={{backgroundColor:'red'}}>
+            <div>
               {myStudents.map(
                   (student) => (
                       <div key={student.id}>
-                        {student.name}
+                        {student.nameOfStudent}
                       </div>
                     )
-                 )}</div>
+                 )}
+                 try to show the students
+                 </div>
             {/* {courses.map((course) => (course.Students.map((s)=>
               <div color="red">{s.nameOfStudent}</div>
             )
