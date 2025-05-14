@@ -13,17 +13,18 @@ import {B} from "../b"
 import { HomePage } from "../HomePage/HomePage"
 import {ShowCourse} from "../ShowCourse/ShowCourse"
 import JoinCourse from "../JoinCourse/JoinCourse"
-import CourseRegistration from "../JoinCourse/CourseRegistration"
+
+
 
 
 export const Routing = () => {
     return <Routes>
-        <Route path="/course-registration/:courseId" element={<CourseRegistration></CourseRegistration>} />
+      
         <Route path="/" element={<MyAppBar></MyAppBar>}></Route>
         <Route path="/Home/*" element={<Home></Home>}></Route>
         {/* <Route path="/Student/*" element={<Student></Student>}></Route> */}
         <Route path="/Speaker/*" element={<Speaker></Speaker>}></Route>
-        <Route path="/Course/*" element={<Course></Course>}></Route>
+        <Route path="/Course" element={<Course></Course>}></Route>
         <Route path="/ShowCourse/*" element={<ShowCourse></ShowCourse>}></Route>
         {/* <Route path="/ShowCourse/*" element={<CardCourse></CardCourse>}></Route> */}
         <Route path="/joinCourse/*" element={<JoinCourse></JoinCourse>}></Route>
@@ -32,6 +33,12 @@ export const Routing = () => {
         <Route path="/Archieve/*" element={<Archieve></Archieve>}></Route>
         <Route path="/B/*" element={<B></B>}></Route>
         <Route path='/HomePage' element={<HomePage></HomePage>}></Route>
-        {/* <Route path="/HomePage" element={<HomePage></HomePage>}></Route> */}
+      
     </Routes>
 }
+
+
+
+
+
+
