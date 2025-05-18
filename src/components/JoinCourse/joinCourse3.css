@@ -50,6 +50,7 @@
 }
 
 .back-button {
+  color: white !important;
   margin-left: 8px;
 }
 
@@ -91,23 +92,23 @@
 
 /* שדות טופס */
 .form-field {
-  margin-bottom: 16px;
+  margin-bottom: 24px !important;
 }
 
-/* כרטיסים */
+/* כרטיס תלמיד */
 .student-card, .course-info-card, .summary-card {
-  margin-top: 16px;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 24px;
 }
 
 .student-card:hover, .course-info-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1) !important;
 }
 
 .card-header {
@@ -135,15 +136,6 @@
   margin: 16px 0 !important;
 }
 
-/* סיכום מחיר */
-.price-summary {
-  margin-top: 24px;
-  padding: 16px;
-  background-color: rgba(25, 118, 210, 0.05);
-  border-radius: 10px;
-  border: 1px solid rgba(25, 118, 210, 0.1);
-}
-
 /* הודעת הצלחה */
 .success-message {
   text-align: center;
@@ -153,26 +145,50 @@
   align-items: center;
 }
 
-.receipt-actions {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
 /* התאמה למסכים קטנים */
 @media (max-width: 600px) {
   .join-course-container {
     padding: 16px 8px;
   }
   
-  .header {
-    padding: 16px;
-  }
-  
   .content-container {
     padding: 16px;
   }
   
-  .step-title {
-    font-size: 1.2rem !important;
+  .header {
+    padding: 16px;
+  }
+  
+  .page-title {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* עיצוב להדפסה */
+@media print {
+  .join-course-container {
+    padding: 0;
+  }
+  
+  .join-course-paper {
+    box-shadow: none !important;
+  }
+  
+  .header {
+    background: white !important;
+    color: black !important;
+    border-bottom: 2px solid #1976d2;
+  }
+  
+  .back-button, 
+  button:not(.print-button) {
+    display: none !important;
+  }
+  
+  .student-card, 
+  .course-info-card, 
+  .summary-card {
+    box-shadow: none !important;
+    border: 1px solid #ddd;
   }
 }

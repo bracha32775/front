@@ -350,6 +350,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import Fade from '@mui/material/Fade';
 import { getCoursesThunk } from '../../redux/Thunks/getCoursesThunk';
+import { getSpeakerByIdThunk } from '../../redux/Thunks/getSpeakerByIdThunk';
 
 // Styled Components
 const CourseCard = styled('div')(({ theme }) => ({
@@ -507,108 +508,107 @@ export function Home() {
   // else {
   //   alert("לא ניתן להציג את הקורס כרגע");
   // }
-// }
-// ======================================
-// async function setSelectedFunc(name) {
-//   try {
-//     setLoading(true);
-//     const tempCourse = await dispatch(getCourseByCourseNameThunk(name));
-//     setSelectedId(tempCourse.payload.idOfCourse);
-//     setSelectedCourse(tempCourse.payload);
-//   }
-//   catch (error) {
-//     console.error("שגיאה בהצגת קורס:", error);
-//   }
-//   finally {
-//     setLoading(false);
-//   }
-// }
+  // }
+  // ======================================
+  // async function setSelectedFunc(name) {
+  //   try {
+  //     setLoading(true);
+  //     const tempCourse = await dispatch(getCourseByCourseNameThunk(name));
+  //     setSelectedId(tempCourse.payload.idOfCourse);
+  //     setSelectedCourse(tempCourse.payload);
+  //   }
+  //   catch (error) {
+  //     console.error("שגיאה בהצגת קורס:", error);
+  //   }
+  //   finally {
+  //     setLoading(false);
+  //   }
+  // }
 
-// function navToShowCourse() {
-//   if (courses.find(c => c.idOfCourse === selectedId) != null) {
-//     setFlag(false);
-//   }
-//   else {
-//     alert("לא ניתן להרשם כרגע לקורס");
-//   }
-// }
+  // function navToShowCourse() {
+  //   if (courses.find(c => c.idOfCourse === selectedId) != null) {
+  //     setFlag(false);
+  //   }
+  //   else {
+  //     alert("לא ניתן להרשם כרגע לקורס");
+  //   }
+  // }
 
-React.useEffect(() => {
-  dispatch(getCoursesThunk());
-  if (selectedId != undefined)
-    navToShowCourse();
-}, [selectedId, selectedCourse]);
-// React.useEffect(() => {
-//   if (lastUpdated && selectedCourse) {
-//     // רענון הקורס הנבחר
-//     dispatch(getCourseByCourseNameThunk(selectedCourse.nameOfCourse))
-//       .then(response => {
-//         setSelectedCourse(response.payload);
-//       })
-//       .catch(error => {
-//         console.error("שגיאה בטעינת הקורס המעודכן:", error);
-//       });
-//   }
-// }, [lastUpdated, dispatch]);
-React.useEffect(() => {
-  if (lastUpdated && selectedCourse) {
-    // רענון הקורס הנבחר
-    dispatch(getCourseByCourseNameThunk(selectedCourse.nameOfCourse))
-      .then(response => {
-        setSelectedCourse(response.payload);
-      })
-      .catch(error => {
-        console.error("שגיאה בטעינת הקורס המעודכן:", error);
-      });
-  }
-}, [lastUpdated, dispatch]);
+  React.useEffect(() => {
+    dispatch(getCoursesThunk());
+    if (selectedId != undefined)
+      navToShowCourse();
+  }, [selectedId, selectedCourse]);
 
+  // React.useEffect(() => {
+  //   getCourseSpeakerName(selectedCourse.idOfSpeaker);
+  // }, [selectedCourse]);
+
+  // const getCourseSpeakerName = async (id) => {
+  //   const name = await dispatch(getSpeakerByIdThunk(id));
+  //   console.log("name.action.payload.nameOfSpeaker" + "  " + name.action.payload.nameOfSpeaker)
+  //   return name.action.payload.nameOfSpeaker;
+
+  // };
+  React.useEffect(() => {
+    if (lastUpdated && selectedCourse) {
+      // רענון הקורס הנבחר
+      dispatch(getCourseByCourseNameThunk(selectedCourse.nameOfCourse))
+        .then(response => {
+          setSelectedCourse(response.payload);
+        })
+        .catch(error => {
+          console.error("שגיאה בטעינת הקורס המעודכן:", error);
+        });
+    }
+  }, [lastUpdated, dispatch]);
 
 
-// Mock data for demonstration - replace with actual data from your courses
-const getCourseCategory = (course) => {
-  // This is a placeholder - implement your own category logic
-  const categories = ['אקדמי', 'מקצועי', 'העשרה', 'אמנות', 'טכנולוגיה'];
-  return categories[Math.floor(Math.random() * categories.length)];
-};
 
-const getCourseDuration = (course) => {
-  // This is a placeholder - implement your own duration logic
-  return `${Math.floor(Math.random() * 12) + 1} חודשים`;
-};
+  // Mock data for demonstration - replace with actual data from your courses
+  const getCourseCategory = (course) => {
+    // This is a placeholder - implement your own category logic
+    const categories = ['אקדמי', 'מקצועי', 'העשרה', 'אמנות', 'טכנולוגיה'];
+    return categories[Math.floor(Math.random() * categories.length)];
+  };
 
-const getCourseInstructor = (course) => {
-  // This is a placeholder - implement your own instructor logic
-  const instructors = ['ד"ר כהן', 'פרופ\' לוי', 'מר ישראלי', 'גב\' אברהם'];
-  return instructors[Math.floor(Math.random() * instructors.length)];
-};
+  const getCourseDuration = (course) => {
+    //This is a placeholder - implement your own duration logic
+    return `${Math.floor(Math.random() * 12) + 1} חודשים`;
+  };
 
-const getStartDate = (course) => {
-  // This is a placeholder - implement your own date logic
-  const months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני'];
-  return `${months[Math.floor(Math.random() * months.length)]} 2023`;
-};
+  const getCourseInstructor = (course) => {
+    // This is a placeholder - implement your own instructor logic
+    const instructors = ['ד"ר כהן', 'פרופ\' לוי', 'מר ישראלי', 'גב\' אברהם'];
+    return instructors[Math.floor(Math.random() * instructors.length)];
+  };
 
-return (
-  <>
-    {loading && (
-      <Box sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(255,255,255,0.7)',
-        zIndex: 9999
-      }}>
-        <CircularProgress size={60} />
-      </Box>
-    )}
+  const getStartDate = (course) => {
+    // This is a placeholder - implement your own date logic
+    const months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני'];
+    return `${months[Math.floor(Math.random() * months.length)]} 2023`;
+  };
 
-{/* {flag == false && (
+  return (
+    <>
+      {loading && (
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(255,255,255,0.7)',
+          zIndex: 9999
+        }}>
+          <CircularProgress size={60} />
+        </Box>
+      )}
+
+      {/* {flag == false && (
   <ShowCourse 
     selectedCourse={selectedCourse} 
     onBack={() => setFlag(true)}
@@ -623,106 +623,107 @@ return (
     }}
   />
 )} */}
-    {/* {flag == false && (
+      {/* {flag == false && (
       <ShowCourse
         selectedCourse={selectedCourse}
         onBack={() => setFlag(true)}
         onCourseUpdate={() => setLastUpdated(new Date().getTime())}
       />
     )} */}
-    {flag ? (
-      <Container maxWidth="xl" sx={{ padding: 3, direction: 'rtl' }}>
-        <Fade in={true} timeout={800}>
-          <Box>
-            <CoursesHeader variant="h3">
-              קורסים והשתלמויות
-            </CoursesHeader>
+      {flag ? (
+        <Container maxWidth="xl" sx={{ padding: 3, direction: 'rtl' }}>
+          <Fade in={true} timeout={800}>
+            <Box>
+              <CoursesHeader variant="h3">
+                קורסים והשתלמויות
+              </CoursesHeader>
 
-            <SearchBox>
-              <TextField
-                fullWidth
-                placeholder="חיפוש קורסים..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                variant="outlined"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  ),
-                  sx: {
-                    borderRadius: '30px',
-                    '& fieldset': {
+              <SearchBox>
+                <TextField
+                  fullWidth
+                  placeholder="חיפוש קורסים..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  variant="outlined"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                    sx: {
                       borderRadius: '30px',
-                    },
-                  }
-                }}
-              />
-            </SearchBox>
-            <br></br>
-            {filteredCourses.length > 0 ? (
-              <Grid container spacing={3}>
-                {filteredCourses.map((course, index) => (
-                  <Grid item xs={12} sm={6} md={4} lg={3} key={course.idOfCourse || index}>
-                    <Fade in={true} timeout={(index + 1) * 200}>
-                      <CourseCard
-                        onClick={() => setSelectedFunc(course.nameOfCourse)}
-                      >
-                        <CourseImage style={{
-                          backgroundImage: `url(https://localhost:7092${course.image})`
-                        }} />
-                        <CourseOverlay>
-                          <CategoryBadge label={getCourseCategory(course)} />
-                          <CourseTitle variant="h5">
-                            {course.nameOfCourse}
-                          </CourseTitle>
-                          <CourseInfo>
-                            <Tooltip title="משך הקורס">
-                              <CourseChip
-                                icon={<AccessTimeIcon />}
-                                label={getCourseDuration(course)}
-                                size="small"
-                              />
-                            </Tooltip>
-                            <Tooltip title="מרצה">
-                              <CourseChip
-                                icon={<PersonIcon />}
-                                label={getCourseInstructor(course)}
-                                size="small"
-                              />
-                            </Tooltip>
-                            <Tooltip title="תאריך פתיחה">
-                              <CourseChip
-                                icon={<CalendarTodayIcon />}
-                                label={getStartDate(course)}
-                                size="small"
-                              />
-                            </Tooltip>
-                          </CourseInfo>
-                        </CourseOverlay>
-                      </CourseCard>
-                    </Fade>
-                  </Grid>
-                ))}
-              </Grid>
-            ) : (
-              <NoCoursesMessage>
-                <Typography variant="h6">לא נמצאו קורסים התואמים לחיפוש</Typography>
-                <Typography variant="body1" sx={{ mt: 1 }}>נסה לחפש מונחים אחרים או לנקות את החיפוש</Typography>
-              </NoCoursesMessage>
-            )}
+                      '& fieldset': {
+                        borderRadius: '30px',
+                      },
+                    }
+                  }}
+                />
+              </SearchBox>
+              <br></br>
+              {filteredCourses.length > 0 ? (
+                <Grid container spacing={3}>
+                  {filteredCourses.map((course, index) => (
+                    <Grid item xs={12} sm={6} md={4} lg={3} key={course.idOfCourse || index}>
+                      <Fade in={true} timeout={(index + 1) * 200}>
+                        <CourseCard
+                          onClick={() => setSelectedFunc(course.nameOfCourse)}
+                        >
+                          <CourseImage style={{
+                            backgroundImage: `url(https://localhost:7092${course.image})`
+                          }} />
+                          <CourseOverlay>
+                            <CategoryBadge label={getCourseCategory(course)} />
+                            <CourseTitle variant="h5">
+                              {course.nameOfCourse}
+                            </CourseTitle>
+                            <CourseInfo>
+                              <Tooltip title="משך הקורס">
+                                <CourseChip
+                                  icon={<AccessTimeIcon />}
+                                  label={course.amountOfMeetingsInCourse+" "+"מפגשים"}
+                                  size="small"
+                                />
+                              </Tooltip>
+                              <Tooltip title="מרצה">
+                                <CourseChip
+                                  icon={<PersonIcon />}
+                                  // label={() => getCourseSpeakerName(course.idOfSpeaker)}
+                                  label={getCourseInstructor(course)}
+                                  size="small"
+                                />
+                              </Tooltip>
+                              <Tooltip title="תאריך פתיחה">
+                                <CourseChip
+                                  icon={<CalendarTodayIcon />}
+                                  label={course.startDateOfCourse}
+                                  size="small"
+                                />
+                              </Tooltip>
+                            </CourseInfo>
+                          </CourseOverlay>
+                        </CourseCard>
+                      </Fade>
+                    </Grid>
+                  ))}
+                </Grid>
+              ) : (
+                <NoCoursesMessage>
+                  <Typography variant="h6">לא נמצאו קורסים התואמים לחיפוש</Typography>
+                  <Typography variant="body1" sx={{ mt: 1 }}>נסה לחפש מונחים אחרים או לנקות את החיפוש</Typography>
+                </NoCoursesMessage>
+              )}
+            </Box>
+          </Fade>
+        </Container>
+      ) : (
+        <Fade in={true} timeout={500}>
+          <Box>
+            <ShowCourse selectedCourse={selectedCourse} onBack={() => setFlag(true)} />
           </Box>
         </Fade>
-      </Container>
-    ) : (
-      <Fade in={true} timeout={500}>
-        <Box>
-          <ShowCourse selectedCourse={selectedCourse} onBack={() => setFlag(true)} />
-        </Box>
-      </Fade>
-    )}
-    {/* {flag == false && (
+      )}
+      {/* {flag == false && (
       <ShowCourse
         selectedCourse={selectedCourse}
         onBack={() => setFlag(true)}
@@ -730,6 +731,6 @@ return (
       />
     )} */}
 
-  </>
-);
+    </>
+  );
 }

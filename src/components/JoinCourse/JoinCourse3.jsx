@@ -36,7 +36,9 @@ import {
   Email,
   Person,
   Download,
-  Print
+  Print,
+  Description, // איקון לוורד
+  TableChart // איקון לאקסל
 } from '@mui/icons-material';
 import { getCourseByCourseIdThunk } from '../../redux/Thunks/getCourseByCourseIdThunk';
 import { getStudentsThunk } from '../../redux/Thunks/getStudentsThunk';
@@ -188,7 +190,7 @@ const JoinCourse3 = () => {
   };
   
   // פונקציית ייצוא קבלה ל-PDF
-  const exportReceipt = () => {
+  const exportReceiptToPDF = () => {
     // יצירת מסמך PDF
     const doc = new jsPDF({
       orientation: 'portrait',
@@ -224,8 +226,8 @@ const JoinCourse3 = () => {
     doc.setTextColor(0, 0, 0);
     doc.text(`שם הקורס: ${selectedCourse?.nameOfCourse || ''}`, 190, 70, { align: "right" });
     doc.text(`יום ושעה: ${selectedCourse?.dayOfCourse || ''} ${selectedCourse?.hourOfCourse || ''}`, 190, 77, { align: "right" });
-    doc.text(`מספר מפגשים: ${selectedCourse?.amountOfMettingInCourse || '0'}`, 190, 84, { align: "right" });
-    doc.text(`מחיר: ₪${selectedCourse?.priceOfCourse || '0'}`, 190, 91, { align: "right" });
+    doc.text(`מספר מפגשים: ${selectedCourse?.amountOfMeetingsInCourse || '0'}`, 190, 84, { align: "right" });
+    doc.text(`מחיר: ₪${selectedCourse?.totalSumOfCourse || '0'}`, 190, 91, { align: "right" });
     
     // פרטי התלמידה
     doc.setFontSize(16);
@@ -245,7 +247,7 @@ const JoinCourse3 = () => {
     
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    doc.text(`סכום לתשלום: ₪${selectedCourse?.priceOfCourse || '0'}`, 190, 163, { align: "right" });
+    doc.text(`סכום לתשלום: ₪${selectedCourse?.totalSumOfCourse || '0'}`, 190, 163, { align: "right" });
     doc.text(`אמצעי תשלום: ${
       paymentMethod === "credit" ? "כרטיס אשראי" : 
       paymentMethod === "cash" ? "מזומן" : 
@@ -271,6 +273,194 @@ const JoinCourse3 = () => {
     doc.save(`קבלה_${selectedCourse?.nameOfCourse || 'קורס'}.pdf`);
   };
   
+  // פונקציית ייצוא קבלה לוורד
+  const exportReceiptToWord = () => {
+    // יצירת תוכן HTML שיתאים למסמך וורד
+    const htmlContent = `
+      <html xmlns:o="urn:schemas-microsoft-com:office:office" 
+            xmlns:w="urn:schemas-microsoft-com:office:word" 
+            xmlns="http://www.w3.org/TR/REC-html40">
+      <head>
+        <meta charset="utf-8">
+        <title>קבלה עבור הרשמה לקורס</title>
+        <style>
+          body {
+            font-family: 'Arial', sans-serif;
+            direction: rtl;
+            text-align: right;
+          }
+          .header {
+            color: #1976d2;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+          }
+          .receipt-info {
+            margin-bottom: 10px;
+            text-align: left;
+          }
+          .section-title {
+            color: #1976d2;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #1976d2;
+            padding-bottom: 5px;
+          }
+          .info-row {
+            margin-bottom: 5px;
+          }
+          .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+          }
+          .signature {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+          }
+          .signature-line {
+            width: 150px;
+            border-top: 1px solid #000;
+            margin-top: 5px;
+          }
+          .stamp {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #666;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 20px;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">קבלה עבור הרשמה לקורס</div>
+        
+        <div class="receipt-info">
+          <div>מספר קבלה: ${Math.floor(Math.random() * 10000)}</div>
+          <div>תאריך: ${new Date().toLocaleDateString('he-IL')}</div>
+        </div>
+        
+        <div class="section-title">פרטי הקורס</div>
+        <div class="info-row">שם הקורס: ${selectedCourse?.nameOfCourse || ''}</div>
+        <div class="info-row">יום ושעה: ${selectedCourse?.dayOfCourse || ''} ${selectedCourse?.hourOfCourse || ''}</div>
+        <div class="info-row">מספר מפגשים: ${selectedCourse?.amountOfMeetingsInCourse || '0'}</div>
+        <div class="info-row">מחיר: ₪${selectedCourse?.totalSumOfCourse || '0'}</div>
+        
+        <div class="section-title">פרטי התלמידה</div>
+        <div class="info-row">שם: ${selectedStudentDetails?.nameOfStudent || ''}</div>
+        <div class="info-row">טלפון: ${selectedStudentDetails?.phoneOfStudent || ''}</div>
+        <div class="info-row">אימייל: ${selectedStudentDetails?.emailOfStudent || ''}</div>
+        
+        <div class="section-title">פרטי תשלום</div>
+        <div class="info-row">סכום לתשלום: ₪${selectedCourse?.totalSumOfCourse || '0'}</div>
+        <div class="info-row">אמצעי תשלום: ${
+          paymentMethod === "credit" ? "כרטיס אשראי" : 
+          paymentMethod === "cash" ? "מזומן" : 
+          paymentMethod === "check" ? "צ'ק" : "העברה בנקאית"
+        }</div>
+        
+        <div class="signature">
+          <div>
+            <div>חתימה:</div>
+            <div class="signature-line"></div>
+          </div>
+          <div>
+            <div>חותמת המכללה:</div>
+            <div class="stamp">חותמת</div>
+          </div>
+        </div>
+        
+        <div class="footer">
+          מכללת הקורסים | רחוב הדוגמה 123, תל אביב | טלפון: 03-1234567
+        </div>
+      </body>
+      </html>
+    `;
+    
+    // יצירת בלוב מהתוכן
+    const blob = new Blob([htmlContent], { type: 'application/msword' });
+    
+    // יצירת קישור להורדה
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `קבלה_${selectedCourse?.nameOfCourse || 'קורס'}.doc`;
+    
+    // הוספת הקישור לדף והקלקה עליו
+    document.body.appendChild(link);
+    link.click();
+    
+    // הסרת הקישור מהדף
+    document.body.removeChild(link);
+  };
+  
+  // פונקציית ייצוא קבלה לאקסל
+  const exportReceiptToExcel = () => {
+    // יצירת תוכן CSV
+    const csvContent = [
+      ['קבלה עבור הרשמה לקורס'],
+      [''],
+      ['מספר קבלה:', Math.floor(Math.random() * 10000)],
+      ['תאריך:', new Date().toLocaleDateString('he-IL')],
+      [''],
+      ['פרטי הקורס'],
+      ['שם הקורס:', selectedCourse?.nameOfCourse || ''],
+      ['יום ושעה:', `${selectedCourse?.dayOfCourse || ''} ${selectedCourse?.hourOfCourse || ''}`],
+      ['מספר מפגשים:', selectedCourse?.amountOfMeetingsInCourse || '0'],
+      ['מחיר:', `₪${selectedCourse?.totalSumOfCourse || '0'}`],
+      [''],
+      ['פרטי התלמידה'],
+      ['שם:', selectedStudentDetails?.nameOfStudent || ''],
+      ['טלפון:', selectedStudentDetails?.phoneOfStudent || ''],
+      ['אימייל:', selectedStudentDetails?.emailOfStudent || ''],
+      [''],
+      ['פרטי תשלום'],
+      ['סכום לתשלום:', `₪${selectedCourse?.totalSumOfCourse || '0'}`],
+      ['אמצעי תשלום:', paymentMethod === "credit" ? "כרטיס אשראי" : 
+                        paymentMethod === "cash" ? "מזומן" : 
+                        paymentMethod === "check" ? "צ'ק" : "העברה בנקאית"],
+      [''],
+      ['מכללת הקורסים | רחוב הדוגמה 123, תל אביב | טלפון: 03-1234567']
+    ].map(row => row.join(',')).join('\n');
+    
+    // יצירת בלוב מהתוכן
+    const blob = new Blob(["\ufeff" + csvContent], { type: 'text/csv;charset=utf-8;' });
+    
+    // יצירת קישור להורדה
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `קבלה_${selectedCourse?.nameOfCourse || 'קורס'}.csv`;
+    
+    // הוספת הקישור לדף והקלקה עליו
+    document.body.appendChild(link);
+    link.click();
+    
+    // הסרת הקישור מהדף
+    document.body.removeChild(link);
+  };
+  
+  // פונקציה כללית לייצוא קבלה
+  const exportReceipt = (format) => {
+    switch (format) {
+      case 'pdf':
+        exportReceiptToPDF();
+        break;
+      case 'word':
+        exportReceiptToWord();
+        break;
+      case 'excel':
+        exportReceiptToExcel();
+        break;
+      default:
+        exportReceiptToPDF();
+    }
+  };
+  
   // תצוגת תוכן לפי שלב
   const getStepContent = (step) => {
     switch (step) {
@@ -281,21 +471,21 @@ const JoinCourse3 = () => {
               בחירת תלמידה
             </Typography>
             
-            <FormControl fullWidth error={!!errors.student} className="form-field">
-              <InputLabel>בחר תלמידה</InputLabel>
+            <FormControl fullWidth className="form-field" error={!!errors.student}>
+              <InputLabel>תלמידה</InputLabel>
               <Select
                 value={selectedStudent}
                 onChange={handleStudentChange}
-                label="בחר תלמידה"
+                label="תלמידה"
               >
-                {students.map((student) => (
+                {students && students.map((student) => (
                   <MenuItem key={student.idOfStudent} value={student.idOfStudent}>
                     {student.nameOfStudent}
                   </MenuItem>
                 ))}
               </Select>
               {errors.student && (
-                <Typography color="error" variant="caption" sx={{ mt: 1 }}>
+                <Typography color="error" variant="caption">
                   {errors.student}
                 </Typography>
               )}
@@ -313,7 +503,7 @@ const JoinCourse3 = () => {
                         {selectedStudentDetails.nameOfStudent}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        ת.ז: {selectedStudentDetails.idOfStudent}
+                        ת.ז: {selectedStudentDetails.idOfStudent || 'לא זמין'}
                       </Typography>
                     </Box>
                   </Box>
@@ -327,22 +517,76 @@ const JoinCourse3 = () => {
                         <Typography variant="body2" color="text.secondary">
                           טלפון:
                         </Typography>
-                        <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                          {selectedStudentDetails.phoneOfStudent}
-                        </Typography>
                       </Box>
+                      <Typography variant="body1">
+                        {selectedStudentDetails.phoneOfStudent || 'לא זמין'}
+                      </Typography>
                     </Grid>
                     
                     <Grid item xs={12} sm={6}>
                       <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                         <Email color="primary" sx={{ mr: 1, fontSize: 20 }} />
                         <Typography variant="body2" color="text.secondary">
-                          אימייל:
-                        </Typography>
-                        <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                          {selectedStudentDetails.emailOfStudent}
+                          דוא"ל:
                         </Typography>
                       </Box>
+                      <Typography variant="body1">
+                        {selectedStudentDetails.emailOfStudent || 'לא זמין'}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+            )}
+            
+            {/* תצוגת פרטי הקורס */}
+            {selectedStudent && selectedCourse && (
+              <Card className="course-info-card">
+                <CardContent>
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                    <School color="primary" sx={{ mr: 1, fontSize: 24 }} />
+                    <Typography variant="h6" className="card-title">
+                      פרטי הקורס
+                    </Typography>
+                  </Box>
+                  
+                  <Divider className="divider" />
+                  
+                  <Grid container spacing={2} sx={{ mt: 1 }}>
+                    <Grid item xs={12} sm={6}>
+                      <Typography variant="body2" color="text.secondary">
+                        שם הקורס:
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                        {selectedCourse.nameOfCourse || 'לא זמין'}
+                      </Typography>
+                    </Grid>
+                    
+                    <Grid item xs={12} sm={6}>
+                      <Typography variant="body2" color="text.secondary">
+                        יום ושעה:
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                        {selectedCourse.dayOfCourse} {selectedCourse.hourOfCourse}
+                      </Typography>
+                    </Grid>
+                    
+                    <Grid item xs={12} sm={6}>
+                      <Typography variant="body2" color="text.secondary">
+                        מספר מפגשים:
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                        {selectedCourse.amountOfMeetingsInCourse || '0'}
+                      </Typography>
+                    </Grid>
+                    
+                    <Grid item xs={12} sm={6}>
+                      <Typography variant="body2" color="text.secondary">
+                        מחיר:
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500, color: 'primary.main' }}>
+                        ₪{selectedCourse.totalSumOfCourse || '0'}
+                      </Typography>
                     </Grid>
                   </Grid>
                 </CardContent>
@@ -372,75 +616,127 @@ const JoinCourse3 = () => {
               </Select>
             </FormControl>
             
+            {/* תצוגה משתנה לפי אמצעי התשלום */}
             {paymentMethod === 'credit' && (
-              <>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                      <CreditCard color="primary" sx={{ mr: 1, fontSize: 20 }} />
-                      <Typography variant="body2" color="text.secondary">
-                        מספר כרטיס:
-                      </Typography>
-                      <TextField
-                        name="cardNumber"
-                        value={paymentDetails.cardNumber}
-                        onChange={handlePaymentChange}
-                        placeholder="**** **** **** ****"
-                        sx={{ width: '100%' }}
-                      />
-                    </Box>
-                  </Grid>
-                  
-                  <Grid item xs={12} sm={6}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                      <Person color="primary" sx={{ mr: 1, fontSize: 20 }} />
-                      <Typography variant="body2" color="text.secondary">
-                        שם בעל הכרטיס:
-                      </Typography>
-                      <TextField
-                        name="cardHolder"
-                        value={paymentDetails.cardHolder}
-                        onChange={handlePaymentChange}
-                        placeholder="שם"
-                        sx={{ width: '100%' }}
-                      />
-                    </Box>
-                  </Grid>
-                  
-                  <Grid item xs={12} sm={6}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                      <EventNote color="primary" sx={{ mr: 1, fontSize: 20 }} />
-                      <Typography variant="body2" color="text.secondary">
-                        תאריך תפוגה:
-                      </Typography>
-                      <TextField
-                        name="expiryDate"
-                        value={paymentDetails.expiryDate}
-                        onChange={handlePaymentChange}
-                        placeholder="MM/YY"
-                        sx={{ width: '100%' }}
-                      />
-                    </Box>
-                  </Grid>
-                  
-                  <Grid item xs={12} sm={6}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                      <Lock color="primary" sx={{ mr: 1, fontSize: 20 }} />
-                      <Typography variant="body2" color="text.secondary">
-                        קוד אבטחה:
-                      </Typography>
-                      <TextField
-                        name="cvv"
-                        value={paymentDetails.cvv}
-                        onChange={handlePaymentChange}
-                        placeholder="***"
-                        sx={{ width: '100%' }}
-                      />
-                    </Box>
-                  </Grid>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="מספר כרטיס אשראי"
+                    name="cardNumber"
+                    value={paymentDetails.cardNumber}
+                    onChange={handlePaymentChange}
+                    error={!!errors.cardNumber}
+                    helperText={errors.cardNumber}
+                    variant="outlined"
+                    className="form-field"
+                    InputProps={{
+                      startAdornment: <CreditCard color="action" sx={{ mr: 1 }} />,
+                    }}
+                  />
                 </Grid>
-              </>
+                
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="שם בעל הכרטיס"
+                    name="cardHolder"
+                    value={paymentDetails.cardHolder}
+                    onChange={handlePaymentChange}
+                    error={!!errors.cardHolder}
+                    helperText={errors.cardHolder}
+                    variant="outlined"
+                    className="form-field"
+                    InputProps={{
+                      startAdornment: <Person color="action" sx={{ mr: 1 }} />,
+                    }}
+                  />
+                </Grid>
+                
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="תוקף (MM/YY)"
+                    name="expiryDate"
+                    value={paymentDetails.expiryDate}
+                    onChange={handlePaymentChange}
+                    error={!!errors.expiryDate}
+                    helperText={errors.expiryDate}
+                    variant="outlined"
+                    className="form-field"
+                    placeholder="MM/YY"
+                  />
+                </Grid>
+                
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="קוד אבטחה (CVV)"
+                    name="cvv"
+                    value={paymentDetails.cvv}
+                    onChange={handlePaymentChange}
+                    error={!!errors.cvv}
+                    helperText={errors.cvv}
+                    variant="outlined"
+                    className="form-field"
+                    type="password"
+                    inputProps={{ maxLength: 4 }}
+                  />
+                </Grid>
+              </Grid>
             )}
+            
+            {paymentMethod === 'cash' && (
+              <Alert severity="info" sx={{ mt: 2 }}>
+                יש להגיע למשרד עם מזומן לתשלום. סכום לתשלום: ₪{selectedCourse?.totalSumOfCourse || '0'}
+              </Alert>
+            )}
+            
+            {paymentMethod === 'check' && (
+              <Alert severity="info" sx={{ mt: 2 }}>
+                יש להגיע למשרד עם צ'ק לתשלום על סך ₪{selectedCourse?.totalSumOfCourse || '0'} לפקודת "מכללת הקורסים".
+              </Alert>
+            )}
+            
+            {paymentMethod === 'transfer' && (
+              <Box sx={{ mt: 2 }}>
+                <Alert severity="info" sx={{ mb: 2 }}>
+                  פרטי חשבון להעברה בנקאית:
+                </Alert>
+                
+                <Card sx={{ p: 2, bgcolor: 'background.paper' }}>
+                  <Typography variant="body2" sx={{ mb: 1 }}>
+                    <strong>שם החשבון:</strong> מכללת הקורסים בע"מ
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 1 }}>
+                    <strong>בנק:</strong> לאומי (10)
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 1 }}>
+                    <strong>סניף:</strong> 800
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 1 }}>
+                    <strong>מספר חשבון:</strong> 12345678
+                  </Typography>
+                  <Typography variant="body2" sx={{ mt: 2, fontWeight: 'bold' }}>
+                    סכום להעברה: ₪{selectedCourse?.totalSumOfCourse || '0'}
+                  </Typography>
+                </Card>
+              </Box>
+            )}
+            
+            <TextField
+              fullWidth
+              label="הערות לתשלום"
+              name="notes"
+              multiline
+              rows={3}
+              variant="outlined"
+              className="form-field"
+              sx={{ mt: 3 }}
+              InputProps={{
+                startAdornment: <EventNote color="action" sx={{ mr: 1, alignSelf: 'flex-start', mt: 1 }} />,
+              }}
+            />
           </Box>
         );
         
@@ -448,71 +744,164 @@ const JoinCourse3 = () => {
         return (
           <Box className="step-content">
             <Typography variant="h6" className="step-title">
-              סיכום והרשמה
+              סיכום פרטי הרשמה
             </Typography>
             
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="body2" color="text.secondary">
-                  שם הקורס:
-                </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                  {selectedCourse?.nameOfCourse || ''}
-                </Typography>
+            <Grid container spacing={3}>
+              {/* פרטי הקורס */}
+              <Grid item xs={12} md={6}>
+                <Card className="summary-card">
+                  <CardContent>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <School color="primary" sx={{ mr: 1 }} />
+                      <Typography variant="h6" className="card-title">
+                        פרטי הקורס
+                      </Typography>
+                    </Box>
+                    
+                    <Divider className="divider" />
+                    
+                    <Box sx={{ mt: 2 }}>
+                      <Typography variant="body2" color="text.secondary">
+                        שם הקורס:
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500, mb: 1 }}>
+                        {selectedCourse?.nameOfCourse || 'לא זמין'}
+                      </Typography>
+                      
+                      <Typography variant="body2" color="text.secondary">
+                        יום ושעה:
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500, mb: 1 }}>
+                        {selectedCourse?.dayOfCourse} {selectedCourse?.hourOfCourse}
+                      </Typography>
+                      
+                      <Typography variant="body2" color="text.secondary">
+                        מספר מפגשים:
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500, mb: 1 }}>
+                        {selectedCourse?.amountOfMeetingsInCourse || '0'}
+                      </Typography>
+                      
+                      <Typography variant="body2" color="text.secondary">
+                        מחיר:
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500, color: 'primary.main' }}>
+                        ₪{selectedCourse?.totalSumOfCourse || '0'}
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
               </Grid>
               
-              <Grid item xs={12} sm={6}>
-                <Typography variant="body2" color="text.secondary">
-                  שם התלמידה:
-                </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                  {selectedStudentDetails?.nameOfStudent || ''}
-                </Typography>
+              {/* פרטי התלמידה */}
+              <Grid item xs={12} md={6}>
+                <Card className="summary-card">
+                  <CardContent>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <Avatar sx={{ bgcolor: 'primary.main', mr: 1, width: 32, height: 32 }}>
+                        {selectedStudentDetails?.nameOfStudent?.charAt(0) || 'T'}
+                      </Avatar>
+                      <Typography variant="h6" className="card-title">
+                        פרטי התלמידה
+                      </Typography>
+                    </Box>
+                    
+                    <Divider className="divider" />
+                    
+                    <Box sx={{ mt: 2 }}>
+                      <Typography variant="body2" color="text.secondary">
+                        שם:
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500, mb: 1 }}>
+                        {selectedStudentDetails?.nameOfStudent || 'לא זמין'}
+                      </Typography>
+                      
+                      <Typography variant="body2" color="text.secondary">
+                        טלפון:
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500, mb: 1 }}>
+                        {selectedStudentDetails?.phoneOfStudent || 'לא זמין'}
+                      </Typography>
+                      
+                      <Typography variant="body2" color="text.secondary">
+                        דוא"ל:
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                        {selectedStudentDetails?.emailOfStudent || 'לא זמין'}
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Card>
               </Grid>
               
-              <Grid item xs={12} sm={6}>
-                <Typography variant="body2" color="text.secondary">
-                  אמצעי תשלום:
-                </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                  {paymentMethod === 'credit' && 'כרטיס אשראי'}
-                  {paymentMethod === 'cash' && 'מזומן'}
-                  {paymentMethod === 'check' && "צ'ק"}
-                  {paymentMethod === 'transfer' && 'העברה בנקאית'}
-                </Typography>
+              {/* פרטי תשלום */}
+              <Grid item xs={12}>
+                <Card className="summary-card">
+                  <CardContent>
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                      <Payment color="primary" sx={{ mr: 1 }} />
+                      <Typography variant="h6" className="card-title">
+                        פרטי תשלום
+                      </Typography>
+                    </Box>
+                    
+                    <Divider className="divider" />
+                    
+                    <Box sx={{ mt: 2 }}>
+                      <Grid container spacing={2}>
+                        <Grid item xs={12} sm={6}>
+                          <Typography variant="body2" color="text.secondary">
+                            אמצעי תשלום:
+                          </Typography>
+                          <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                            {paymentMethod === 'credit' && 'כרטיס אשראי'}
+                            {paymentMethod === 'cash' && 'מזומן'}
+                            {paymentMethod === 'check' && "צ'ק"}
+                            {paymentMethod === 'transfer' && 'העברה בנקאית'}
+                          </Typography>
+                        </Grid>
+                        
+                        <Grid item xs={12} sm={6}>
+                          <Typography variant="body2" color="text.secondary">
+                            סכום לתשלום:
+                          </Typography>
+                          <Typography variant="body1" sx={{ fontWeight: 500, color: 'primary.main' }}>
+                            ₪{selectedCourse?.totalSumOfCourse || '0'}
+                          </Typography>
+                        </Grid>
+                        
+                        {paymentMethod === 'credit' && (
+                          <>
+                            <Grid item xs={12} sm={6}>
+                              <Typography variant="body2" color="text.secondary">
+                                מספר כרטיס:
+                              </Typography>
+                              <Typography variant="body1">
+                                **** **** **** {paymentDetails.cardNumber.slice(-4) || '****'}
+                              </Typography>
+                            </Grid>
+                            
+                            <Grid item xs={12} sm={6}>
+                              <Typography variant="body2" color="text.secondary">
+                                שם בעל הכרטיס:
+                              </Typography>
+                              <Typography variant="body1">
+                                {paymentDetails.cardHolder || 'לא הוזן'}
+                              </Typography>
+                            </Grid>
+                          </>
+                        )}
+                      </Grid>
+                    </Box>
+                  </CardContent>
+                </Card>
               </Grid>
-              
-              <Grid item xs={12} sm={6}>
-                <Typography variant="body2" color="text.secondary">
-                  סכום לתשלום:
-                </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 500, color: 'primary.main' }}>
-                  ₪{selectedCourse?.priceOfCourse || '0'}
-                </Typography>
-              </Grid>
-              
-              {paymentMethod === 'credit' && (
-                <>
-                  <Grid item xs={12} sm={6}>
-                    <Typography variant="body2" color="text.secondary">
-                      מספר כרטיס:
-                    </Typography>
-                    <Typography variant="body1">
-                      **** **** **** {paymentDetails.cardNumber.slice(-4) || '****'}
-                    </Typography>
-                  </Grid>
-                  
-                  <Grid item xs={12} sm={6}>
-                    <Typography variant="body2" color="text.secondary">
-                      שם בעל הכרטיס:
-                    </Typography>
-                    <Typography variant="body1">
-                      {paymentDetails.cardHolder || 'לא הוזן'}
-                    </Typography>
-                  </Grid>
-                </>
-              )}
             </Grid>
+            
+            <Alert severity="info" sx={{ mt: 3, mb: 2 }}>
+              לחיצה על "אישור הרשמה" תשלים את תהליך ההרשמה לקורס.
+            </Alert>
           </Box>
         );
         
@@ -549,32 +938,67 @@ const JoinCourse3 = () => {
               </Typography>
               
               <Typography variant="body1" paragraph>
-                ניתן להדפיס קבלה באמצעות הכפתור למטה.
+                ניתן להדפיס קבלה באמצעות הכפתורים למטה.
               </Typography>
             </Box>
             
-            <Box className="receipt-actions">
-              <Button
-                variant="contained"
-                color="primary"
-                startIcon={<Download />}
-                onClick={exportReceipt}
-                sx={{ mb: 2, width: '100%' }}
-              >
-                הורדת קבלה (PDF)
-              </Button>
+            <Box sx={{ maxWidth: 400, mx: 'auto', mt: 4 }}>
+              <Typography variant="h6" sx={{ mb: 2, textAlign: 'center', fontWeight: 'bold' }}>
+                אפשרויות ייצוא קבלה
+              </Typography>
               
-              <Button
-                variant="outlined"
-                startIcon={<Print />}
-                onClick={exportReceipt}
-                sx={{ mb: 3, width: '100%' }}
-              >
-                הדפסת קבלה
-              </Button>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    startIcon={<Download />}
+                    onClick={() => exportReceipt('pdf')}
+                    sx={{ mb: 2 }}
+                  >
+                    הורדת קבלה (PDF)
+                  </Button>
+                </Grid>
+                
+                <Grid item xs={12} sm={6}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    startIcon={<Description />}
+                    onClick={() => exportReceipt('word')}
+                    sx={{ mb: 2 }}
+                  >
+                    ייצוא לוורד
+                  </Button>
+                </Grid>
+                
+                <Grid item xs={12} sm={6}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    startIcon={<TableChart />}
+                    onClick={() => exportReceipt('excel')}
+                    sx={{ mb: 2 }}
+                  >
+                    ייצוא לאקסל
+                  </Button>
+                </Grid>
+                
+                <Grid item xs={12}>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    startIcon={<Print />}
+                    onClick={() => window.print()}
+                  >
+                    הדפסת קבלה
+                  </Button>
+                </Grid>
+              </Grid>
             </Box>
             
-            <Divider sx={{ my: 3 }} />
+            <Divider sx={{ my: 4 }} />
             
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
               <Button
@@ -633,36 +1057,27 @@ const JoinCourse3 = () => {
               {errors.submit}
             </Alert>
           )}
+        </Box>
+        
+        <Box className="footer">
+          <Button
+            variant="outlined"
+            onClick={handleBack}
+          >
+            חזור לשלב הקודם
+          </Button>
           
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
-            <Button
-              variant="outlined"
-              onClick={activeStep === 0 ? handleBackToCourses : handleBack}
-              disabled={isSubmitting}
-            >
-              {activeStep === 0 ? 'ביטול' : 'חזרה'}
-            </Button>
-            
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleNext}
-              disabled={isSubmitting || (activeStep === 0 && !selectedStudent)}
-              endIcon={activeStep === steps.length - 1 ? <ReceiptLong /> : null}
-            >
-              {isSubmitting ? (
-                <CircularProgress size={24} color="inherit" />
-              ) : activeStep === steps.length - 1 ? (
-                'אישור הרשמה'
-              ) : (
-                'המשך'
-              )}
-            </Button>
-          </Box>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleNext}
+            disabled={isSubmitting}
+          >
+            {activeStep === steps.length - 1 ? 'אישור הרשמה' : 'המשך'}
+          </Button>
         </Box>
       </Paper>
     </Box>
   );
 };
-
 export default JoinCourse3;

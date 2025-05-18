@@ -134,7 +134,7 @@ export const JoinCourse2 = () => {
   
   // חזרה לדף הקורסים
   const handleBackToCourses = () => {
-    navigate("/courses");
+    navigate("/Course");
   };
   
   // תיקון פונקציית הייצוא לקבלה מעוצבת היטב
