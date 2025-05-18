@@ -236,12 +236,6 @@ export default function MyAppBar() {
       path: '/Archieve',
       icon: <AutorenewOutlinedIcon />,
       color: '#e91e63'
-    },
-    {
-      label: 'dash cham',
-      path: '/Archieve',
-      icon: <AutorenewOutlinedIcon />,
-      color: '#e91e63'
     }
   ];
 
