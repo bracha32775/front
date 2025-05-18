@@ -12,8 +12,9 @@ import CardCourse from "../ShowCourse/cardCourse"
 import {B} from "../b" 
 import { HomePage } from "../HomePage/HomePage"
 import {ShowCourse} from "../ShowCourse/ShowCourse"
-import JoinCourse from "../JoinCourse/JoinCourse"
 import { Archeive } from "../Archieve/Archieve"
+// import JoinCourse2 from "../JoinCourse/joinCourse2"
+import JoinCourse3 from "../JoinCourse/JoinCourse3"
 
 
 
@@ -29,7 +30,8 @@ export const Routing = () => {
         <Route path="/Course" element={<Course></Course>}></Route>
         <Route path="/ShowCourse/*" element={<ShowCourse></ShowCourse>}></Route>
         {/* <Route path="/ShowCourse/*" element={<CardCourse></CardCourse>}></Route> */}
-        <Route path="/joinCourse/*" element={<JoinCourse></JoinCourse>}></Route>
+        {/* <Route path="/joinCourse/*" element={<JoinCourse2></JoinCourse2>}></Route> */}
+        <Route path="/joinCourse/*" element={<JoinCourse3></JoinCourse3>}></Route>
         <Route path="/Supplier/*" element={<Supplier></Supplier>}></Route>
         <Route path="/Student/*" element={<Student></Student>}></Route>
         <Route path="/Archieve/*" element={<Archeive></Archeive>}></Route>
