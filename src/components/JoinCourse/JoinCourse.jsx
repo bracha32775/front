@@ -2093,7 +2093,7 @@ const SuccessBox = styled(Box)(({ theme }) => ({
 const JoinCourse = () => {
  
   const { id } = useParams();
-  console.log("id"+ id);
+  // console.log("id"+ id);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   

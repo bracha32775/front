@@ -1,10 +1,397 @@
-/* //.border{
-   width:95%;
-    border: 2px double black;
-    padding-left: 50px;
-     margin-left: 40%; 
-    padding-bottom: 10px;
+/* 
+.MuiCard-root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  transition: all 0.3s ease;
+}
+
+.MuiCard-root:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.MuiCardContent-root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px !important;
+}
+
+
+.MuiCardHeader-root {
+  padding: 12px 16px !important;
+}
+
+.MuiCardHeader-title {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
+
+.MuiFormControl-root {
+  margin-bottom: 0 !important;
+}
+
+.MuiInputBase-root {
+  margin-top: 0 !important;
+  transition: all 0.3s ease;
+}
+
+.MuiFormHelperText-root.Mui-error {
+  color: #f44336 !important;
+  font-size: 0.7rem !important;
+  margin-top: 2px !important;
+  transition: all 0.3s ease;
+}
+
+.MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+  border-color: #f44336 !important;
+  transition: all 0.3s ease;
+}
+
+.MuiInputLabel-root.Mui-error {
+  color: #f44336 !important;
+  transition: all 0.3s ease;
+}
+
+
+.MuiGrid-container .MuiGrid-item {
+  display: flex;
+}
+
+/* Ensure cards fill the grid item height */
+/* .MuiGrid-container .MuiGrid-item > * {
+  width: 100%;
+}
+
+
+.MuiFormHelperText-root {
+  margin-top: 2px !important;
+  margin-bottom: 0 !important;
+  min-height: 16px;
+  font-size: 0.7rem !important;
+  transition: all 0.3s ease;
+}
+
+
+.MuiTypography-body2 {
+  font-size: 0.85rem !important;
+  line-height: 1.4 !important;
+}
+
+.MuiTypography-subtitle2 {
+  font-size: 0.9rem !important;
+  line-height: 1.4 !important;
+  margin-bottom: 4px !important;
+  font-weight: 600 !important;
+}
+
+
+.MuiInputBase-input {
+  padding: 10px 14px !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-width: 1px !important;
+  transition: all 0.3s ease;
+}
+
+
+.MuiButton-root {
+  padding: 8px 22px !important;
+  min-height: 40px !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+  font-size: 0.95rem !important;
 } */
-.button{
-  margin-left: 80px;
+
+/* .MuiButton-root:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
+}
+
+
+.MuiInputAdornment-root {
+  margin-left: 8px;
+  margin-right: 0;
+}
+
+
+.MuiDivider-root {
+  margin: 12px 0 !important;
+}
+
+
+@media (min-width: 960px) {
+  .MuiGrid-container .MuiGrid-item .MuiCard-root {
+    height: 100% !important;
+    min-height: 280px;
+  }
+}
+
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #2196f3 !important;
+  border-width: 2px !important;
+}
+
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(0, 0, 0, 0.42) !important;
+}
+
+.MuiOutlinedInput-root.Mui-error:hover .MuiOutlinedInput-notchedOutline {
+  border-color: #f44336 !important;
+}
+
+
+.MuiPaper-root, .MuiCard-root, .MuiCardContent-root, .MuiCardHeader-root,
+.MuiTextField-root, .MuiInputBase-root, .MuiButton-root {
+  transition: all 0.3s ease !important;
+}
+
+
+.MuiAlert-root {
+  border-radius: 8px !important;
+}
+
+.MuiAlert-standardSuccess {
+  background-color: #e8f5e9 !important;
+  color: #2e7d32 !important;
+} */
+
+/* .MuiAlert-standardError {
+  background-color: #ffebee !important;
+  color: #c62828 !important;
+}
+
+.MuiSvgIcon-root {
+  transition: all 0.3s ease;
+}
+
+
+.MuiPaper-root {
+  border-radius: 12px !important;
+} */
+ /* מיכל הטופס */
+/* .course-form-container {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 16px;
+  direction: rtl;
+  animation: fadeIn 0.5s ease-in-out;
+  @keyframes fadeIn {
+    '0%': { opacity: 0 },
+    '100%': { opacity: 1 }
+  }
+}
+
+/* כותרת הטופס */
+.form-title {
+  font-weight: bold;
+  color: #1976d2;
+}
+
+.form-divider {
+  margin-bottom: 24px;
+} */
+
+/* כרטיס תמונה
+.image-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* .image-card-content {
+  text-align: center;
+  width: 100%;
+}
+
+/* מיכל כפתור שמירה */
+/* .save-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+} */
+
+/* כפתור שמירה */
+/* .save-button {
+  min-width: 200px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 16px;
+  box-shadow: 0 3px 5px 2px rgba(33, 150, 243, 0.3);
+  background: linear-gradient(45deg, #2196F3 30%, #21CBF3 90%);
+}
+
+.save-button:hover {
+  background: linear-gradient(45deg, #1976d2 30%, #0d9fcf 90%);
+} */
+
+/* כיוון RTL לטפסים בעברית */
+/* .MuiFormControl-root,
+.MuiInputBase-root,
+.MuiTypography-root {
+  direction: rtl;
+  text-align: right;
+}  */
+
+/* התאמות למסכים קטנים */
+/* @media (max-width: 600px) {
+  .course-form-container {
+    padding: 16px;
+  }
+  
+  .save-button {
+    width: 100%;
+  }
+}
+
+/* אנימציות */
+/* @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  } */
+  /* to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} */
+
+/* .student-form-container {
+  animation: fadeIn 0.5s ease-out forwards;
+} */
+
+/* אפקט מעבר עכבר על שדות */
+/* .MuiTextField-root {
+  transition: transform 0.2s ease;
+}
+
+.MuiTextField-root:hover {
+  transform: translateY(-2px);
+} */
+/* 
+.MuiInputAdornment-root .MuiSvgIcon-root {
+  font-size: 1.2rem;
+  color: #1976d2;
+}  */
+
+ /* מיכל הטופס */
+.course-form-container {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 16px;
+  background: linear-gradient(to bottom right, #ffffff, #f5f5f5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* כותרת הטופס */
+.form-title {
+  font-weight: bold;
+  color: #1976d2;
+}
+
+.form-divider {
+  margin-bottom: 24px;
+}
+
+/* כפתור סגירה */
+.close-button {
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: rgba(211, 47, 47, 0.1);
+  transform: rotate(90deg);
+}
+
+/* אנימציה לאייקון סגירה בדיאלוג */
+.rotating-close-icon {
+  transition: all 0.3s ease;
+}
+
+.rotating-close-icon:hover {
+  transform: rotate(90deg);
+  color: #f44336 !important;
+}
+
+/* מיכל כפתור שמירה */
+.save-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* כפתור שמירה */
+.save-button {
+  min-width: 200px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 16px;
+  box-shadow: 0 3px 5px 2px rgba(33, 150, 243, 0.3);
+  background: linear-gradient(45deg, #2196F3 30%, #21CBF3 90%);
+}
+
+.save-button:hover {
+  background: linear-gradient(45deg, #1976d2 30%, #0d9fcf 90%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(25, 118, 210, 0.4);
+}
+
+/* כיוון RTL לטפסים בעברית */
+.MuiFormControl-root,
+.MuiInputBase-root,
+.MuiTypography-root {
+  direction: rtl;
+  text-align: right;
+}
+
+/* התאמות למסכים קטנים */
+@media (max-width: 600px) {
+  .course-form-container {
+    padding: 16px;
+  }
+  
+  .save-button {
+    width: 100%;
+  }
+}
+
+/* אנימציות */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.course-form-container {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* אפקט מעבר עכבר על שדות */
+.MuiTextField-root {
+  transition: transform 0.2s ease;
+}
+
+.MuiTextField-root:hover {
+  transform: translateY(-2px);
+}
+
+/* אייקונים */
+.MuiInputAdornment-root .MuiSvgIcon-root {
+  font-size: 1.2rem;
+  color: #1976d2;
 }

@@ -5632,8 +5632,7 @@ export const Speaker = () => {
       .toUpperCase();
   };
 
-  return (
-   
+  return (  
    <div>
        <Routing></Routing>
        <br></br>

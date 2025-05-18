@@ -539,5 +539,30 @@
       font-weight: 800 !important;
     }
   }
+ 
+
+/* הוספת סגנונות לסרגל הדביק */
+.main-appbar {
+  z-index: 1100; /* ערך גבוה כדי להבטיח שהסרגל יהיה מעל תוכן אחר */
+  transition: box-shadow 0.3s ease;
+}
+
+/* אפקט צל כשהדף נגלל */
+.main-appbar.scrolled {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* הוספת מרווח לתוכן הראשי כדי למנוע הסתרה מתחת לסרגל */
+.appbar-container {
+  width: 100%;
+}
+
+/* התאמות למסך נייד */
+@media (max-width: 600px) {
+  .main-appbar {
+    padding: 0;
+  }
+}
+/* הוספת אפקט מעבר לכפתורים */
   
   

@@ -1,3 +1,50 @@
-.button{
-    margin-left:80px;
-  }
+.speaker-form-container {
+  padding: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  direction: rtl;
+}
+
+.form-title {
+  color: #1976d2;
+  margin-bottom: 16px;
+}
+
+.form-divider {
+  margin-bottom: 24px;
+}
+
+.icon-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.icon-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 24px;
+}
+
+.speaker-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 100%;
+  margin-bottom: 16px;
+  color: #1976d2;
+}
+
+.save-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.save-button {
+  min-width: 200px;
+}

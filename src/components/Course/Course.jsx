@@ -29,18 +29,18 @@
 // //     useEffect(() => {
 // //         doIt()
 // //     }, [flag1])
-  
+
 // //      async function chang1() {
 // //        setFlag1(true)
 // //        setFlag2(false)
-     
+
 // //      }
 // //      async function chang2() {
 // //         setFlag2(true)
 // //         setFlag1(false)
-     
+
 // //       }
-     
+
 // //       const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 // //         '& .MuiDialogContent-root': {
 // //           padding: theme.spacing(3),}
@@ -49,8 +49,8 @@
 // //         //   padding: theme.spacing(3),
 // //         // },
 // //       }));
-    
-    
+
+
 // //       const [open, setOpen] = React.useState(false);
 // //       const handleClickOpen = () => {
 // //         setOpen(!open);
@@ -58,12 +58,12 @@
 // //       const handleClose = () => {
 // //         setOpen(!open);
 // //       };
-    
+
 // //      const deleteThisCourse=(id)=>{
 // //       console.log(id+"hello:");
 // //         dispatch(deleteCourseThunk(id))
 // //       }
-    
+
 // //     return <div>
 // //         <Routing></Routing>
 // //        <Button onClick={chang1}>תצוגה טבלאית</Button>
@@ -130,7 +130,7 @@
 // //       </BootstrapDialog>
 // //     </React.Fragment></>
 // //         }
-      
+
 // //     </div>
 // // }
 // import { useEffect, useState } from 'react';
@@ -174,7 +174,7 @@
 //   const courses = useSelector(state => state.courses.courses);
 //   const [activeView, setActiveView] = useState(null);
 //   const [dialogOpen, setDialogOpen] = useState(false);
-  
+
 //   const fetchCourses = async () => {
 //     await dispatch(getCoursesThunk());
 //   };
@@ -198,7 +198,7 @@
 //   return (
 //     <div className="course-page-wrapper">
 //       <Routing />
-      
+
 //       <Container maxWidth="lg" className="course-dashboard">
 //         <Card className="course-header-card">
 //           <CardContent>
@@ -208,26 +208,26 @@
 //                 ניהול קורסים
 //               </Typography>
 //             </Box>
-            
+
 //             <Typography variant="body1" className="course-subtitle">
 //               ברוכים הבאים למערכת ניהול הקורסים. כאן תוכלו לצפות, להוסיף ולנהל את כל הקורסים במערכת.
 //             </Typography>
-            
+
 //             <Divider className="course-divider" />
-            
+
 //             <Box className="course-stats">
 //               <Box className="stat-item">
 //                 <Typography variant="h5">{courses.length}</Typography>
 //                 <Typography variant="body2">קורסים פעילים</Typography>
 //               </Box>
-              
+
 //               <Box className="stat-item">
 //                 <Typography variant="h5">
 //                   {courses.reduce((sum, course) => sum + course.currentAmountOfStudents, 0)}
 //                 </Typography>
 //                 <Typography variant="body2">סטודנטים רשומים</Typography>
 //               </Box>
-              
+
 //               <Box className="stat-item">
 //                 <Typography variant="h5">
 //                   {courses.reduce((sum, course) => sum + (course.amountOfStudentsInCourse - course.currentAmountOfStudents), 0)}
@@ -237,7 +237,7 @@
 //             </Box>
 //           </CardContent>
 //         </Card>
-        
+
 //         <Box className="course-actions-container">
 //           <Box className="view-toggle-wrapper">
 //             <Tooltip title="תצוגה טבלאית" placement="top" TransitionComponent={Zoom} arrow>
@@ -250,7 +250,7 @@
 //                 <span className="button-text">תצוגה טבלאית</span>
 //               </Button>
 //             </Tooltip>
-            
+
 //             <Tooltip title="תצוגת רשת" placement="top" TransitionComponent={Zoom} arrow>
 //               <Button 
 //                 className={`view-toggle-button ${activeView === 'grid' ? 'active' : ''}`}
@@ -262,7 +262,7 @@
 //               </Button>
 //             </Tooltip>
 //           </Box>
-          
+
 //           <Tooltip title="הוסף קורס חדש" placement="left" TransitionComponent={Zoom} arrow>
 //             <Button 
 //               className="add-course-button"
@@ -275,7 +275,7 @@
 //             </Button>
 //           </Tooltip>
 //         </Box>
-        
+
 //         {activeView ? (
 //           <Paper className="content-container" elevation={3}>
 //             {activeView === 'grid' && <Home />}
@@ -325,7 +325,7 @@
 //           <AddIcon className="dialog-title-icon" />
 //           הוספת קורס חדש
 //         </DialogTitle>
-        
+
 //         <IconButton
 //           aria-label="close"
 //           onClick={toggleDialog}
@@ -333,7 +333,7 @@
 //         >
 //           <CloseIcon />
 //         </IconButton>
-        
+
 //         <DialogContent dividers className="dialog-content">
 //           <AddCourse onSuccess={toggleDialog} />
 //         </DialogContent>
@@ -383,17 +383,31 @@ export const Course = () => {
   const courses = useSelector(state => state.courses.allCourses);
   const [activeView, setActiveView] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState(null);
   // מערך של תצוגות זמינות
   const availableViews = ['table', 'grid'];
-  
+  // const [localCourse, setLocalCourse] = useState(selectedCourse);
+  // const fetchCourses = async () => {
+  //   await dispatch(getAllCoursesThunk());
+  // };
+  const selectedCourse = useSelector(state => state.courses.selectedCourse);
   const fetchCourses = async () => {
-    await dispatch(getAllCoursesThunk());
+    setIsUpdating(true);
+    try {
+      await dispatch(getAllCoursesThunk());
+    } finally {
+      setIsUpdating(false);
+    }
   };
-
   useEffect(() => {
     fetchCourses();
   }, []);
-
+  useEffect(() => {
+    if (lastUpdated) {
+      fetchCourses();
+    }
+  }, [lastUpdated]);
   const handleViewChange = (newView) => {
     setActiveView(newView);
   };
@@ -402,17 +416,30 @@ export const Course = () => {
     setDialogOpen(!dialogOpen);
   };
 
-  const handleDeleteCourse = (id) => {
-    dispatch(deleteCourseThunk(id));
+  // const handleDeleteCourse = (id) => {
+  //   dispatch(deleteCourseThunk(id));
+  // };
+  const handleDeleteCourse = async (id) => {
+    setIsUpdating(true);
+    try {
+      await dispatch(deleteCourseThunk(id));
+      // סימון שהיה עדכון
+      setLastUpdated(new Date().getTime());
+    } finally {
+      setIsUpdating(false);
+    }
   };
-
+  const handleCourseUpdate = () => {
+    // סימון שהיה עדכון
+    setLastUpdated(new Date().getTime());
+  };
   // בדיקה אם יש רק תצוגה אחת זמינה
   const hasSingleView = availableViews.length === 1;
 
   return (
     <div className="course-page-wrapper">
       <Routing />
-      
+
       <Container maxWidth="lg" className="course-dashboard">
         <Card className="course-header-card">
           <CardContent>
@@ -422,26 +449,26 @@ export const Course = () => {
                 ניהול קורסים
               </Typography>
             </Box>
-            
+
             <Typography variant="body1" className="course-subtitle">
               ברוכים הבאים למערכת ניהול הקורסים. כאן תוכלו לצפות, להוסיף ולנהל את כל הקורסים במערכת.
             </Typography>
-            
+
             <Divider className="course-divider" />
-            
+
             <Box className="course-stats">
               <Box className="stat-item">
                 <Typography variant="h5">{courses.length}</Typography>
                 <Typography variant="body2">קורסים פעילים</Typography>
               </Box>
-              
+
               <Box className="stat-item">
                 <Typography variant="h5">
                   {courses.reduce((sum, course) => sum + course.currentAmountOfStudents, 0)}
                 </Typography>
                 <Typography variant="body2">סטודנטים רשומים</Typography>
               </Box>
-              
+
               <Box className="stat-item">
                 <Typography variant="h5">
                   {courses.reduce((sum, course) => sum + (course.amountOfStudentsInCourse - course.currentAmountOfStudents), 0)}
@@ -451,7 +478,7 @@ export const Course = () => {
             </Box>
           </CardContent>
         </Card>
-        
+
         <Box className="course-actions-container">
           {/* כפתורי החלפת תצוגה - יוצגו רק אם יש יותר מתצוגה אחת */}
           {availableViews.length > 1 && (
@@ -468,7 +495,7 @@ export const Course = () => {
                   </Button>
                 </Tooltip>
               )}
-              
+
               {availableViews.includes('grid') && (
                 <Tooltip title="תצוגת רשת" placement="top" TransitionComponent={Zoom} arrow>
                   <Button
@@ -483,9 +510,9 @@ export const Course = () => {
               )}
             </Box>
           )}
-          
+
           {/* כפתור הוספת קורס - עכשיו עם גודל קבוע */}
-           <Tooltip title="הוסף קורס חדש" placement="left" TransitionComponent={Zoom} arrow>
+          <Tooltip title="הוסף קורס חדש" placement="left" TransitionComponent={Zoom} arrow>
             <Button
               className="add-course"
               //  className="add-course-button"
@@ -493,12 +520,12 @@ export const Course = () => {
               variant="contained"
               color="primary"
             >
-               <AddIcon className="add-icon" /> 
+              <AddIcon className="add-icon" />
               <span>הוספת קורס</span>
-             </Button>
-         </Tooltip>
+            </Button>
+          </Tooltip>
         </Box>
-        
+
         {activeView ? (
           <Paper className="content-container" elevation={3}>
             {activeView === 'grid' && <Home />}
@@ -561,7 +588,7 @@ export const Course = () => {
           <AddIcon className="dialog-title-icon" />
           הוספת קורס חדש
         </DialogTitle>
-        
+
         <IconButton
           aria-label="close"
           onClick={toggleDialog}
@@ -569,7 +596,7 @@ export const Course = () => {
         >
           <CloseIcon />
         </IconButton>
-        
+
         <DialogContent dividers className="dialog-content">
           <AddCourse onSuccess={toggleDialog} />
         </DialogContent>
