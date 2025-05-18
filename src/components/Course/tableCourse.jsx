@@ -66,7 +66,7 @@
 // // // // //     disablePadding: false,
 // // // // //     label: 'יום',
 // // // // //   }, 
-  
+
 // // // // //    {
 // // // // //     id: 'מספר משתתפים',
 // // // // //     numeric: false,
@@ -89,21 +89,21 @@
 // // // // //       onRequestSort(event, property);
 // // // // //     };
 // // // // //   const dispatch=useDispatch()
-  
-  
+
+
 // // // // //   const getData=async()=>{
 // // // // //     await dispatch(getCoursesThunk())
 // // // // //   }
 // // // // //     React.useEffect(()=>{
 // // // // //         getData()
 // // // // //     },[])
-   
-    
-  
- 
-    
+
+
+
+
+
 // // // // //   return (
-    
+
 // // // // //     <TableHead>
 // // // // //       <TableRow>
 // // // // //         <TableCell >
@@ -146,7 +146,7 @@
 // // // // // }
 
 // // // // // EnhancedTableHead.propTypes = {
-    
+
 // // // // //   numSelected: PropTypes.number.isRequired,
 // // // // //   onRequestSort: PropTypes.func.isRequired,
 // // // // //   onSelectAllClick: PropTypes.func.isRequired,
@@ -156,7 +156,7 @@
 // // // // // };
 
 // // // // // function EnhancedTableToolbar(props) {
-    
+
 // // // // //   const { numSelected } = props;
 // // // // //   return (
 // // // // //     <Toolbar
@@ -222,14 +222,14 @@
 // // // // //   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
 // // // // //   const handleRequestSort = (event, property) => {
-    
+
 // // // // //     const isAsc = orderBy === property && order === 'asc';
 // // // // //     setOrder(isAsc ? 'desc' : 'asc');
 // // // // //     setOrderBy(property);
 // // // // //   };
 
 // // // // //   const handleSelectAllClick = (event) => {
-    
+
 // // // // //     if (event.target.checked) {
 // // // // //       const newSelected = courses.map((n) => n.id);
 // // // // //       setSelected(newSelected);
@@ -284,7 +284,7 @@
 
 // // // // //   return (
 // // // // //     <>
-   
+
 // // // // //     <Box sx={{ width: '100%' }}>
 // // // // //           <Paper sx={{ width: '100%', mb: 2 }}>
 // // // // //               <EnhancedTableToolbar numSelected={selected.length} />
@@ -444,7 +444,7 @@
 
 // // // // function EnhancedTableHead(props) {
 // // // //   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-  
+
 // // // //   const createSortHandler = (property) => (event) => {
 // // // //     onRequestSort(event, property);
 // // // //   };
@@ -556,7 +556,7 @@
 // // // // export default function TableCourse() {
 // // // //   const dispatch = useDispatch();
 // // // //   const courses = useSelector(state => state.courses.courses || []);
-  
+
 // // // //   const [order, setOrder] = React.useState('asc');
 // // // //   const [orderBy, setOrderBy] = React.useState('nameOfCourse');
 // // // //   const [selected, setSelected] = React.useState([]);
@@ -624,7 +624,7 @@
 // // // //   // מיון ופגינציה של הנתונים
 // // // //   const visibleRows = React.useMemo(() => {
 // // // //     if (!courses || courses.length === 0) return [];
-    
+
 // // // //     return [...courses]
 // // // //       .sort(getComparator(order, orderBy))
 // // // //       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -807,7 +807,7 @@
 
 // // // function EnhancedTableHead(props) {
 // // //   const { order, orderBy, onRequestSort } = props;
-  
+
 // // //   const createSortHandler = (property) => (event) => {
 // // //     onRequestSort(event, property);
 // // //   };
@@ -898,7 +898,7 @@
 // // // export default function TableCourse() {
 // // //   const dispatch = useDispatch();
 // // //   const courses = useSelector(state => state.courses.courses || []);
-  
+
 // // //   const [order, setOrder] = React.useState('asc');
 // // //   const [orderBy, setOrderBy] = React.useState('nameOfCourse');
 // // //   const [page, setPage] = React.useState(0);
@@ -931,12 +931,12 @@
 // // //   // פונקציה ליצוא PDF
 // // //   const handlePrintPDF = () => {
 // // //     const doc = new jsPDF('l', 'mm', 'a4'); // landscape orientation
-    
+
 // // //     // הוספת כותרת
 // // //     doc.setFont("helvetica", "bold");
 // // //     doc.setFontSize(18);
 // // //     doc.text("רשימת קורסים", doc.internal.pageSize.width / 2, 15, { align: 'center' });
-    
+
 // // //     // הכנת נתונים לטבלה
 // // //     const tableColumn = headCells.map(cell => cell.label);
 // // //     const tableRows = courses.map(course => [
@@ -945,7 +945,7 @@
 // // //       course.amountOfStudentsInCourse,
 // // //       course.nameOfCourse
 // // //     ]);
-    
+
 // // //     // יצירת טבלה
 // // //     doc.autoTable({
 // // //       head: [tableColumn],
@@ -957,7 +957,7 @@
 // // //       margin: { top: 20 },
 // // //       theme: 'grid'
 // // //     });
-    
+
 // // //     // שמירת הקובץ
 // // //     doc.save("courses_list.pdf");
 // // //   };
@@ -968,7 +968,7 @@
 // // //   // מיון ופגינציה של הנתונים
 // // //   const visibleRows = React.useMemo(() => {
 // // //     if (!courses || courses.length === 0) return [];
-    
+
 // // //     return [...courses]
 // // //       .sort(getComparator(order, orderBy))
 // // //       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -1129,7 +1129,7 @@
 
 // // function EnhancedTableHead(props) {
 // //   const { order, orderBy, onRequestSort } = props;
-  
+
 // //   const createSortHandler = (property) => (event) => {
 // //     onRequestSort(event, property);
 // //   };
@@ -1220,7 +1220,7 @@
 // // export default function TableCourse() {
 // //   const dispatch = useDispatch();
 // //   const courses = useSelector(state => state.courses.courses || []);
-  
+
 // //   const [order, setOrder] = React.useState('asc');
 // //   const [orderBy, setOrderBy] = React.useState('nameOfCourse');
 // //   const [page, setPage] = React.useState(0);
@@ -1254,12 +1254,12 @@
 // //   const handlePrintPDF = () => {
 // //     try {
 // //       const doc = new jsPDF('l', 'mm', 'a4'); // landscape orientation
-      
+
 // //       // הוספת כותרת
 // //       doc.setFont("helvetica", "bold");
 // //       doc.setFontSize(18);
 // //       doc.text("רשימת קורסים", doc.internal.pageSize.width / 2, 15, { align: 'center' });
-      
+
 // //       // הכנת נתונים לטבלה
 // //       const tableColumn = headCells.map(cell => cell.label);
 // //       const tableRows = courses.map(course => [
@@ -1268,7 +1268,7 @@
 // //         course.amountOfStudentsInCourse,
 // //         course.nameOfCourse
 // //       ]);
-      
+
 // //       // יצירת טבלה
 // //       doc.autoTable({
 // //         head: [tableColumn],
@@ -1280,7 +1280,7 @@
 // //         margin: { top: 20 },
 // //         theme: 'grid'
 // //       });
-      
+
 // //       // שמירת הקובץ
 // //       doc.save("courses_list.pdf");
 // //     } catch (error) {
@@ -1295,7 +1295,7 @@
 // //   // מיון ופגינציה של הנתונים
 // //   const visibleRows = React.useMemo(() => {
 // //     if (!courses || courses.length === 0) return [];
-    
+
 // //     return [...courses]
 // //       .sort(getComparator(order, orderBy))
 // //       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -1457,7 +1457,7 @@
 
 // function EnhancedTableHead(props) {
 //   const { order, orderBy, onRequestSort } = props;
-  
+
 //   const createSortHandler = (property) => (event) => {
 //     onRequestSort(event, property);
 //   };
@@ -1548,7 +1548,7 @@
 // export default function TableCourse() {
 //   const dispatch = useDispatch();
 //   const courses = useSelector(state => state.courses.courses || []);
-  
+
 //   const [order, setOrder] = React.useState('asc');
 //   const [orderBy, setOrderBy] = React.useState('nameOfCourse');
 //   const [page, setPage] = React.useState(0);
@@ -1583,12 +1583,12 @@
 //     try {
 //       // יצירת מסמך PDF חדש
 //       const doc = new jsPDF();
-      
+
 //       // הוספת כותרת
 //       doc.setFont("helvetica", "bold");
 //       doc.setFontSize(16);
 //       doc.text("רשימת קורסים", 105, 15, { align: 'center' });
-      
+
 //       // הכנת נתונים לטבלה
 //       const tableColumn = ["מספר מפגשים", "יום", "מספר משתתפים", "שם"];
 //       const tableRows = courses.map(course => [
@@ -1597,7 +1597,7 @@
 //         course.amountOfStudentsInCourse,
 //         course.nameOfCourse
 //       ]);
-      
+
 //       // הגדרת אפשרויות לטבלה
 //       const options = {
 //         startY: 25,
@@ -1623,13 +1623,13 @@
 //           );
 //         }
 //       };
-      
+
 //       // יצירת הטבלה
 //       doc.autoTable(options);
-      
+
 //       // שמירת הקובץ
 //       doc.save("courses_list.pdf");
-      
+
 //       console.log("PDF generated successfully");
 //     } catch (error) {
 //       console.error("Error generating PDF:", error);
@@ -1643,7 +1643,7 @@
 //   // מיון ופגינציה של הנתונים
 //   const visibleRows = React.useMemo(() => {
 //     if (!courses || courses.length === 0) return [];
-    
+
 //     return [...courses]
 //       .sort(getComparator(order, orderBy))
 //       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -1745,7 +1745,7 @@ import PrintIcon from '@mui/icons-material/Print';
 import Button from '@mui/material/Button';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
-
+// import PropTypes from 'prop-types';
 // RTL הגדרות
 const rtlTheme = createTheme({
   direction: 'rtl',
@@ -1803,7 +1803,7 @@ const headCells = [
 
 function EnhancedTableHead(props) {
   const { order, orderBy, onRequestSort } = props;
-  
+
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -1886,10 +1886,12 @@ EnhancedTableToolbar.propTypes = {
   onPrintPDF: PropTypes.func.isRequired,
 };
 
-export default function TableCourse() {
+export default function TableCourse({ onDeleteCourse, onUpdateCourse, isUpdating }) {
   const dispatch = useDispatch();
-  const courses = useSelector(state => state.courses.courses || []);
-  
+  const courses = useSelector(state => state.courses.allCourses || []);
+  //   const dispatch = useDispatch();
+  // const courses = useSelector(state => state.courses.courses || []);
+
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('nameOfCourse');
   const [page, setPage] = React.useState(0);
@@ -1923,12 +1925,12 @@ export default function TableCourse() {
   const handlePrintPDF = () => {
     try {
       const doc = new jsPDF();
-      
+
       // הוספת כותרת
       doc.setFont("helvetica", "bold");
       doc.setFontSize(16);
       doc.text("רשימת קורסים", 105, 15, { align: 'center' });
-      
+
       // הכנת נתונים לטבלה
       const tableColumn = ["שם", "מספר משתתפים", "יום", "מספר מפגשים"];
       const tableRows = courses.map(course => [
@@ -1937,7 +1939,7 @@ export default function TableCourse() {
         course.dayOfCourse,
         course.amountOfMeetingsInCourse
       ]);
-      
+
       // יצירת טבלה
       doc.autoTable({
         head: [tableColumn],
@@ -1949,7 +1951,7 @@ export default function TableCourse() {
         margin: { top: 20 },
         theme: 'grid'
       });
-      
+
       // שמירת הקובץ
       doc.save("courses_list.pdf");
     } catch (error) {
@@ -1964,7 +1966,7 @@ export default function TableCourse() {
   // מיון ופגינציה של הנתונים
   const visibleRows = React.useMemo(() => {
     if (!courses || courses.length === 0) return [];
-    
+
     return [...courses]
       .sort(getComparator(order, orderBy))
       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -1977,6 +1979,37 @@ export default function TableCourse() {
           <Paper sx={{ width: '100%', mb: 2 }}>
             <EnhancedTableToolbar onPrintPDF={handlePrintPDF} />
             <TableContainer>
+              {isUpdating && (
+                <Box sx={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  zIndex: 2,
+                  height: '4px',
+                  bgcolor: 'transparent',
+                  overflow: 'hidden'
+                }}>
+                  <Box
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      bgcolor: 'primary.main',
+                      animation: 'loading 2s infinite',
+                      '@keyframes loading': {
+                        '0%': { transform: 'translateX(-100%)' },
+                        '50%': { transform: 'translateX(0)' },
+                        '100%': { transform: 'translateX(100%)' }
+                      }
+                    }}
+                  />
+                </Box>
+              )}
+              {/* <Table
+    sx={{ minWidth: 750 }}
+    aria-labelledby="tableTitle"
+    size={dense ? 'small' : 'medium'}
+  > */}
               <Table
                 sx={{ minWidth: 750 }}
                 aria-labelledby="tableTitle"
@@ -2036,3 +2069,17 @@ export default function TableCourse() {
     </CacheProvider>
   );
 }
+
+// בסוף הקובץ, אחרי הגדרת הקומפוננטה
+TableCourse.propTypes = {
+  onDeleteCourse: PropTypes.func,
+  onUpdateCourse: PropTypes.func,
+  isUpdating: PropTypes.bool
+};
+
+TableCourse.defaultProps = {
+  onDeleteCourse: () => { },
+  onUpdateCourse: () => { },
+  isUpdating: false
+};
+
