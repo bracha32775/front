@@ -517,7 +517,7 @@ export const Course = () => {
               className="add-course"
               //  className="add-course-button"
               onClick={toggleDialog}
-              variant="contained"
+              variant="outlined"
               color="primary"
             >
               <AddIcon className="add-icon" />

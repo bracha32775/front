@@ -2,7 +2,7 @@
 import { Route, Routes } from "react-router-dom"
  import { Student } from "../Student/Student"
 import { Course } from "../Course/Course"
-import { Speaker } from "../Speaker/Speaker"
+import { Speaker2 } from "../Speaker/Speaker2"
 import MyAppBar from "../MyAppBar/MyAppBar"
 import { Home } from "../Home/Home"
 
@@ -26,7 +26,8 @@ export const Routing = () => {
         <Route path="/" element={<MyAppBar></MyAppBar>}></Route>
         <Route path="/Home/*" element={<Home></Home>}></Route>
         {/* <Route path="/Student/*" element={<Student></Student>}></Route> */}
-        <Route path="/Speaker/*" element={<Speaker></Speaker>}></Route>
+        {/* <Route path="/Speaker/*" element={<Speaker></Speaker>}></Route> */}
+        <Route path="/Speaker/*" element={<Speaker2></Speaker2>}></Route>
         <Route path="/Course" element={<Course></Course>}></Route>
         <Route path="/ShowCourse/*" element={<ShowCourse></ShowCourse>}></Route>
         {/* <Route path="/ShowCourse/*" element={<CardCourse></CardCourse>}></Route> */}
