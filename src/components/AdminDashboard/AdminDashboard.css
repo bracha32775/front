@@ -1,0 +1,953 @@
+.admin-dashboard-wrapper {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    min-height: 100vh;
+    padding-bottom: 60px;
+    direction: rtl;
+  }
+  
+  .dashboard-container {
+    padding-top: 40px;
+  }
+  
+  /* Dashboard Header */
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .dashboard-title-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dashboard-icon {
+    font-size: 36px !important;
+    color: #3f51b5;
+    margin-left: 16px;
+    background: rgba(63, 81, 181, 0.1);
+    padding: 10px;
+    border-radius: 12px;
+  }
+  
+  .dashboard-title {
+    font-weight: 700 !important;
+    color: #2c3e50;
+    margin: 0 !important;
+  }
+  
+  .dashboard-actions {
+    display: flex;
+    .dashboard-actions {
+        display: flex;
+        gap: 12px;
+      }
+      
+      .refresh-button, .settings-button {
+        background: white !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        transition: all 0.3s ease !important;
+      }
+      
+      .refresh-button:hover, .settings-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+      }
+      
+      /* Loading State */
+      .dashboard-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+      }
+      
+      .loading-text {
+        margin-top: 20px !important;
+        color: #3f51b5;
+        font-weight: 500 !important;
+      }
+      
+      /* Metrics Section */
+      .metrics-container {
+        margin-bottom: 30px !important;
+      }
+      
+      .metric-card {
+        border-radius: 16px !important;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
+        height: 100%;
+        transition: all 0.3s ease;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      .metric-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        z-index: 1;
+      }
+      
+      .metric-card.students::before { background: linear-gradient(90deg, #3f51b5, #5c6bc0); }
+      .metric-card.courses::before { background: linear-gradient(90deg, #f44336, #e57373); }
+      .metric-card.revenue::before { background: linear-gradient(90deg, #4caf50, #81c784); }
+      .metric-card.completion::before { background: linear-gradient(90deg, #ff9800, #ffb74d); }
+      .metric-card.retention::before { background: linear-gradient(90deg, #9c27b0, #ba68c8); }
+      .metric-card.occupancy::before { background: linear-gradient(90deg, #2196f3, #64b5f6); }
+      
+      .metric-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1) !important;
+      }
+      
+      .metric-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+      
+      .metric-title {
+        color: #546e7a;
+        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+      }
+      
+      .metric-icon {
+        width: 40px !important;
+        height: 40px !important;
+      }
+      
+      .metric-icon.students { background-color: #3f51b5 !important; }
+      .metric-icon.courses { background-color: #f44336 !important; }
+      .metric-icon.revenue { background-color: #4caf50 !important; }
+      .metric-icon.completion { background-color: #ff9800 !important; }
+      .metric-icon.retention { background-color: #9c27b0 !important; }
+      .metric-icon.occupancy { background-color: #2196f3 !important; }
+      
+      .metric-value {
+        font-weight: 700 !important;
+        color: #263238;
+        margin-bottom: 16px !important;
+      }
+      
+      .metric-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .metric-label {
+        color: #78909c;
+        font-weight: 500 !important;
+      }
+      
+      .metric-change {
+        display: flex;
+        align-items: center;
+        font-weight: 600 !important;
+        padding: 4px 8px;
+        border-radius: 12px;
+      }
+      
+      .metric-change.positive {
+        color: #4caf50;
+        background-color: rgba(76, 175, 80, 0.1);
+      }
+      
+      .metric-change.negative {
+        color: #f44336;
+        background-color: rgba(244, 67, 54, 0.1);
+      }
+      
+      .metric-change svg {
+        font-size: 14px !important;
+        margin-left: 4px;
+      }
+      
+      /* Charts Section */
+      .charts-container {
+        margin-bottom: 30px !important;
+      }
+      
+      .chart-paper {
+        border-radius: 16px !important;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
+        overflow: hidden;
+      }
+      
+      .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+      }
+      
+      .chart-title {
+        font-weight: 600 !important;
+        color: #263238;
+      }
+      
+      .chart-actions {
+        display: flex;
+        gap: 8px;
+      }
+      
+      .chart-period-button {
+        font-size: 0.8rem !important;
+        padding: 4px 12px !important;
+        border-radius: 12px !important;
+        color: #546e7a !important;
+      }
+      
+      .chart-period-button.active {
+        background-color: rgba(63, 81, 181, 0.1) !important;
+        color: #3f51b5 !important;
+        font-weight: 600 !important;
+      }
+      
+      .chart-divider {
+        margin: 0 !important;
+      }
+      
+      .chart-container {
+        padding: 20px;
+        height: 300px;
+      }
+      
+      .pie-chart-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      /* Activity Section */
+      .activity-container {
+        margin-bottom: 30px !important;
+      }
+      
+      .activity-paper, .notifications-paper, .courses-paper {
+        border-radius: 16px !important;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
+        overflow: hidden;
+      }
+      
+      .activity-header, .notifications-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+      }
+      
+      .activity-title, .notifications-title {
+        font-weight: 600 !important;
+        color: #263238;
+      }
+      
+      .activity-list, .notifications-list, .courses-list {
+        padding: 0 !important;
+        max-height: 400px;
+        overflow-y: auto;
+      }
+      
+      .activity-item, .notification-item, .course-item {
+        padding: 16px 20px !important;
+      }
+      
+      .activity-avatar {
+        background-color: #e0e0e0 !important;
+      }
+      
+      .activity-avatar.enrollment { background-color: #3f51b5 !important; }
+      .activity-avatar.completion { background-color: #4caf50 !important; }
+      .activity-avatar.new-course { background-color: #ff9800 !important; }
+      .activity-avatar.payment { background-color: #9c27b0 !important; }
+      .activity-avatar.feedback { background-color: #2196f3 !important; }
+      
+      .activity-icon {
+        color: white;
+      }
+      
+      .activity-time {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 4px;
+      }
+      
+      .time-icon {
+        font-size: 14px !important;
+        color: #78909c;
+      }
+      
+      .activity-footer, .notifications-footer {
+        padding: 12px 20px;
+        display: flex;
+        justify-content: center;
+      }
+      
+      .view-all-button {
+        font-weight: 600 !important;
+      }
+      
+      /* Notifications */
+      .notification-icon-wrapper {
+        min-width: 40px !important;
+      }
+      
+      .notification-icon {
+        font-size: 20px !important;
+      }
+      
+      .notification-icon.warning { color: #ff9800; }
+      .notification-icon.success { color: #4caf50; }
+      .notification-icon.error { color: #f44336; }
+      .notification-icon.info { color: #2196f3; }
+      
+      /* Info Tabs */
+      .info-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: 100%;
+      }
+      
+      .info-tabs {
+        background-color: white;
+        border-radius: 16px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
+      }
+      
+      /* Course Items */
+      .course-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 4px;
+      }
+      
+      .course-date {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      
+      .date-icon {
+        font-size: 14px !important;
+        color: #78909c;
+      }
+      
+      .course-occupancy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        min-width: 100px;
+      }
+      
+      .occupancy-percent {
+        font-weight: 600 !important;
+        margin-bottom: 4px;
+      }
+      
+      .occupancy-progress {
+        width: 100%;
+        height: 6px !important;
+        border-radius: 3px;
+      }
+      
+      .occupancy-progress.high .MuiLinearProgress-bar { background-color: #4caf50 !important; }
+      .occupancy-progress.medium .MuiLinearProgress-bar { background-color: #ff9800 !important; }
+      .occupancy-progress.low .MuiLinearProgress-bar { background-color: #f44336 !important; }
+      
+      .course-status {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+      }
+      
+      .status-text {
+        font-weight: 600 !important;
+      }
+      
+      .view-course-button {
+        font-size: 0.7rem !important;
+        padding: 2px 8px !important;
+      }
+      
+      /* Responsive Adjustments */
+      @media (max-width: 960px) {
+        .dashboard-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+        }
+        
+        .dashboard-actions {
+          align-self: flex-end;
+        }
+        
+        .chart-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        
+        .chart-container {
+          height: 250px;
+        }
+      }
+      
+      @media (max-width: 600px) {
+        .metric-card {
+          margin-bottom: 16px;
+        }
+        
+        .chart-actions {
+          width: 100%;
+          justify-content: space-between;
+        }
+        
+        .chart-period-button {
+          flex: 1;
+          text-align: center;
+        }
+        
+        .activity-item, .notification-item, .course-item {
+          padding: 12px !important;
+        }
+        
+        .course-meta, .course-occupancy, .course-status {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+        
+        .course-occupancy, .course-status {
+          margin-top: 12px;
+          width: 100%;
+        }
+      }
+      
+      /* Animation Keyframes */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      /* Apply animations */
+      .metric-card {
+        animation: fadeIn 0.4s ease-out;
+        animation-fill-mode: both;
+      }
+      
+      .metric-card:nth-child(1) { animation-delay: 0.1s; }
+      .metric-card:nth-child(2) { animation-delay: 0.2s; }
+      .metric-card:nth-child(3) { animation-delay: 0.3s; }
+      .metric-card:nth-child(4) { animation-delay: 0.4s; }
+      .metric-card:nth-child(5) { animation-delay: 0.5s; }
+      .metric-card:nth-child(6) { animation-delay: 0.6s; }
+      
+      .chart-paper {
+        animation: fadeIn 0.4s ease-out;
+        animation-delay: 0.7s;
+        animation-fill-mode: both;
+      }
+      
+      .activity-paper, .notifications-paper, .info-tabs, .courses-paper {
+        animation: fadeIn 0.4s ease-out;
+        animation-delay: 0.8s;
+        animation-fill-mode: both;
+      }
+      
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #c5cae9;
+        border-radius: 10px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #3f51b5;
+      }
+      
+      /* Focus States for Accessibility */
+      .refresh-button:focus-visible,
+      .settings-button:focus-visible,
+      .chart-period-button:focus-visible,
+      .view-all-button:focus-visible {
+        outline: 2px solid #3f51b5;
+        outline-offset: 2px;
+      }
+      
+      /* Print Styles */
+      @media print {
+        .admin-dashboard-wrapper {
+          background: white;
+        }
+        
+        .dashboard-actions,
+        .chart-actions,
+        .activity-footer,
+        .notifications-footer,
+        .view-course-button {
+          display: none !important;
+        }
+        
+        .metric-card,
+        .chart-paper,
+        .activity-paper,
+        .notifications-paper,
+        .info-tabs,
+        .courses-paper {
+          box-shadow: none !important;
+          border: 1px solid #eee;
+        }
+        
+        .metric-card::before {
+          display: none;
+        }
+      }
+      
+      /* High Contrast Mode Support */
+      @media (forced-colors: active) {
+        .metric-card,
+        .chart-paper,
+        .activity-paper,
+        .notifications-paper,
+        .info-tabs,
+        .courses-paper {
+          border: 1px solid currentColor;
+        }
+        
+        .metric-card::before {
+          background: currentColor !important;
+        }
+        
+        .metric-icon,
+        .activity-avatar {
+          border: 1px solid currentColor;
+        }
+      }
+      
+      /* Reduced Motion Preferences */
+      @media (prefers-reduced-motion: reduce) {
+        .metric-card,
+        .chart-paper,
+        .activity-paper,
+        .notifications-paper,
+        .info-tabs,
+        .courses-paper {
+          animation: none !important;
+        }
+        
+        .metric-card:hover,
+        .refresh-button:hover,
+        .settings-button:hover {
+          transform: none !important;
+        }
+      }
+      
+      /* RTL Specific Adjustments */
+      .dashboard-icon {
+        margin-right: 0;
+        margin-left: 16px;
+      }
+      
+      .metric-change svg {
+        margin-right: 0;
+        margin-left: 4px;
+      }
+      
+      .time-icon,
+      .date-icon {
+        margin-right: 0;
+        margin-left: 4px;
+      }
+      
+      .notification-icon-wrapper {
+        margin-right: 0;
+        margin-left: 16px;
+      }
+      
+      /* Enhanced Hover Effects */
+      .metric-card {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .metric-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 80%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      
+      .metric-card:hover::after {
+        opacity: 1;
+      }
+      
+      /* Enhanced Chart Interactions */
+      .chart-container {
+        position: relative;
+      }
+      
+      .chart-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+        pointer-events: none;
+      }
+      
+      /* Enhanced Activity Items */
+      .activity-item,
+      .notification-item,
+      .course-item {
+        transition: background-color 0.3s ease;
+      }
+      
+      .activity-item:hover,
+      .notification-item:hover,
+      .course-item:hover {
+        background-color: rgba(63, 81, 181, 0.05);
+      }
+      
+      /* Enhanced Buttons */
+      .view-all-button,
+      .view-course-button {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .view-all-button::after,
+      .view-course-button::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.2), rgba(255,255,255,0));
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+      }
+      
+      .view-all-button:hover::after,
+      .view-course-button:hover::after {
+        transform: translateX(100%);
+      }
+      
+      /* Enhanced Tab Indicators */
+      .info-tabs .MuiTabs-indicator {
+        height: 3px;
+        border-radius: 1.5px;
+        background: linear-gradient(90deg, #3f51b5, #5c6bc0);
+      }
+      
+      /* Enhanced Progress Bars */
+      .occupancy-progress {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .occupancy-progress::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.2), rgba(255,255,255,0));
+        animation: shimmer 2s infinite;
+        transform: translateX(-100%);
+      }
+      
+      @keyframes shimmer {
+        100% {
+          transform: translateX(100%);
+        }
+      }
+      
+      /* Enhanced Notifications */
+      .notification-item {
+        position: relative;
+      }
+      
+      .notification-item.unread::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #f44336;
+      }
+      
+      /* Enhanced Chart Tooltips */
+      .recharts-tooltip-wrapper .recharts-default-tooltip {
+        border-radius: 8px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        padding: 10px !important;
+        border: none !important;
+        background-color: rgba(255, 255, 255, 0.95) !important;
+      }
+      
+      .recharts-tooltip-label {
+        font-weight: 600 !important;
+        margin-bottom: 5px !important;
+      }
+      
+      /* Enhanced Loading Animation */
+      @keyframes pulse {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(63, 81, 181, 0.7);
+        }
+        
+        70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 10px rgba(63, 81, 181, 0);
+        }
+        
+        100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(63, 81, 181, 0);
+        }
+      }
+      
+      .dashboard-loading .MuiCircularProgress-root {
+        animation: pulse 2s infinite;
+      }
+      
+      /* Enhanced Empty States */
+      .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        text-align: center;
+      }
+      
+      .empty-icon {
+        font-size: 48px !important;
+        color: #b0bec5;
+        margin-bottom: 16px;
+      }
+      
+      .empty-title {
+        font-weight: 600 !important;
+        color: #546e7a;
+        margin-bottom: 8px !important;
+      }
+      
+      .empty-description {
+        color: #78909c;
+        max-width: 300px;
+        margin-bottom: 20px !important;
+      }
+      
+      /* Enhanced Accessibility */
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      
+      /* Dark Mode Support */
+      @media (prefers-color-scheme: dark) {
+        .admin-dashboard-wrapper {
+          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        .dashboard-title {
+          color: #e0e0e0;
+        }
+        
+        .metric-card,
+        .chart-paper,
+        .activity-paper,
+        .notifications-paper,
+        .info-tabs,
+        .courses-paper {
+          background-color: #1e1e30 !important;
+        }
+        
+        .metric-title,
+        .chart-title,
+        .activity-title,
+        .notifications-title {
+          color: #e0e0e0;
+        }
+        
+        .metric-value {
+          color: #ffffff;
+        }
+        
+        .metric-label,
+        .chart-period-button,
+        .time-icon,
+        .date-icon {
+          color: #9e9e9e;
+        }
+        
+        .chart-period-button.active {
+          background-color: rgba(63, 81, 181, 0.2) !important;
+        }
+        
+        .activity-item:hover,
+        .notification-item:hover,
+        .course-item:hover {
+          background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .recharts-tooltip-wrapper .recharts-default-tooltip {
+          background-color: rgba(30, 30, 48, 0.95) !important;
+          color: #e0e0e0 !important;
+        }
+        
+        .recharts-text {
+          fill: #9e9e9e !important;
+        }
+        
+        .recharts-cartesian-grid line {
+          stroke: rgba(255, 255, 255, 0.1) !important;
+        }
+      }
+      
+      /* Additional Performance Optimizations */
+      .chart-container {
+        will-change: transform;
+      }
+      
+      .metric-card,
+      .chart-paper,
+      .activity-paper,
+      .notifications-paper,
+      .info-tabs,
+      .courses-paper {
+        contain: content;
+      }
+      
+      /* Enhanced Mobile Experience */
+      @media (max-width: 480px) {
+        .dashboard-container {
+          padding-top: 20px;
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+        
+        .dashboard-icon {
+          font-size: 28px !important;
+          padding: 8px;
+        }
+        
+        .dashboard-title {
+          font-size: 1.5rem !important;
+        }
+        
+        .metric-card {
+          padding: 12px;
+        }
+        
+        .metric-header {
+          margin-bottom: 12px;
+        }
+        
+        .metric-icon {
+          width: 32px !important;
+          height: 32px !important;
+        }
+        
+        .metric-value {
+          font-size: 1.5rem !important;
+          margin-bottom: 12px !important;
+        }
+        
+        .chart-title,
+        .activity-title,
+        .notifications-title {
+          font-size: 1.1rem !important;
+        }
+        
+        .chart-container {
+          padding: 12px;
+          height: 200px;
+        }
+      }
+      
+      /* Enhanced Tablet Experience */
+      @media (min-width: 601px) and (max-width: 960px) {
+        .metrics-container {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+        }
+        
+        .metric-card {
+          margin-bottom: 0 !important;
+        }
+      }
+      
+      /* Print-specific optimizations */
+      @media print {
+        .admin-dashboard-wrapper {
+          background: none;
+        }
+        
+        .dashboard-container {
+          padding: 0;
+        }
+        
+        .metrics-container,
+        .charts-container,
+        .activity-container {
+          break-inside: avoid;
+          page-break-inside: avoid;
+          margin-bottom: 20px !important;
+        }
+        
+        .chart-container {
+          height: 200px;
+        }
+      }}      
+      
+  

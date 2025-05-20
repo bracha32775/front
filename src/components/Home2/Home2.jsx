@@ -108,13 +108,13 @@ export const Home2 = () => {
     { id: 4, title: 'דוחות וסטטיסטיקות', icon: <BarChartIcon />, path: '/B', color: '#e91e63' },
   ];
   
-  // מידע על פעולות מהירות
-  const quickActions = [
-    { id: 1, title: 'הוספת קורס חדש', icon: <AddCircleOutlineIcon />, action: () => navigate('/Course'), color: '#3f51b5' },
-    { id: 2, title: 'רישום סטודנט', icon: <PersonAddIcon />, action: () => navigate('/Student'), color: '#4caf50' },
-    { id: 3, title: 'הוספת מרצה', icon: <GroupAddIcon />, action: () => navigate('/Speaker'), color: '#ff9800' },
-    { id: 4, title: 'יצירת דוח', icon: <DescriptionIcon />, action: () => navigate('/B'), color: '#e91e63' },
-  ];
+//   // מידע על פעולות מהירות
+//   const quickActions = [
+//     { id: 1, title: 'הוספת קורס חדש', icon: <AddCircleOutlineIcon />, action: () => navigate('/Course'), color: '#3f51b5' },
+//     { id: 2, title: 'רישום סטודנט', icon: <PersonAddIcon />, action: () => navigate('/Student'), color: '#4caf50' },
+//     { id: 3, title: 'הוספת מרצה', icon: <GroupAddIcon />, action: () => navigate('/Speaker'), color: '#ff9800' },
+//     { id: 4, title: 'יצירת דוח', icon: <DescriptionIcon />, action: () => navigate('/B'), color: '#e91e63' },
+//   ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -531,20 +531,20 @@ export const Home2 = () => {
               </Grid>
               
               {/* Quick Actions */}
-              <Grid item xs={12}>
-                <Paper className="dashboard-card quick-actions-card">
-                  <Box className="card-header">
+              {/* <Grid item xs={12}> */}
+                {/* <Paper className="dashboard-card quick-actions-card"> */}
+                  {/* <Box className="card-header">
                     <Box className="card-title-section">
                       <PlayArrowIcon className="card-icon" />
                       <Typography variant="h6" className="card-title">
                         פעולות מהירות
                       </Typography>
                     </Box>
-                  </Box>
+                  </Box> */}
                   
-                  <Divider />
+                  {/* <Divider /> */}
                   
-                  <Box className="quick-actions-grid">
+                  {/* <Box className="quick-actions-grid">
                     {quickActions.map(action => (
                       <Box 
                         key={action.id} 
@@ -560,10 +560,10 @@ export const Home2 = () => {
                       </Box>
                     ))}
                   </Box>
-                </Paper>
-              </Grid>
-            </Grid>
-          </Grid>
+                </Paper> */}
+              {/* </Grid> */}
+            </Grid> 
+           </Grid> 
           
           {/* Sidebar */}
           <Grid item xs={12} md={4}>
@@ -759,55 +759,55 @@ export const Home2 = () => {
               </Grid>
               
               {/* Help & Resources */}
-              <Grid item xs={12}>
-                <Paper className="dashboard-card help-card">
-                  <Box className="card-header">
+              {/* <Grid item xs={12}>
+                <Paper className="dashboard-card help-card"> */}
+                  {/* <Box className="card-header">
                     <Box className="card-title-section">
                       <HelpOutlineIcon className="card-icon" />
                       <Typography variant="h6" className="card-title">
                         עזרה ומשאבים
                       </Typography>
                     </Box>
-                  </Box>
+                  </Box> */}
                   
-                  <Divider />
+                  {/* <Divider /> */}
                   
-                  <Box className="help-resources">
-                    <Button 
+                  {/* <Box className="help-resources"> */}
+                    {/* <Button 
                       variant="outlined" 
                       className="help-button"
                       startIcon={<DescriptionIcon />}
                     >
                       מדריך למשתמש
-                    </Button>
+                    </Button> */}
                     
-                    <Button 
+                    {/* <Button 
                       variant="outlined" 
                       className="help-button"
                       startIcon={<FolderOpenIcon />}
                     >
                       טפסים ומסמכים
-                    </Button>
+                    </Button> */}
                     
-                    <Button 
+                    {/* <Button 
                       variant="outlined" 
                       className="help-button"
                       startIcon={<SettingsIcon />}
                     >
                       הגדרות מערכת
-                    </Button>
+                    </Button> */}
                     
-                    <Button 
+                    {/* <Button 
                       variant="contained" 
                       color="primary" 
                       className="help-button contact-button"
                       startIcon={<SupportAgentIcon />}
                     >
                       צור קשר עם תמיכה
-                    </Button>
-                  </Box>
-                </Paper>
-              </Grid>
+                    </Button> */}
+                  {/* </Box> */}
+                {/* </Paper>
+              </Grid> */}
             </Grid>
           </Grid>
         </Grid>
