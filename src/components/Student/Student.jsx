@@ -19,6 +19,7 @@ import './Student.css'
 import EnhancedTable from './studentTable';
 import { setFlagStudentSlice } from '../../redux/Slices/studentSlice';
 
+// const JoinCourse3 = () => {
 export const Student = () => {
   const flagClose = useSelector(state => state.students.flagClose);
   const nav = useNavigate()
