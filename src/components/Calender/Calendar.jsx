@@ -827,7 +827,7 @@ export const Calendar = () => {
         if (eventDate < today && eventDate.toDateString() !== today.toDateString()) continue;
         
         events.push({
-          id: `course-${course.id}-meeting-${meetingNumber}`,
+          id: `course-${course.idOfCourse}-meeting-${meetingNumber}`,
           title: course.nameOfCourse,
           description: `מפגש ${meetingNumber} מתוך ${course.amountOfMettingInCourse}`,
           date: new Date(eventDate),
@@ -835,7 +835,7 @@ export const Calendar = () => {
           endTime: course.endTimeOfCourse || '12:00',
           type: 'class',
           location: course.location || 'לא צוין מיקום',
-          courseId: course.id,
+          courseId: course.idOfCourse,
           meetingNumber: meetingNumber,
           totalMeetings: course.amountOfMettingInCourse,
           participants: course.currentAmountOfStudents || 0,

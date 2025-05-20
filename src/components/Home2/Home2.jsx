@@ -344,7 +344,7 @@ export const Home2 = () => {
                   ) : (
                     <Box className="courses-list">
                       {courses.slice(0, 4).map((course, index) => (
-                        <Box key={course.id || index} className="course-list-item">
+                        <Box key={course.idOfCourse || index} className="course-list-item">
                           <Box className="course-info">
                             <Box className="course-icon-wrapper">
                               <MenuBookIcon className="course-list-icon" />
@@ -382,7 +382,8 @@ export const Home2 = () => {
                                 size="small" 
                                 className="view-button"
                                 component={Link}
-                                to={`/ShowCourse/${course.id}`}
+                                to={`/ShowCourse/${course.idOfCourse}`}
+                               
                               >
                                 <ArrowForwardIcon fontSize="small" />
                               </IconButton>
