@@ -6532,4 +6532,3 @@ export const Speaker = () => {
     );
   };
   
-

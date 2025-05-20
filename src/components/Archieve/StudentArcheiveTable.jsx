@@ -10,7 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import Toolbar from '@mui/material/Toolbar';
+// import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
@@ -26,6 +26,7 @@ import { getStudentsThunk } from '../../redux/Thunks/getStudentsThunk';
 import { useSelector } from 'react-redux';
 import { Routing } from '../Routing/Routing';
 import { getStudentArchieveThunk } from '../../redux/Thunks/getStudentArchieveThunk';
+import { Toolbar } from '@mui/material';
 
 
 
@@ -121,7 +122,6 @@ function EnhancedTableHead(props) {
 }
 
 EnhancedTableHead.propTypes = {
-    
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
@@ -187,8 +187,10 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function StudentArchieveTable() {
- const students = useSelector(s => s.students.students)
- const rows=students
+
+
+ const students = useSelector(s => s.students.students);
+ const rows=students;
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
@@ -197,14 +199,14 @@ export default function StudentArchieveTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (event, property) => {
-    
+
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
   const handleSelectAllClick = (event) => {
-    
+
     if (event.target.checked) {
       const newSelected = students.map((n) => n.id);
       setSelected(newSelected);
@@ -226,7 +228,8 @@ export default function StudentArchieveTable() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+
+        selected.slice(selectedIndex + 1)
       );
     }
     setSelected(newSelected);
@@ -254,7 +257,8 @@ export default function StudentArchieveTable() {
       [...rows]
         .sort(getComparator(order, orderBy))
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
-    [order, orderBy, page, rowsPerPage],
+
+    [order, orderBy, page, rowsPerPage]
   );
 
   return (
@@ -282,8 +286,7 @@ export default function StudentArchieveTable() {
                               return (
                                   <TableRow
                                       hover
-                                      //
-                                      // onClick={(event) => handleClick(event, row.id)}
+
                                       role="checkbox"
                                       aria-checked={isItemSelected}
                                       tabIndex={-1}
@@ -319,7 +322,8 @@ export default function StudentArchieveTable() {
                           {emptyRows > 0 && (
                               <TableRow
                                   style={{
-                                      height: (dense ? 33 : 53) * emptyRows,
+
+                                      height: (dense ? 33 : 53) * emptyRows
                                   }}
                               >
                                   <TableCell colSpan={6} />
@@ -341,5 +345,6 @@ export default function StudentArchieveTable() {
               control={<Switch checked={dense} onChange={handleChangeDense} />}
             //   label="Dense padding"
                />
-      </Box></>
-  );}
+      </Box>
+
+)}
