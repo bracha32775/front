@@ -1,0 +1,194 @@
+/* עיצוב כללי */
+.join-course-container {
+  padding: 24px;
+  direction: rtl;
+  font-family: 'Rubik', 'Assistant', sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.join-course-paper {
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  background-color: #ffffff;
+  position: relative;
+}
+
+/* כותרת עליונה */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  background: linear-gradient(90deg, #1976d2, #2196f3);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4caf50, #1976d2, #ff9800, #e91e63);
+  z-index: 10;
+}
+
+.success-header {
+  background: linear-gradient(90deg, #2e7d32, #4caf50);
+}
+
+.page-title {
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  flex: 1;
+  text-align: center;
+}
+
+.back-button {
+  color: white !important;
+  margin-left: 8px;
+}
+
+/* סטפר */
+.stepper-container {
+  padding: 24px 24px 0;
+  background-color: white;
+}
+
+/* תוכן */
+.content-container {
+  padding: 24px;
+  background-color: white;
+}
+
+.step-content {
+  margin-bottom: 24px;
+}
+
+.step-title {
+  font-weight: 700 !important;
+  margin-bottom: 24px;
+  color: #2c3e50;
+  position: relative;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.step-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #1976d2, #2196f3);
+  border-radius: 3px;
+}
+
+/* שדות טופס */
+.form-field {
+  margin-bottom: 24px !important;
+}
+
+/* כרטיס תלמיד */
+.student-card, .course-info-card, .summary-card {
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 24px;
+}
+
+.student-card:hover, .course-info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.student-avatar {
+  background-color: #1976d2 !important;
+  color: white !important;
+  margin-left: 16px;
+  width: 56px !important;
+  height: 56px !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+}
+
+.student-name, .card-title {
+  font-weight: 700 !important;
+  color: #2c3e50;
+}
+
+.divider {
+  margin: 16px 0 !important;
+}
+
+/* הודעת הצלחה */
+.success-message {
+  text-align: center;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* התאמה למסכים קטנים */
+@media (max-width: 600px) {
+  .join-course-container {
+    padding: 16px 8px;
+  }
+  
+  .content-container {
+    padding: 16px;
+  }
+  
+  .header {
+    padding: 16px;
+  }
+  
+  .page-title {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* עיצוב להדפסה */
+@media print {
+  .join-course-container {
+    padding: 0;
+  }
+  
+  .join-course-paper {
+    box-shadow: none !important;
+  }
+  
+  .header {
+    background: white !important;
+    color: black !important;
+    border-bottom: 2px solid #1976d2;
+  }
+  
+  .back-button, 
+  button:not(.print-button) {
+    display: none !important;
+  }
+  
+  .student-card, 
+  .course-info-card, 
+  .summary-card {
+    box-shadow: none !important;
+    border: 1px solid #ddd;
+  }
+}

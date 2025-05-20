@@ -13,6 +13,7 @@ export const addSpeakerThunk = createAsyncThunk(
             }
         );
         const data = await response.json();
+        
         return data;
     }
 )

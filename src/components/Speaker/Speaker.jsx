@@ -5327,6 +5327,7 @@ import { AddSpeaker } from '../Add/AddSpeaker/AddSpeaker';
 import SpeakersTable from './speakersTable';
 import './Speaker.css';
 import { Routing } from '../Routing/Routing';
+import { getAllSpeakersThunk } from '../../redux/Thunks/getAllSpeakersThunk';
 
 // Styled Components
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -5505,7 +5506,9 @@ export const Speaker = () => {
 
   const loadSpeakers = async () => {
     setLoading(true);
-    await dispatch(getSpeakersThunk());
+    // await dispatch(getAllSpeakersThunk());
+     await dispatch(getSpeakersThunk());
+    console.log("מבנה המרצים:", speakers);
     setLoading(false);
   };
 

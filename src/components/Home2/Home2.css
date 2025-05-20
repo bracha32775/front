@@ -1,0 +1,882 @@
+/* ===== כללי ===== */
+.admin-home-page {
+    direction: rtl;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  /* ===== אנימציות ===== */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(63, 81, 181, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(63, 81, 181, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(63, 81, 181, 0); }
+  }
+  
+  /* ===== כותרת עליונה ===== */
+  .admin-header {
+    background: linear-gradient(90deg, #283593, #3f51b5);
+    padding: 2rem 0;
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .admin-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4caf50, #3f51b5, #ff9800, #e91e63);
+    z-index: 10;
+  }
+  
+  .welcome-section {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .welcome-title {
+    font-weight: 700 !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 2rem !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .welcome-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem !important;
+    font-size: 1rem !important;
+  }
+  
+  .header-stats {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    backdrop-filter: blur(5px);
+    margin-top: 1rem;
+  }
+  
+  .stat-item {
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+  
+  .stat-item h5 {
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  .stat-item p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem !important;
+  }
+  
+  .header-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .action-button {
+    border-radius: 50px !important;
+    padding: 0.6rem 1.5rem !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .action-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .notification-button {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: white !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .notification-button:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+    transform: rotate(15deg);
+  }
+  
+  /* ===== תוכן ראשי ===== */
+  .admin-content {
+    padding: 2rem 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* ===== לשוניות ניווט ===== */
+  .nav-tabs-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border: none;
+    position: relative;
+  }
+  
+  .nav-tabs {
+    display: flex;
+    overflow-x: auto;
+    padding: 0.5rem;
+  }
+  
+  .nav-tab {
+    padding: 1rem 1.5rem !important;
+    font-weight: 600 !important;
+    color: #637381 !important;
+    border-radius: 10px !important;
+    margin: 0 0.25rem !important;
+    transition: all 0.3s ease !important;
+    min-width: auto !important;
+    flex-shrink: 0;
+  }
+  
+  .nav-tab:hover {
+    background: rgba(63, 81, 181, 0.08) !important;
+    color: #3f51b5 !important;
+  }
+  
+  .nav-tab.active {
+    background: #3f51b5 !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(63, 81, 181, 0.3) !important;
+  }
+  
+  /* ===== קישורים מהירים ===== */
+  .quick-link-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none !important;
+    height: 100%;
+  }
+  
+  .quick-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  }
+  
+  .quick-link-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .quick-link-card:hover .quick-link-icon {
+    transform: scale(1.1);
+  }
+  
+  .quick-link-title {
+    color: #333;
+    text-align: center;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .quick-link-arrow {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    color: #3f51b5;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .quick-link-card:hover .quick-link-arrow {
+    opacity: 1;
+    transform: translateX(-5px);
+  }
+  
+  /* ===== כרטיסי לוח מחוונים ===== */
+  .dashboard-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: none;
+    margin-bottom: 1.5rem;
+    position: relative;
+    animation: slideInUp 0.5s ease-out;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .card-title-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .card-icon {
+    font-size: 1.5rem !important;
+    color: #3f51b5;
+    margin-left: 0.75rem;
+    background: rgba(63, 81, 181, 0.1);
+    padding: 0.5rem;
+    border-radius: 10px;
+  }
+  
+  .card-title {
+    font-weight: 600 !important;
+    color: #333;
+    margin: 0 !important;
+  }
+  
+  .view-all-button {
+    font-size: 0.875rem !important;
+    font-weight: 600 !important;
+    color: #3f51b5 !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .view-all-button:hover {
+    background: rgba(63, 81, 181, 0.08) !important;
+    transform: translateX(-5px);
+  }
+  
+  .count-chip {
+    font-weight: 600 !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .card-footer {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  
+  .add-button {
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .add-button:hover {
+    background: rgba(63, 81, 181, 0.08) !important;
+  }
+  
+  /* ===== רשימת קורסים ===== */
+  .loading-container {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .loading-progress {
+    margin-bottom: 1rem;
+  }
+  
+  .courses-list {
+    padding: 0.5rem 0;
+  }
+  
+  .course-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+  }
+  
+  .course-list-item:last-child {
+    border-bottom: none;
+  }
+  
+  .course-list-item:hover {
+    background: rgba(63, 81, 181, 0.05);
+  }
+  
+  .course-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .course-icon-wrapper {
+    background: rgba(63, 81, 181, 0.1);
+    color: #3f51b5;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+  }
+  
+  .course-list-icon {
+    font-size: 1.25rem !important;
+  }
+  
+  .course-details {
+    flex: 1;
+  }
+  
+  .course-name {
+    font-weight: 600 !important;
+    color: #333;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  .course-meta {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .meta-item {
+    display: flex;
+    align-items: center;
+    color: #637381;
+  }
+  
+  .meta-icon {
+    font-size: 0.875rem !important;
+    margin-left: 0.5rem;
+    color: #637381;
+  }
+  
+  .course-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .status-chip {
+    font-weight: 600 !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .view-button {
+    color: #3f51b5 !important;
+    background: rgba(63, 81, 181, 0.1) !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .view-button:hover {
+    background: rgba(63, 81, 181, 0.2) !important;
+    transform: translateX(-3px);
+  }
+  
+  /* ===== רשימת משימות ===== */
+  .tasks-list {
+    padding: 0 !important;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  
+  .task-item {
+    padding: 0.75rem 1.5rem !important;
+    transition: all 0.3s ease;
+  }
+  
+  .task-item:hover {
+    background: rgba(63, 81, 181, 0.05) !important;
+  }
+  
+  .task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #9e9e9e;
+  }
+  
+  .priority-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-left: 1rem;
+  }
+  
+  .task-toggle {
+    color: #e0e0e0 !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .task-toggle:hover {
+    background: rgba(76, 175, 80, 0.1) !important;
+  }
+  
+  .completed-icon {
+    color: #4caf50 !important;
+  }
+  
+  .pending-icon {
+    color: #e0e0e0 !important;
+  }
+  
+  .task-item:hover .pending-icon {
+    color: #9e9e9e !important;
+  }
+  
+  /* ===== רשימת אירועים ===== */
+  .events-list {
+    padding: 0 !important;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  
+  .event-item {
+    padding: 1rem 1.5rem !important;
+    transition: all 0.3s ease;
+    align-items: flex-start !important;
+  }
+  
+  .event-item:hover {
+    background: rgba(63, 81, 181, 0.05) !important;
+  }
+  
+  .event-date-box {
+    background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+    color: white;
+    border-radius: 10px;
+    padding: 0.5rem;
+    min-width: 60px;
+    text-align: center;
+    margin-left: 1rem;
+    box-shadow: 0 4px 10px rgba(63, 81, 181, 0.2);
+  }
+  
+  .event-day {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+  }
+  
+  .event-month {
+    font-size: 0.75rem !important;
+    opacity: 0.9;
+  }
+  
+  .event-details {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .event-detail {
+    display: flex;
+    align-items: center;
+    color: #637381;
+  }
+  
+  .detail-icon {
+    font-size: 0.875rem !important;
+    margin-left: 0.5rem;
+    color: #637381;
+  }
+  
+  /* ===== פעולות מהירות ===== */
+  .quick-actions-card {
+    margin-bottom: 0;
+  }
+  
+  .quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .quick-action-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 12px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .quick-action-item:hover {
+    background: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+  }
+  
+  .action-icon-wrapper {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .quick-action-item:hover .action-icon-wrapper {
+    transform: scale(1.1);
+  }
+  
+  .action-title {
+    font-weight: 600 !important;
+    color: #333;
+  }
+  
+  /* ===== סטטוס מערכת ===== */
+  .system-status-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  }
+  
+  .system-status-content {
+    padding: 1.5rem;
+  }
+  
+  .status-item {
+    margin-bottom: 1.25rem;
+  }
+  
+  .status-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .status-progress-container {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+  
+  .status-progress {
+    flex: 1;
+    height: 8px !important;
+    border-radius: 4px !important;
+  }
+  
+  .status-value {
+    margin-right: 1rem;
+    font-weight: 600 !important;
+    color: #333;
+  }
+  
+  .system-status-footer {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  
+  .system-status-chip {
+    font-weight: 600 !important;
+  }
+  
+  .last-update {
+    color: #9e9e9e;
+  }
+  
+  /* ===== התראות ===== */
+  .notifications-list {
+    padding: 0 !important;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  
+  .notification-item {
+    padding: 1rem 1.5rem !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .notification-item:hover {
+    background: rgba(63, 81, 181, 0.05) !important;
+  }
+  
+  .notification-item.unread {
+    background: rgba(63, 81, 181, 0.05);
+  }
+  
+  .notification-content {
+    flex: 1;
+  }
+  
+  .notification-title {
+    font-weight: 500 !important;
+    color: #333;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  .notification-item.unread .notification-title {
+    font-weight: 600 !important;
+  }
+  
+  .notification-time {
+    color: #9e9e9e;
+  }
+  
+  .unread-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f44336;
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+  
+  /* ===== פעילות אחרונה ===== */
+  .activity-list {
+    padding: 0 !important;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  
+  .activity-item {
+    padding: 1rem 1.5rem !important;
+    transition: all 0.3s ease;
+  }
+  
+  .activity-item:hover {
+    background: rgba(63, 81, 181, 0.05) !important;
+  }
+  
+  .activity-icon-wrapper {
+    min-width: 40px !important;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(63, 81, 181, 0.1);
+    margin-left: 1rem !important;
+    margin-right: 0 !important;
+  }
+  
+  .activity-icon {
+    color: #3f51b5 !important;
+    font-size: 1.25rem !important;
+  }
+  
+  /* ===== עזרה ומשאבים ===== */
+  .help-card {
+    margin-bottom: 0;
+  }
+  
+  .help-resources {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .help-button {
+    padding: 1rem !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    text-transform: none !important;
+    justify-content: flex-start !important;
+  }
+  
+  .help-button:hover {
+    background: rgba(63, 81, 181, 0.08) !important;
+    transform: translateY(-3px);
+  }
+  
+  .contact-button {
+    grid-column: span 2;
+    background: linear-gradient(90deg, #3f51b5, #5c6bc0) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(63, 81, 181, 0.3) !important;
+  }
+  
+  .contact-button:hover {
+    background: linear-gradient(90deg, #303f9f, #3f51b5) !important;
+    box-shadow: 0 6px 20px rgba(63, 81, 181, 0.4) !important;
+  }
+  
+  /* ===== פוטר ===== */
+  .admin-footer {
+    background: white;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    margin-top: 2rem;
+  }
+  
+  .copyright-text {
+    color: #637381;
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  .footer-link {
+    color: #637381 !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .footer-link:hover {
+    color: #3f51b5 !important;
+  }
+  
+  /* ===== מדיה קוורי ===== */
+  @media (max-width: 960px) {
+    .header-stats {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .stat-item {
+      width: 100%;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .stat-item:last-child {
+      border-bottom: none;
+    }
+    
+    .header-actions {
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    
+    .quick-actions-grid,
+    .help-resources {
+      grid-template-columns: 1fr;
+    }
+    
+    .contact-button {
+      grid-column: span 1;
+    }
+    
+    .footer-links {
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .admin-header {
+      padding: 1.5rem 0;
+    }
+    
+    .welcome-title {
+      font-size: 1.5rem !important;
+    }
+    
+    .action-button {
+      padding: 0.5rem 1rem !important;
+      font-size: 0.875rem !important;
+    }
+    
+    .nav-tabs {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding: 0.5rem;
+    }
+    
+    .nav-tab {
+      padding: 0.75rem 1rem !important;
+      font-size: 0.875rem !important;
+    }
+    
+    .course-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .event-details {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+  
+  /* ===== גלילה מותאמת ===== */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #c5cae9;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f51b5;
+  }
+  
+  /* ===== אפקטים מיוחדים ===== */
+  .dashboard-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .action-button.primary {
+    animation: pulse 2s infinite;
+  }
+  
+  /* ===== מצבי פוקוס ===== */
+  .nav-tab:focus-visible,
+  .action-button:focus-visible,
+  .view-all-button:focus-visible,
+  .help-button:focus-visible {
+    outline: 2px solid #3f51b5;
+    outline-offset: 2px;
+  }
+  
+  /* ===== תמיכה במצב ניגודיות גבוהה ===== */
+  @media (forced-colors: active) {
+    .nav-tab.active,
+    .action-button,
+    .quick-link-card,
+    .dashboard-card {
+      border: 1px solid currentColor;
+    }
+  }
+  
+  /* ===== תמיכה בהעדפות תנועה מופחתת ===== */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
