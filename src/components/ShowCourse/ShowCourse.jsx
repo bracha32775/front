@@ -94,7 +94,7 @@ export const ShowCourse = (props) => {
     console.log("localCourse.idOfCourse" + localCourse.idOfCourse + "wowowow");
     // העברת מזהה הקורס כפרמטר לדף הרישום
     nav(`/joinCourse/${localCourse.idOfCourse}`);
-    // nav(`/course-registration/${localCourse.idOfCourse}`);
+    
 
   };
   const handleFileChange = (event) => {
@@ -1763,8 +1763,13 @@ export const ShowCourse = (props) => {
                     {localCourse.currentAmountOfStudents || 0}
                   </Typography>
                   <Typography variant="body2">
-                    תלמידים רשומים
+                    תלמידים רשומים 
                   </Typography>
+                  {localCourse.Students.map((student) => (
+                    <Typography key={student.id} variant="body2" sx={{ fontWeight: 500 }}>
+                      {student.nameOfStudent}
+                    </Typography>
+                  ))}
                 </Card>
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -1817,7 +1822,7 @@ export const ShowCourse = (props) => {
                   </div>
                 )
               )}
-              try to show the students
+
             </div>
           </Typography>
           <Typography variant="body1" sx={{ textAlign: 'center', py: 4, color: 'text.secondary' }}>
