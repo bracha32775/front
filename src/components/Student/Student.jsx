@@ -16,7 +16,8 @@ import { AddStudent } from '../Add/AddStudent/AddStudent'
 import { useState } from "react";
 import * as React from 'react';
 import './Student.css'
-import EnhancedTable from './studentTable';
+// בדוק את הייבוא הזה - זו כנראה הבעיה העיקרית
+import EnhancedTable from './studentTable';  // ודא שהקובץ קיים ומייצא ברירת מחדל
 import { setFlagStudentSlice } from '../../redux/Slices/studentSlice';
 
 export const Student = () => {
@@ -25,8 +26,8 @@ export const Student = () => {
   const dispatch = useDispatch()
   const students = useSelector(state => state.students.students);
   const [open, setOpen] = React.useState(false);
-  //;setOpen(useSelector(state => state.students.open))
   const [flag, setFlag] = useState()
+  
   async function doIt() {
     await dispatch(getStudentsThunk())
   }
@@ -44,78 +45,52 @@ export const Student = () => {
     },
   }));
 
-
-
   const handleClickOpen = () => {
     setOpen(true);
     dispatch(setFlagStudentSlice(false))
   };
+  
   const handleClose = () => {
     setOpen(false);
-
   };
 
-  return <div>
-    <Routing></Routing>
-    {/* <p className='pTeachers'>נבחרת התלמידות שלנו</p>
-    <table>
-      <thead>
-        <tr >
-          <td className='cotarot'>שם</td>
-          <td className='cotarot'>מספר טלפון כרגע</td>
-          <td className='cotarot'>כתובת(זמננננננני)</td>
-        </tr></thead>
-      <tbody>
-
-        {students.map(x => {
-          return <tr >
-            <td className='tochen'>{x.nameOfStudent}</td>
-            <td className='tochen'>{x.phoneOfStudent}</td>
-            <td className='tochen'>{x.addressOfStudent}</td>
-          </tr>
-        })}
-      </tbody>
-    </table> */}
-    <EnhancedTable></EnhancedTable>
-    <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        הוספת תלמידה
-        <AddIcon ></AddIcon>
-      </Button>
-      {!flagClose && <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <DialogTitle
-          id="customized-dialog-title">
+  return (
+    <div>
+      <Routing />
+      {/* בדוק אם EnhancedTable מוגדר כראוי */}
+      {EnhancedTable ? <EnhancedTable /> : <div>טבלה לא זמינה</div>}
+      <React.Fragment>
+        <Button variant="outlined" onClick={handleClickOpen}>
           הוספת תלמידה
-        </DialogTitle>
-        <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={(theme) => ({
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: theme.palette.grey[60],
-          })}
-        >
-          <CloseIcon />
-        </IconButton>
-        <DialogContent dividers>
-          <AddStudent></AddStudent>
-        </DialogContent >
-      </BootstrapDialog>}
-    </React.Fragment>
-  </div>
-}
-
-
-
-
-
-
-
-
-
+          <AddIcon />
+        </Button>
+        {!flagClose && (
+          <BootstrapDialog
+            onClose={handleClose}
+            aria-labelledby="customized-dialog-title"
+            open={open}
+          >
+            <DialogTitle id="customized-dialog-title">
+              הוספת תלמידה
+            </DialogTitle>
+            <IconButton
+              aria-label="close"
+              onClick={handleClose}
+              sx={(theme) => ({
+                position: 'absolute',
+                right: 8,
+                top: 8,
+                color: theme.palette.grey[60],
+              })}
+            >
+              <CloseIcon />
+            </IconButton>
+            <DialogContent dividers>
+              <AddStudent />
+            </DialogContent>
+          </BootstrapDialog>
+        )}
+      </React.Fragment>
+    </div>
+  );
+};
