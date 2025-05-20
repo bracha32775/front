@@ -1765,11 +1765,11 @@ export const ShowCourse = (props) => {
                   <Typography variant="body2">
                     תלמידים רשומים 
                   </Typography>
-                  {localCourse.Students.map((student) => (
+                  {/* {localCourse.Students.map((student) => (
                     <Typography key={student.id} variant="body2" sx={{ fontWeight: 500 }}>
-                      {student.nameOfStudent}
-                    </Typography>
-                  ))}
+                      {student.nameOfStudent} */}
+                    {/* </Typography>
+                  ))} */}
                 </Card>
               </Grid>
               <Grid item xs={12} sm={4}>
