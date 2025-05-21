@@ -3,6 +3,7 @@ import { getStudentsThunk } from "../Thunks/getStudentsThunk";
 import { addStudentThunk } from "../Thunks/addStudentThunk";
 import { getStudentArchieveThunk } from "../Thunks/getStudentArchieveThunk";
 import { joinCourseThunk } from "../Thunks/joinCourseThunk";
+import { deleteStudentThunk } from "../Thunks/deleteStudentThunk";
 
 const INITIAL_STATE={
     students : [],
@@ -36,6 +37,18 @@ export const studentSlice = createSlice({
         
         builder.addCase(joinCourseThunk.fulfilled,(state,action)=>{
             state.newStudent=action.payload;
+        });
+        // builder.addCase(deleteStudentThunk.fulfilled,(state,action)=>{
+        //     state.students=action.payload;
+        // });
+        builder.addCase(deleteStudentThunk.fulfilled, (state, action) => {
+            // עדכון רשימת התלמידות עם התוצאה מהשרת
+            state.students = action.payload;
+        });
+        
+        builder.addCase(deleteStudentThunk.rejected, (state, action) => {
+            // טיפול בשגיאות
+            console.error("Delete student failed:", action.error);
         });
     }
 })
