@@ -1701,6 +1701,8 @@ import { getStudentsThunk } from '../../redux/Thunks/getStudentsThunk';
 import { joinCourseThunk } from '../../redux/Thunks/joinCourseThunk';
 import './joinCourse3.css';
 import { jsPDF } from 'jspdf';
+import { Routing } from '../Routing/Routing';
+import { getAllStudentsThunk } from '../../redux/Thunks/getAllStudentsThunk';
 
 const JoinCourse3 = () => {
     const { id } = useParams();
@@ -1726,7 +1728,7 @@ const JoinCourse3 = () => {
 
     // נתונים מהסטור
     const selectedCourse = useSelector(state => state.courses.selectC);
-    const students = useSelector(state => state.students.students);
+    const students = useSelector(state => state.students.allStudents);
     const selectedStudentDetails = students.find(s => s.idOfStudent === selectedStudent);
 
     // שלבי ההרשמה
@@ -1744,7 +1746,7 @@ const JoinCourse3 = () => {
                 }
 
                 // טעינת רשימת התלמידות
-                const studentsResult = await dispatch(getStudentsThunk());
+                const studentsResult = await dispatch(getAllStudentsThunk());
                 console.log("Students loaded:", studentsResult.payload);
 
                 setError(null);
@@ -2491,6 +2493,7 @@ const JoinCourse3 = () => {
     if (joinSuccess) {
         return (
             <Box className="join-course-container">
+                <Routing /> 
                 <Paper className="join-course-paper">
                     <Box sx={{
                         textAlign: 'center',
@@ -2543,6 +2546,7 @@ const JoinCourse3 = () => {
 
     return (
         <Box className="join-course-container">
+            <Routing></Routing>
             <Paper className="join-course-paper">
                 <Box className="header">
                     <Button

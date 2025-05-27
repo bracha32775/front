@@ -65,6 +65,10 @@ export const courseSlice = createSlice({
     reducers:{
         setFlagCourseSlice:(state,action)=>{
             state.flagClose=action.payload
+        },
+        // הוסף את זה:
+        setSelectedCourse:(state,action)=>{
+            state.selectC=action.payload
         }
     },
     extraReducers:(builder)=>{
@@ -116,7 +120,7 @@ export const courseSlice = createSlice({
     }
 })
 
-export const {setFlagCourseSlice} = courseSlice.actions
+export const {setFlagCourseSlice, setSelectedCourse} = courseSlice.actions
 
 
 

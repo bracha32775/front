@@ -1,0 +1,1214 @@
+/* ===== HOME PAGE STYLES ===== */
+
+.home-page-wrapper {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    padding: 20px 0;
+    direction: rtl;
+  }
+  
+  .home-dashboard {
+    max-width: 1400px !important;
+    margin: 0 auto;
+  }
+  
+  /* ===== HEADER STYLES ===== */
+  
+  .home-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  
+  .home-title {
+    font-weight: 900 !important;
+    background: linear-gradient(45deg, #ffffff 30%, #f0f0f0 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 16px !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .home-subtitle {
+    color: rgba(255, 255, 255, 0.9) !important;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 400 !important;
+  }
+  
+  /* ===== DEBUG INFO STYLES ===== */
+  
+  .debug-info {
+    margin-bottom: 24px !important;
+    padding: 20px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 16px !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* ===== SEARCH STYLES ===== */
+  
+  .search-container {
+    margin-bottom: 32px !important;
+    padding: 24px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px);
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease;
+  }
+  
+  .search-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  .search-field .MuiOutlinedInput-root {
+    border-radius: 16px !important;
+    background: white;
+    transition: all 0.3s ease;
+  }
+  
+  .search-field .MuiOutlinedInput-root:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-icon {
+    color: #667eea !important;
+  }
+  
+  /* ===== STATS STYLES ===== */
+  
+  .stats-container {
+    margin-bottom: 40px;
+  }
+  
+  .stat-card {
+    padding: 24px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+  }
+  
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  .stat-card:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .courses-stat {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  .students-stat {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  }
+  
+  .seats-stat {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+  }
+  
+  .stat-number {
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .stat-label {
+    opacity: 0.9;
+    font-weight: 500 !important;
+  }
+  
+  /* ===== COURSE CARD STYLES - ENHANCED ===== */
+  
+  .course-card-wrapper {
+    height: 100%;
+    min-height: 600px; /* גובה מינימלי גדול יותר */
+  }
+  
+  .course-card {
+    height: 600px !important; /* גובה גדול יותר */
+    min-height: 600px !important;
+    border-radius: 32px !important; /* פינות מעוגלות יותר */
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25) !important; /* צל גדול יותר */
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    transform-style: preserve-3d;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-20px) scale(1.03) rotateX(5deg); /* אפקט 3D */
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35) !important;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .course-card-badges {
+    position: absolute;
+    top: 24px; /* מרחק גדול יותר מהקצה */
+    left: 24px;
+    right: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 3;
+  }
+  
+  .popular-badge {
+    background: linear-gradient(45deg, #FF9800, #F57C00) !important;
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important; /* טקסט גדול יותר */
+    padding: 8px 16px !important; /* ריפוד גדול יותר */
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px !important;
+  }
+  
+  .category-badge {
+    background: linear-gradient(45deg, #3f51b5, #303f9f) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important; /* טקסט גדול יותר */
+    padding: 8px 16px !important; /* ריפוד גדול יותר */
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px !important;
+  }
+  
+  .progress-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 8px; /* עובי גדול יותר */
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    transition: width 0.3s ease;
+    z-index: 3;
+    border-radius: 0 0 32px 32px;
+    box-shadow: 0 -2px 10px rgba(76, 175, 80, 0.5);
+  }
+  
+  .course-card-content {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px !important; /* ריפוד גדול יותר */
+    color: white;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.9) 100%);
+  }
+  
+  .course-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px; /* מרחק גדול יותר */
+    margin-top: 60px; /* מרחק מהתגיות */
+  }
+  
+  .course-title {
+    font-weight: 800 !important;
+    font-size: 2rem !important; /* גודל טקסט גדול יותר */
+    line-height: 1.2;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    flex: 1;
+    margin-left: 20px;
+    letter-spacing: -0.5px;
+  }
+  
+  .course-actions {
+    display: flex;
+    gap: 12px; /* מרחק גדול יותר בין כפתורים */
+    flex-direction: column;
+  }
+  
+  .action-button {
+    background: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.4) !important;
+    color: white !important;
+    width: 56px !important; /* כפתורים גדולים יותר */
+    height: 56px !important;
+    transition: all 0.4s ease;
+    border-radius: 16px !important;
+  }
+  
+  .action-button:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .course-info {
+    margin-bottom: 24px; /* מרחק גדול יותר */
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px; /* מרחק גדול יותר בין פריטים */
+    gap: 12px;
+  }
+  
+  .info-icon {
+    font-size: 24px !important; /* אייקונים גדולים יותר */
+    opacity: 0.9;
+  }
+  
+  .info-item .MuiTypography-root {
+    font-size: 1.1rem !important; /* טקסט גדול יותר */
+    font-weight: 500 !important;
+  }
+  
+  .location-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .course-description {
+    margin-bottom: 24px !important; /* מרחק גדול יותר */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* יותר שורות */
+    -webkit-box-orient: vertical;
+    line-height: 1.6;
+    opacity: 0.95;
+    font-size: 1.1rem !important; /* טקסט גדול יותר */
+    font-weight: 400 !important;
+  }
+  
+  .course-chips {
+    display: flex;
+    gap: 12px; /* מרחק גדול יותר */
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  
+  .info-chip {
+    font-weight: 700 !important;
+    font-size: 1rem !important; /* טקסט גדול יותר */
+    height: 40px !important; /* גובה גדול יותר */
+    padding: 0 16px !important; /* ריפוד גדול יותר */
+    border-radius: 20px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    transition: all 0.3s ease;
+  }
+  
+  .info-chip:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .students-chip {
+    background: linear-gradient(45deg, #4CAF50, #66BB6A) !important;
+    color: white !important;
+  }
+  
+  .meetings-chip {
+    background: linear-gradient(45deg, #2196F3, #42A5F5) !important;
+    color: white !important;
+  }
+  
+  .price-chip {
+    background: linear-gradient(45deg, #FF9800, #FFB74D) !important;
+    color: white !important;
+  }
+  
+  .instructor-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px; /* מרחק גדול יותר */
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .instructor-avatar {
+    width: 50px !important; /* אווטר גדול יותר */
+    height: 50px !important;
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4) !important;
+    font-weight: 700 !important;
+    font-size: 1.4rem !important; /* טקסט גדול יותר באווטר */
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  .instructor-name {
+    font-weight: 600 !important;
+    opacity: 0.95;
+    font-size: 1.2rem !important; /* טקסט גדול יותר */
+  }
+  
+  .view-details-button {
+    background: linear-gradient(45deg, #667eea, #764ba2) !important;
+    color: white !important;
+    border-radius: 20px !important; /* פינות מעוגלות יותר */
+    padding: 18px 32px !important; /* ריפוד גדול יותר */
+    font-weight: 700 !important;
+    font-size: 1.2rem !important; /* טקסט גדול יותר */
+    text-transform: none !important;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    transition: all 0.4s ease !important;
+    backdrop-filter: blur(15px);
+    min-height: 60px !important; /* גובה מינימלי */
+  }
+  
+  .view-details-button:hover {
+    background: linear-gradient(45deg, #5a6fd8, #6a42a0) !important;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.7) !important;
+  }
+  
+  .view-details-button .MuiSvgIcon-root {
+    font-size: 1.5rem !important; /* אייקון גדול יותר */
+  }
+  
+  /* ===== NO COURSES STYLES ===== */
+  
+  .no-courses-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px; /* גובה גדול יותר */
+    padding: 60px; /* ריפוד גדול יותר */
+  }
+  
+  .no-courses-content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 32px; /* פינות מעוגלות יותר */
+    padding: 60px 40px; /* ריפוד גדול יותר */
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    max-width: 600px; /* רוחב גדול יותר */
+    width: 100%;
+  }
+  
+  .no-courses-icon {
+    width: 120px; /* אייקון גדול יותר */
+    height: 120px;
+    margin: 0 auto 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 60px; /* גודל אייקון גדול יותר */
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+  }
+  
+  .no-courses-title {
+    font-weight: 700 !important;
+    color: #333 !important;
+    margin-bottom: 20px !important;
+    font-size: 2rem !important; /* כותרת גדולה יותר */
+  }
+  
+  .no-courses-text {
+    color: #666 !important;
+    margin-bottom: 32px !important;
+    line-height: 1.6;
+    font-size: 1.2rem !important; /* טקסט גדול יותר */
+  }
+  
+  .clear-search-button {
+    border-radius: 16px !important;
+    padding: 16px 32px !important; /* ריפוד גדול יותר */
+    font-weight: 600 !important;
+    font-size: 1.1rem !important; /* טקסט גדול יותר */
+    text-transform: none !important;
+    border-color: #667eea !important;
+    color: #667eea !important;
+    transition: all 0.3s ease !important;
+    min-height: 50px !important;
+  }
+  
+  .clear-search-button:hover {
+    background: #667eea !important;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+  
+  /* ===== COURSES INFO STYLES ===== */
+  
+  .courses-info {
+    text-align: center;
+    margin-top: 50px; /* מרחק גדול יותר */
+    padding: 30px; /* ריפוד גדול יותר */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+  }
+  
+  .courses-count {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 600 !important;
+    font-size: 1.2rem !important; /* טקסט גדול יותר */
+  }
+  
+  /* ===== LOADING STYLES ===== */
+  
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .loading-content {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 32px; /* פינות מעוגלות יותר */
+    padding: 60px 40px; /* ריפוד גדול יותר */
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  }
+  
+  .loading-spinner {
+    color: #667eea !important;
+    margin-bottom: 32px !important;
+    width: 80px !important; /* ספינר גדול יותר */
+    height: 80px !important;
+  }
+  
+  .loading-text {
+    color: #333 !important;
+    font-weight: 600 !important;
+    font-size: 1.3rem !important; /* טקסט גדול יותר */
+  }
+  
+  /* ===== RESPONSIVE DESIGN - ENHANCED ===== */
+  
+  @media (max-width: 1200px) {
+    .course-card {
+      height: 580px !important;
+    }
+    
+    .course-title {
+      font-size: 1.8rem !important;
+    }
+  }
+  
+  @media (max-width: 960px) {
+    .home-header {
+      padding: 40px 20px;
+    }
+    
+    .home-title {
+      font-size: 2.8rem !important;
+    }
+    
+    .course-card {
+      height: 550px !important;
+    }
+    
+    .course-card-content {
+      padding: 32px !important;
+    }
+    
+    .course-title {
+      font-size: 1.6rem !important;
+    }
+    
+    .course-actions {
+      flex-direction: row;
+      gap: 8px;
+    }
+    
+    .action-button {
+      width: 48px !important;
+      height: 48px !important;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .home-page-wrapper {
+      padding: 15px 0;
+    }
+    
+    .home-header {
+      padding: 32px 16px;
+      margin-bottom: 32px;
+    }
+    
+    .home-title {
+      font-size: 2.2rem !important;
+    }
+    
+    .home-subtitle {
+      font-size: 1.1rem !important;
+    }
+    
+    .search-container {
+      padding: 20px !important;
+      margin-bottom: 32px !important;
+    }
+    
+    .stats-container {
+      margin-bottom: 32px;
+    }
+    
+    .stat-card {
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .course-card-wrapper {
+      min-height: 500px;
+    }
+    
+    .course-card {
+      height: 500px !important;
+      min-height: 500px !important;
+      border-radius: 24px !important;
+    }
+    
+    .course-card-content {
+      padding: 24px !important;
+    }
+    
+    .course-card-header {
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+    
+    .course-title {
+      font-size: 1.4rem !important;
+      margin-left: 12px;
+    }
+    
+    .course-actions {
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .action-button {
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 12px !important;
+    }
+    
+    .course-info {
+      margin-bottom: 20px;
+    }
+    
+    .info-item {
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+    
+    .info-icon {
+      font-size: 20px !important;
+    }
+    
+    .info-item .MuiTypography-root {
+      font-size: 1rem !important;
+    }
+    
+    .course-description {
+      font-size: 1rem !important;
+      margin-bottom: 20px !important;
+      -webkit-line-clamp: 2;
+    }
+    
+    .course-chips {
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .info-chip {
+      font-size: 0.9rem !important;
+      height: 36px !important;
+      padding: 0 12px !important;
+      border-radius: 18px !important;
+    }
+    
+    .instructor-info {
+      margin-bottom: 20px;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 16px;
+    }
+    
+    .instructor-avatar {
+      width: 44px !important;
+      height: 44px !important;
+      font-size: 1.2rem !important;
+    }
+    
+    .instructor-name {
+      font-size: 1.1rem !important;
+    }
+    
+    .view-details-button {
+      padding: 16px 24px !important;
+      font-size: 1.1rem !important;
+      border-radius: 16px !important;
+      min-height: 54px !important;
+    }
+    
+    .view-details-button .MuiSvgIcon-root {
+      font-size: 1.3rem !important;
+    }
+    
+    .no-courses-content {
+      padding: 40px 24px;
+      border-radius: 24px;
+    }
+    
+    .no-courses-icon {
+      width: 100px;
+      height: 100px;
+      font-size: 50px;
+      margin-bottom: 24px;
+    }
+    
+    .no-courses-title {
+      font-size: 1.6rem !important;
+      margin-bottom: 16px !important;
+    }
+    
+    .no-courses-text {
+      font-size: 1.1rem !important;
+      margin-bottom: 24px !important;
+    }
+    
+    .clear-search-button {
+      padding: 14px 24px !important;
+      font-size: 1rem !important;
+      min-height: 46px !important;
+    }
+  }
+  
+  /* ===== ANIMATIONS - ENHANCED ===== */
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 15px rgba(102, 126, 234, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+    }
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -468px 0;
+    }
+    100% {
+      background-position: 468px 0;
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .course-card-wrapper {
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  .popular-badge {
+    animation: pulse 2.5s infinite;
+  }
+  
+  .loading-spinner {
+    animation: pulse 1.8s ease-in-out infinite alternate;
+  }
+  
+  .instructor-avatar {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  /* ===== HOVER EFFECTS - ENHANCED ===== */
+  
+  .course-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
+    z-index: 1;
+    border-radius: 32px;
+  }
+  
+  .course-card:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .course-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+    border-radius: 32px;
+  }
+  
+  .course-card:hover::after {
+    opacity: 1;
+  }
+  
+  /* ===== ACCESSIBILITY - ENHANCED ===== */
+  
+  .course-card:focus {
+    outline: 4px solid #667eea;
+    outline-offset: 4px;
+  }
+  
+  .action-button:focus {
+    outline: 3px solid white;
+    outline-offset: 3px;
+  }
+  
+  .view-details-button:focus {
+    outline: 3px solid white;
+    outline-offset: 3px;
+  }
+  
+  /* ===== GRID LAYOUT ENHANCEMENTS ===== */
+  
+  .courses-grid-container .MuiGrid-container {
+    gap: 32px !important; /* מרחק גדול יותר בין הכרטיסים */
+  }
+  
+  .courses-grid-container .MuiGrid-item {
+    padding: 0 !important; /* הסרת הריפוד הדיפולטיבי */
+  }
+  
+  /* ===== CARD IMAGE ENHANCEMENTS ===== */
+  
+  .course-card .MuiCardMedia-root {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    z-index: 0 !important;
+    transition: transform 0.5s ease !important;
+  }
+  
+  .course-card:hover .MuiCardMedia-root {
+    transform: scale(1.05); /* זום על התמונה בהובר */
+  }
+  
+  /* ===== ENHANCED GRADIENT OVERLAYS ===== */
+  
+  .course-card-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(102, 126, 234, 0.1) 0%,
+      rgba(118, 75, 162, 0.1) 25%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.3) 75%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    z-index: -1;
+    border-radius: 32px;
+  }
+  
+  /* ===== ENHANCED CHIP STYLES ===== */
+  
+  .info-chip.students-chip:hover {
+    background: linear-gradient(45deg, #66BB6A, #4CAF50) !important;
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.5) !important;
+  }
+  
+  .info-chip.meetings-chip:hover {
+    background: linear-gradient(45deg, #42A5F5, #2196F3) !important;
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.5) !important;
+  }
+  
+  .info-chip.price-chip:hover {
+    background: linear-gradient(45deg, #FFB74D, #FF9800) !important;
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.5) !important;
+  }
+  
+  /* ===== ENHANCED BADGE ANIMATIONS ===== */
+  
+  .popular-badge::before {
+    content: '🔥';
+    margin-left: 8px;
+    animation: float 2s ease-in-out infinite;
+  }
+  
+  .category-badge::before {
+    content: '📚';
+    margin-left: 8px;
+  }
+  
+  /* ===== ENHANCED BUTTON STYLES ===== */
+  
+  .view-details-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .view-details-button:hover::before {
+    opacity: 1;
+  }
+  
+  /* ===== ENHANCED INSTRUCTOR SECTION ===== */
+  
+  .instructor-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.15));
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .instructor-info:hover::before {
+    opacity: 1;
+  }
+  
+  .instructor-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ===== ENHANCED PROGRESS INDICATOR ===== */
+  
+  .progress-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+  }
+  
+  /* ===== ENHANCED STATS CARDS ===== */
+  
+  .stat-card .stat-number {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .stat-card .stat-label {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .courses-stat::before {
+    content: '📊';
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 2rem;
+    opacity: 0.3;
+  }
+  
+  .students-stat::before {
+    content: '👥';
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 2rem;
+    opacity: 0.3;
+  }
+  
+  .seats-stat::before {
+    content: '💺';
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 2rem;
+    opacity: 0.3;
+  }
+  
+  /* ===== ENHANCED SEARCH CONTAINER ===== */
+  
+  .search-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .search-container:hover::before {
+    opacity: 1;
+  }
+  
+  /* ===== ENHANCED NO COURSES SECTION ===== */
+  
+  .no-courses-icon::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: pulse 3s infinite;
+  }
+  
+  /* ===== PRINT STYLES - ENHANCED ===== */
+  
+  @media print {
+    .home-page-wrapper {
+      background: white !important;
+    }
+    
+    .course-card {
+      box-shadow: none !important;
+      border: 2px solid #ccc !important;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    
+    .action-button,
+    .view-details-button {
+      display: none !important;
+    }
+    
+    .course-card-content {
+      background: rgba(0, 0, 0, 0.1) !important;
+      color: #333 !important;
+    }
+    
+    .course-title {
+      color: #333 !important;
+      text-shadow: none !important;
+    }
+  }
+  
+  /* ===== HIGH CONTRAST MODE - ENHANCED ===== */
+  
+  @media (prefers-contrast: high) {
+    .course-card {
+      border: 3px solid #000 !important;
+      background: white !important;
+    }
+    
+    .course-card-content {
+      background: rgba(0, 0, 0, 0.9) !important;
+    }
+    
+    .course-title {
+      text-shadow: none !important;
+      font-weight: 900 !important;
+      color: white !important;
+    }
+    
+    .info-chip {
+      border: 2px solid white !important;
+      font-weight: 900 !important;
+    }
+  }
+  
+  /* ===== REDUCED MOTION - ENHANCED ===== */
+  
+  @media (prefers-reduced-motion: reduce) {
+    .course-card,
+    .action-button,
+    .view-details-button,
+    .stat-card,
+    .instructor-avatar,
+    .popular-badge {
+      transition: none !important;
+      animation: none !important;
+    }
+    
+    .course-card:hover {
+      transform: none !important;
+    }
+    
+    .course-card::before,
+    .course-card::after {
+      display: none !important;
+    }
+  }
+  
+  /* ===== DARK MODE SUPPORT - ENHANCED ===== */
+  
+  @media (prefers-color-scheme: dark) {
+    .debug-info,
+    .search-container,
+    .no-courses-content,
+    .loading-content {
+      background: rgba(20, 20, 20, 0.95) !important;
+      color: white !important;
+      border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    .no-courses-title,
+    .loading-text {
+      color: white !important;
+    }
+    
+    .no-courses-text {
+      color: #ccc !important;
+    }
+    
+    .search-field .MuiOutlinedInput-root {
+      background: rgba(40, 40, 40, 0.9) !important;
+      color: white !important;
+    }
+    
+    .courses-info {
+      background: rgba(20, 20, 20, 0.3) !important;
+      border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+  }
+  
+  /* ===== ULTRA-WIDE SCREEN SUPPORT ===== */
+  
+  @media (min-width: 1920px) {
+    .course-card {
+      height: 650px !important;
+    }
+    
+    .course-title {
+      font-size: 2.2rem !important;
+    }
+    
+    .course-card-content {
+      padding: 48px !important;
+    }
+    
+    .view-details-button {
+      padding: 20px 36px !important;
+      font-size: 1.3rem !important;
+    }
+  }
+  
+  /* ===== FINAL ENHANCEMENTS ===== */
+  
+  .course-card-wrapper:nth-child(odd) .course-card {
+    animation-delay: 0.1s;
+  }
+  
+  .course-card-wrapper:nth-child(even) .course-card {
+    animation-delay: 0.2s;
+  }
+  
+  .course-card-wrapper:nth-child(3n) .course-card {
+    animation-delay: 0.3s;
+  }
+  
+  /* גימור אחרון לוודא שהכל נראה מושלם */
+  .MuiContainer-root.home-dashboard {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  
+  .courses-grid-container {
+    margin-top: 20px;
+  }
+  
+  

@@ -38,6 +38,4 @@ export const getStudentsThunk = createAsyncThunk(
         console.log("Students data from API:", data)
         return data
     }
-)//     }
-// );
-// </Typography>
+)
