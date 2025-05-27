@@ -5,7 +5,7 @@ export const deleteSpeakerThunk = createAsyncThunk(
     async (id) => {
         const response = await fetch(`https://localhost:7092/api/Speaker/delete/${id}`,
             {
-                mode: 'no-cors',
+                
                 method: 'PUT',
                 body: JSON.stringify(id),
                 headers: {
