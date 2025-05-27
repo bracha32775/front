@@ -46,6 +46,7 @@ import { CloudUploadOutlined } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import { getCoursesThunk } from '../../redux/Thunks/getCoursesThunk';
 import { getAllStudentsOfCoursThunk } from '../../redux/Thunks/getAllStudentsOfCoursThunk';
+import { Routing } from '../Routing/Routing';
 export const ShowCourse = (props) => {
   const { selectedCourse, onBack, onCourseUpdate } = props;
   const nav = useNavigate();
@@ -79,6 +80,14 @@ export const ShowCourse = (props) => {
       setEditedCourse(props.selectedCourse);
     }
   }, [props.selectedCourse]);
+  useEffect(() => {
+    console.log("ShowCourse received selectedCourse:", selectedCourse);
+    if (selectedCourse && Object.keys(selectedCourse).length > 0) {
+      setLocalCourse(selectedCourse);
+      setEditedCourse(selectedCourse);
+      setCourseStatus(selectedCourse.status);
+    }
+  }, [selectedCourse]);
   // useEffect(() => {
   //   if (localCourse) {
   //     setLocalCourse(localCourse);
@@ -89,12 +98,12 @@ export const ShowCourse = (props) => {
   const myStudents = useSelector(state => state.courses.students);
   const [isUpdating, setIsUpdating] = useState(false);
   const [courseStatus, setCourseStatus] = useState(localCourse.status);
-   
+
   const moveToJoinCourse = () => {
     console.log("localCourse.idOfCourse" + localCourse.idOfCourse + "wowowow");
     // העברת מזהה הקורס כפרמטר לדף הרישום
     nav(`/joinCourse/${localCourse.idOfCourse}`);
-    
+
 
   };
   const handleFileChange = (event) => {
@@ -102,7 +111,7 @@ export const ShowCourse = (props) => {
     if (file) {
       setSelectedFile(file);
       setFileName(file.name);
-// 
+      // 
       // יצירת URL לתצוגה מקדימה של התמונה
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -214,17 +223,17 @@ export const ShowCourse = (props) => {
   // // };
   const handleEditSave = async () => {
     setIsUpdating(true);
-  
+
     try {
       // שליחת העדכון לשרת
       await dispatch(updateCourseThunk(editedCourse)).unwrap();
-  
+
       // עדכון מקומי של הקורס
       setLocalCourse(editedCourse);
-      
+
       // סגירת חלון העריכה
       setEditDialogOpen(false);
-  
+
       // עדכון הקומפוננטה האב
       if (onCourseUpdate) {
         onCourseUpdate();
@@ -236,7 +245,7 @@ export const ShowCourse = (props) => {
       setIsUpdating(false);
     }
   };
-  
+
   // const handleEditSave = async () => {
   //   setIsUpdating(true);
 
@@ -437,22 +446,22 @@ export const ShowCourse = (props) => {
   // };
   const handleToggleStatus = async () => {
     if (isUpdating) return;
-  
+
     setIsUpdating(true);
     const newStatus = !courseStatus;
     setCourseStatus(newStatus);
-  
+
     try {
       const updatedCourse = {
         ...localCourse,
         status: newStatus
       };
-  
+
       await dispatch(updateCourseThunk(updatedCourse)).unwrap();
-      
+
       // עדכון הקורס המקומי
-      setLocalCourse(prev => ({...prev, status: newStatus}));
-      
+      setLocalCourse(prev => ({ ...prev, status: newStatus }));
+
       // עדכון הקומפוננטה האב
       if (onCourseUpdate) {
         onCourseUpdate();
@@ -465,7 +474,7 @@ export const ShowCourse = (props) => {
       setIsUpdating(false);
     }
   };
-  
+
   // Get course image URL
   const courseImageUrl = localCourse.image
     ? `https://localhost:7092${localCourse.image}`
@@ -491,6 +500,7 @@ export const ShowCourse = (props) => {
         '100%': { opacity: 1 }
       }
     }}>
+      <Routing/>
       {/* Admin Actions Bar */}
       <Box sx={{
         display: 'flex',
@@ -529,7 +539,7 @@ export const ShowCourse = (props) => {
           <Tooltip title="ניהול תלמידים">
             <Button
               variant="outlined"
-              color="info"
+              color="warning"
               startIcon={<GroupIcon />}
               onClick={handleStudentsOpen}
               sx={{
@@ -540,11 +550,11 @@ export const ShowCourse = (props) => {
               תלמידים
             </Button>
           </Tooltip>
-          <Tooltip title={courseStatus ? "השבת קורס" : "הפעל קורס"}>
+          <Tooltip title={courseStatus ? "מחק קורס" : "הפעל קורס"}>
             <Button
               variant="outlined"
-              color={courseStatus ? "warning" : "success"}
-              startIcon={courseStatus ? <BlockIcon /> : <VisibilityIcon />}
+              color={courseStatus ? "error" : "success"}
+              startIcon={courseStatus ? <DeleteIcon /> : <VisibilityIcon />}
               onClick={handleToggleStatus}
               disabled={isUpdating}
               sx={{
@@ -553,10 +563,10 @@ export const ShowCourse = (props) => {
                 position: 'relative',
               }}
             >
-              {isUpdating ? "מעדכן..." : (courseStatus ? "השבת" : "הפעל")}
+              {isUpdating ? "מעדכן..." : (courseStatus ? "מחק" : "הפעל")}
             </Button>
           </Tooltip>
-          <Tooltip title="מחיקת קורס">
+          {/* <Tooltip title="מחיקת קורס">
             <Button
               variant="outlined"
               color="error"
@@ -569,7 +579,7 @@ export const ShowCourse = (props) => {
             >
               מחיקה
             </Button>
-          </Tooltip>
+          </Tooltip> */}
         </Box>
       </Box>
       {/* 
@@ -1763,12 +1773,12 @@ export const ShowCourse = (props) => {
                     {localCourse.currentAmountOfStudents || 0}
                   </Typography>
                   <Typography variant="body2">
-                    תלמידים רשומים 
+                    תלמידים רשומים
                   </Typography>
                   {/* {localCourse.Students.map((student) => (
                     <Typography key={student.id} variant="body2" sx={{ fontWeight: 500 }}>
                       {student.nameOfStudent} */}
-                    {/* </Typography>
+                  {/* </Typography>
                   ))} */}
                 </Card>
               </Grid>
