@@ -96,6 +96,8 @@ import { Calendar } from "../Calender/Calendar"
 import { Speaker } from "../Speaker/Speaker"
 import JoinCourse3 from "../JoinCourse/JoinCourse3"
 import JoinCourse2 from "../JoinCourse/joinCourse2"
+import { NewHome } from "../newHome/newHome"
+import { TempHome } from "../TempHome/TempHome"
 // יש לייבא את Calendar מהנתיב הנכון
 // import { Calendar } from "../Calendar/Calendar"
 
@@ -119,5 +121,7 @@ export const Routing = () => {
         <Route path='/HomePage' element={<HomePage></HomePage>}></Route>
         <Route path='Home2'element={<Home2></Home2>}></Route>
         <Route path="/Calendar/" element={<Calendar></Calendar>}></Route>
+        <Route path="/TempHome/" element={<TempHome></TempHome>}></Route>
+        <Route path="/NewHome/" element={<NewHome></NewHome>}></Route>
     </Routes>
 }
